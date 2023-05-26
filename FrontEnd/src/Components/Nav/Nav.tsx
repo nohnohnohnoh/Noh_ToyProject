@@ -1,0 +1,128 @@
+import React from "react";
+import styled from "styled-components";
+// import { FaBeer } from 'react-icons/fa';
+import { BsSearch, BsBasket, BsPerson } from "react-icons/bs";
+
+const Nav = () => {
+  return (
+    <NavComponents>
+      <NavComponentsSection>
+        <NavFirstList>
+          <NavCreate>회원가입</NavCreate>
+          <NavLogin>로그인</NavLogin>
+          <NavOrder>주문조회</NavOrder>
+          <NavProduct>최근본상품</NavProduct>
+          <NavClient>고객센터</NavClient>
+        </NavFirstList>
+        <NavSecondList>
+          <NavHeaderLogo>THE DAJU</NavHeaderLogo>
+          <NavMenu>
+            <NavMenuUl>
+              <NavMenuLi>추천 상품</NavMenuLi>
+              <NavMenuLi>신제품</NavMenuLi>
+              <NavMenuLi>잔/컵</NavMenuLi>
+              <NavMenuLi>접시/볼</NavMenuLi>
+              <NavMenuLi>수저/커트러리</NavMenuLi>
+              <NavMenuLi>조리도구/기타주방잡화</NavMenuLi>
+              <NavMenuLi>재질</NavMenuLi>
+              <NavMenuLi>브랜드</NavMenuLi>
+            </NavMenuUl>
+          </NavMenu>
+          <NavMyPage>
+            <SearchIcon />
+            <MyPageIcon />
+            <ProductIcon />
+          </NavMyPage>
+        </NavSecondList>
+      </NavComponentsSection>
+    </NavComponents>
+  );
+};
+
+const NavComponents = styled.nav`
+  width: 100vw;
+  border-bottom: 1px solid #e8e8e8;
+`;
+
+const NavComponentsSection = styled.div`
+  margin: 1% 2% 0 2%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const NavFirstList = styled.div`
+  width: 100%;
+  margin-top: 1%;
+  ${({ theme }) => theme.flexMixIn("flex-end", "center")}
+`;
+
+const NavCreate = styled.div`
+  padding: 0 0.5% 0 0.5%;
+  color: #6a6a6a;
+  font-size: 12px;
+  border-right: 0.5px solid #6a6a6a;
+`;
+
+const NavLogin = styled(NavCreate)``;
+
+const NavOrder = styled(NavCreate)``;
+
+const NavProduct = styled(NavCreate)``;
+
+const NavClient = styled(NavCreate)`
+  border: none;
+`;
+
+const NavSecondList = styled.div`
+  width: 100%;
+  ${({ theme }) => theme.flexMixIn("center", "center")}
+  flex-wrap: wrap;
+  position: relative;
+  margin-top: 1.5%;
+`;
+
+const NavHeaderLogo = styled.h1`
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const NavMenu = styled.div`
+  width: 100%;
+  margin: 1.5%;
+  position: relative;
+`;
+
+const NavMenuUl = styled.ul`
+  ${({ theme }) => theme.flexMixIn("center", "center")}
+  flex-wrap: wrap;
+  margin: 0 2%;
+`;
+
+const NavMenuLi = styled.li`
+  ${({ theme }) => theme.flexMixIn("", "center")}
+  padding: 0 2%;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3a3a3a;
+`;
+
+const NavMyPage = styled.div`
+  width: 10%;
+  ${({ theme }) => theme.flexMixIn("center", "center")}
+  ${({ theme }) => theme.postionMixIn("absolute", 60, -0.25)};
+`;
+const SearchIcon = styled(BsSearch)`
+  font-size: 25px;
+  margin: 0 7.5%;
+`;
+const MyPageIcon = styled(BsPerson)`
+  font-size: 25px;
+  margin: 0 7.5%;
+`;
+const ProductIcon = styled(BsBasket)`
+  font-size: 25px;
+  margin: 0 7.5%;
+`;
+export default Nav;

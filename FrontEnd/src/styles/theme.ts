@@ -1,16 +1,18 @@
 import media from "./media";
 
-export const theme = {
+const theme = {
   media,
   flexMixIn: (justify: string, align: string) => `
     display: flex;
-    justify-content: ${justify}
-    align-items: ${align}
+    justify-content: ${justify};
+    align-items: ${align};
     `,
   postionMixIn: (postion: string, top: number, left: number) => `
-    postion: ${postion}
-    top: ${top}
-    left: ${left}
+    position: ${postion};
+    top: ${top}%;
+    right: ${left}%;
     transform: translate(-${top}%, -${left}%);
     `,
 };
+
+export default theme;
