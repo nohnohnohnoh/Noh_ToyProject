@@ -1,21 +1,35 @@
 import React from "react";
 import styled from "styled-components";
-// import { FaBeer } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
 import { BsSearch, BsBasket, BsPerson } from "react-icons/bs";
 
 const Nav = () => {
+  const navigate = useNavigate();
+
+  const navigateMain = () => {
+    navigate("/");
+  };
+
+  const navigateLogin = () => {
+    navigate("/login");
+  };
+
+  const navigateCreate = () => {
+    navigate("/create");
+  };
+
   return (
     <NavComponents>
       <NavComponentsSection>
         <NavFirstList>
-          <NavCreate>회원가입</NavCreate>
-          <NavLogin>로그인</NavLogin>
+          <NavCreate onClick={navigateCreate}>회원가입</NavCreate>
+          <NavLogin onClick={navigateLogin}>로그인</NavLogin>
           <NavOrder>주문조회</NavOrder>
           <NavProduct>최근본상품</NavProduct>
           <NavClient>고객센터</NavClient>
         </NavFirstList>
         <NavSecondList>
-          <NavHeaderLogo>THE DAJU</NavHeaderLogo>
+          <NavHeaderLogo onClick={navigateMain}>THE DAJU</NavHeaderLogo>
           <NavMenu>
             <NavMenuUl>
               <NavMenuLi>추천 상품</NavMenuLi>
@@ -62,6 +76,10 @@ const NavCreate = styled.div`
   color: #6a6a6a;
   font-size: 12px;
   border-right: 0.5px solid #6a6a6a;
+  cursor: pointer;
+  &:hover {
+    color: #1a1a1a;
+  }
 `;
 
 const NavLogin = styled(NavCreate)``;
@@ -106,6 +124,7 @@ const NavMenuLi = styled.li`
   font-size: 14px;
   font-weight: 600;
   color: #3a3a3a;
+  cursor: pointer;
 `;
 
 const NavMyPage = styled.div`
@@ -116,13 +135,16 @@ const NavMyPage = styled.div`
 const SearchIcon = styled(BsSearch)`
   font-size: 25px;
   margin: 0 7.5%;
+  cursor: pointer;
 `;
 const MyPageIcon = styled(BsPerson)`
   font-size: 25px;
   margin: 0 7.5%;
+  cursor: pointer;
 `;
 const ProductIcon = styled(BsBasket)`
   font-size: 25px;
   margin: 0 7.5%;
+  cursor: pointer;
 `;
 export default Nav;
