@@ -1,11 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState, persistor } from "../../store";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { BsSearch, BsBasket, BsPerson } from "react-icons/bs";
 
 const Nav = () => {
+  const localStorageToken = localStorage.getItem("auth_token");
   const navigate = useNavigate();
-
+  const nickName = useSelector(
+    ({ auth }: RootState) => auth.authData?.data.nickName
+  );
+  console.log("user:", nickName);
   const navigateMain = () => {
     navigate("/");
   };
@@ -18,12 +24,26 @@ const Nav = () => {
     navigate("/create");
   };
 
+  const logOut = async () => {
+    localStorage.clear();
+    await persistor.purge();
+    window.location.reload();
+  };
+
   return (
     <NavComponents>
       <NavComponentsSection>
         <NavFirstList>
-          <NavCreate onClick={navigateCreate}>회원가입</NavCreate>
-          <NavLogin onClick={navigateLogin}>로그인</NavLogin>
+          {localStorageToken ? (
+            <NavCreate>환영합니다 {nickName}님</NavCreate>
+          ) : (
+            <NavCreate onClick={navigateCreate}>회원가입</NavCreate>
+          )}
+          {localStorageToken ? (
+            <NavLogin onClick={logOut}>로그아웃</NavLogin>
+          ) : (
+            <NavLogin onClick={navigateLogin}>로그인</NavLogin>
+          )}
           <NavOrder>주문조회</NavOrder>
           <NavProduct>최근본상품</NavProduct>
           <NavClient>고객센터</NavClient>

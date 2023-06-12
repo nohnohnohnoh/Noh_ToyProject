@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { loginAuth } from "../api/Auth";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store";
+import { authLogin } from "../actions/authAction";
 import styled from "styled-components";
 
 const AuthLogin = () => {
   const [id, setId] = useState("");
   const [passWord, setPassWord] = useState("");
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
   const navigateCreate = () => {
@@ -24,13 +27,13 @@ const AuthLogin = () => {
 
   const onSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    loginAuth({ id, passWord }).then((data) => {
-      if (data.message === "로그인이 정상적으로 이루어졌습니다.") {
-        alert(data.message);
-        localStorage.setItem("auth_token", data.data.sessionId);
+    dispatch(authLogin({ id, passWord })).then(({ payload }: any) => {
+      if (payload.message === "로그인이 정상적으로 이루어졌습니다.") {
+        alert(payload.message);
+        localStorage.setItem("auth_token", payload.data.sessionId);
         navigate("/");
       } else {
-        alert(data.message);
+        alert(payload.message);
       }
     });
   };
