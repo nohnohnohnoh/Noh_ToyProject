@@ -4,3 +4,10 @@ export type AuthType = {
   pwc?: string;
   nickName?: string;
 };
+
+export type ProductType = {
+  _id?: string | undefined;
+  src?: string | undefined;
+  name?: string | undefined;
+  price?: number | undefined;
+};

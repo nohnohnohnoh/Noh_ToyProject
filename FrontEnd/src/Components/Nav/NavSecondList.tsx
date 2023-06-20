@@ -9,13 +9,21 @@ const NavSecondList = () => {
   const navigateMain = () => {
     navigate("/");
   };
+
+  const navigateNewProdcut = () => {
+    navigate("/newproduct");
+  };
+
+  const navigateRecommendProduct = () => {
+    navigate("/recommendproduct");
+  };
   return (
     <NavSecondListSection>
       <NavHeaderLogo onClick={navigateMain}>THE DAJU</NavHeaderLogo>
       <NavMenu>
         <NavMenuUl>
-          <NavMenuLi>추천 상품</NavMenuLi>
-          <NavMenuLi>신제품</NavMenuLi>
+          <NavMenuLi onClick={navigateRecommendProduct}>추천 상품</NavMenuLi>
+          <NavMenuLi onClick={navigateNewProdcut}>신제품</NavMenuLi>
           <NavMenuLi>잔/컵</NavMenuLi>
           <NavMenuLi>접시/볼</NavMenuLi>
           <NavMenuLi>수저/커트러리</NavMenuLi>

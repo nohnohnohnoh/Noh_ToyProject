@@ -45,7 +45,7 @@ const NavComponents = styled.nav<ScrollYProps>`
       top: 0;
       left: 0;
       right: 0;
-      transform: translateY(-45px);
+      transform: translateY(-50px);
     `}
 `;
 

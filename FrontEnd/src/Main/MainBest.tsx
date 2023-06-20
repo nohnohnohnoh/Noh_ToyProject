@@ -76,8 +76,6 @@ const MainBest = () => {
     },
   ];
 
-  const Test = styled.div``;
-
   return (
     <MainBestComponent>
       <MainBestSection>
