@@ -9,7 +9,7 @@ interface TitleProps {
 }
 
 const Newproduct = ({ title }: TitleProps) => {
-  const [newData, setNewData] = useState<Array<ProductType>>();
+  const [newData, setNewData] = useState([]);
 
   const dataCount = newData?.length;
 
@@ -29,7 +29,7 @@ const Newproduct = ({ title }: TitleProps) => {
         </ProdcutListTotal>
       </ProdcutListHeader>
       <ProductList>
-        {newData?.map(({ _id, src, name, price }) => {
+        {newData?.map(({ _id, src, name, price }: ProductType) => {
           const priceComma = price?.toLocaleString();
           return (
             <ProductListBox key={_id}>

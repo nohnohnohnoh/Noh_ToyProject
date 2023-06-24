@@ -9,7 +9,7 @@ interface TitleProps {
 }
 
 const RecommendProduct = ({ title }: TitleProps) => {
-  const [recommendData, setRecommendData] = useState<Array<ProductType>>();
+  const [recommendData, setRecommendData] = useState([]);
 
   const dataCount = recommendData?.length;
 
@@ -28,7 +28,7 @@ const RecommendProduct = ({ title }: TitleProps) => {
         </ProdcutListTotal>
       </ProdcutListHeader>
       <ProductList>
-        {recommendData?.map(({ _id, src, name, price }) => {
+        {recommendData?.map(({ _id, src, name, price }: ProductType) => {
           const priceComma = price?.toLocaleString();
           return (
             <ProductListBox key={_id}>

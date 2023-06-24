@@ -7,6 +7,7 @@ import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import styled from "styled-components";
+import MainNew from "./MainNew";
 
 const Main = () => {
   const mainImg = [
@@ -62,6 +63,7 @@ const Main = () => {
           textTwo="최선을 다해 찾아드리겠습니다"
           textLink="더다주 카카오톡 문의하기"
         />
+        <MainNew />
       </MainComponentSection>
     </MainComponent>
   );

@@ -1,4 +1,23 @@
+import { Pagination } from "swiper";
 import { defaultAxios } from ".";
+
+export const mainNewProdcut = async () => {
+  try {
+    const { data } = await defaultAxios.get("/product/main");
+    return data;
+  } catch (error: any) {
+    console.log(error);
+  }
+};
+
+export const mainNewProdcutPagination = async (query: string | undefined) => {
+  try {
+    const { data } = await defaultAxios.get(`/product/main?lastid=${query}`);
+    return data;
+  } catch (error: any) {
+    console.log(error);
+  }
+};
 
 export const newProduct = async () => {
   try {
