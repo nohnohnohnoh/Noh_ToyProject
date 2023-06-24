@@ -4,6 +4,24 @@ const { RecommendProduct } = require("../models/Product/RecommendProduct");
 
 const productRouter = Router();
 
+productRouter.get("/main", async (req, res) => {
+  try {
+    const { lastid } = req.query;
+    const newProducts = await NewProduct.find(
+      lastid
+        ? {
+            _id: { $gt: lastid },
+          }
+        : {}
+    )
+      .sort({ _id: 1 })
+      .limit(8); // offset vs cursor
+    return res.json({ newProducts });
+  } catch (e) {
+    return res.status(500).json({ err: e.message });
+  }
+});
+
 productRouter.get("/new", async (req, res) => {
   try {
     const newProducts = await NewProduct.find({});
@@ -18,7 +36,7 @@ productRouter.get("/recommend", async (req, res) => {
     const recommendProducts = await RecommendProduct.find({});
     return res.json({ recommendProducts });
   } catch (e) {
-    return res.status(500).json({ err: err.message });
+    return res.status(500).json({ err: e.message });
   }
 });
 
