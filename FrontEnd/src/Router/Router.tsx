@@ -4,8 +4,8 @@ import Nav from "../Components/Nav/Nav";
 import Main from "../Main/Main";
 import AuthLogin from "../Auth/Login";
 import AuthCreate from "../Auth/Create";
-import Newproduct from "../Product/NewProduct";
-import RecommendProduct from "../Product/RecommendProduct";
+import Product from "../Product/Product";
+import Detail from "../ProductDetail/Detail";
 
 const Router = () => {
   return (
@@ -15,11 +15,8 @@ const Router = () => {
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<AuthLogin />} />
         <Route path="/create" element={<AuthCreate />} />
-        <Route path="/newproduct" element={<Newproduct title="신제품" />} />
-        <Route
-          path="/recommendproduct"
-          element={<RecommendProduct title="추천상품" />}
-        />
+        <Route path="/product" element={<Product />} />
+        <Route path="/product/:pageId" element={<Detail />} />
       </Routes>
       <Footer />
     </BrowserRouter>

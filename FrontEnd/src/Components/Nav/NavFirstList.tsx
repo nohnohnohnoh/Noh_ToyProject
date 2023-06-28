@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { RootState, persistor } from "../../store";
 import styled from "styled-components";

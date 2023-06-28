@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProdcutLayOut from "./ProductLayOut";
+import { useNavigate } from "react-router-dom";
 import { newProduct } from "../api/Prodcut";
 import { ProductType } from "../types/type";
 import styled from "styled-components";
@@ -11,11 +12,11 @@ interface TitleProps {
 const Newproduct = ({ title }: TitleProps) => {
   const [newData, setNewData] = useState([]);
 
+  const navigate = useNavigate();
   const dataCount = newData?.length;
 
   useEffect(() => {
     newProduct().then(({ newProducts }) => {
-      console.log(newProducts);
       setNewData(newProducts);
     });
   }, []);
@@ -32,7 +33,12 @@ const Newproduct = ({ title }: TitleProps) => {
         {newData?.map(({ _id, src, name, price }: ProductType) => {
           const priceComma = price?.toLocaleString();
           return (
-            <ProductListBox key={_id}>
+            <ProductListBox
+              onClick={() => {
+                navigate(`/product/${_id}`);
+              }}
+              key={_id}
+            >
               <ProductListImgBox>
                 <ProductListImg src={src} />
               </ProductListImgBox>

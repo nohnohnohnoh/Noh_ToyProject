@@ -29,7 +29,7 @@ const MainNew = () => {
   };
 
   const totalPage = Math.ceil(newData.length / 8);
-  const currentPage = mainNewData.length / 8;
+  const currentPage = Math.ceil(mainNewData.length / 8);
 
   return (
     <MainNewComponent>

@@ -41,13 +41,15 @@ export const recommendProduct = async () => {
   }
 };
 
-// export const newProductId = async (params: type) => {
-//   try {
-//   } catch (error: any) {
-//     const { data } = error.response;
-//     const errorData = data;
-//     return errorData;
-//   }
-// };
+export const productId = async (params: string | undefined) => {
+  try {
+    const { data } = await defaultAxios.get(`/product/${params}`);
+    return data;
+  } catch (error: any) {
+    const { data } = error.response;
+    const errorData = data;
+    return errorData;
+  }
+};
 
 // export const recommendProductId = async () => {};

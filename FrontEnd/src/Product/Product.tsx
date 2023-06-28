@@ -1,17 +1,17 @@
-import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import RecommendProduct from "./RecommendProduct";
 import Newproduct from "./NewProduct";
 
 const Prodcut = () => {
-  const pathName = window.location.pathname;
-  const recommendProduct = "/recommendproduct";
+  const prodcutType = useSelector(
+    ({ product }: RootState) => product.productType
+  );
 
   return (
     <>
-      {pathName === "/recommendproduct" && (
-        <RecommendProduct title="추천상품" />
-      )}
-      {pathName === "/newproduct" && <Newproduct title="신제품" />}
+      {prodcutType === "추천상품" && <RecommendProduct title="추천상품" />}
+      {prodcutType === "신제품" && <Newproduct title="신제품" />}
     </>
   );
 };

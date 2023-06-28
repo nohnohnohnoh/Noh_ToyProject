@@ -1,22 +1,29 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { setProductType } from "../../reducers/productSlice";
 import { BsSearch, BsBasket, BsPerson } from "react-icons/bs";
 
 const NavSecondList = () => {
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
   const navigateMain = () => {
     navigate("/");
   };
 
-  const navigateNewProdcut = () => {
-    navigate("/newproduct");
+  const navigateRecommendProduct = () => {
+    navigate("/product");
+    dispatch(setProductType({ productType: "추천상품" }));
   };
 
-  const navigateRecommendProduct = () => {
-    navigate("/recommendproduct");
+  const navigateNewProdcut = () => {
+    navigate("/product");
+    dispatch(setProductType({ productType: "신제품" }));
   };
+
   return (
     <NavSecondListSection>
       <NavHeaderLogo onClick={navigateMain}>THE DAJU</NavHeaderLogo>
