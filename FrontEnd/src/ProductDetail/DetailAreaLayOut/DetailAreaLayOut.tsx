@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import DetailAreaImg from "./DetailAreaImg";
 import DetailAreaButton from "./DetailAreaButton";
 import { ProductType } from "../../types/type";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
-const DetailAreaLayOut = ({ _id, src, name, price }: ProductType) => {
+const DetailAreaLayOut = ({ src, name, price }: ProductType) => {
   const [total, setTotal] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -29,9 +30,7 @@ const DetailAreaLayOut = ({ _id, src, name, price }: ProductType) => {
 
   return (
     <DetailArea>
-      <DetailImgBox>
-        <DetailImg src={src} />
-      </DetailImgBox>
+      <DetailAreaImg src={src} />
       <DetailInfoArea>
         <DetailHead>{name}</DetailHead>
         <DetailContentTable>
@@ -68,14 +67,14 @@ const DetailAreaLayOut = ({ _id, src, name, price }: ProductType) => {
 const DetailArea = styled.div`
   max-width: 1230px;
   width: 92%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 80px;
+  padding: 30px 0 0 0;
 `;
 
 const DetailImgBox = styled.div`
   display: inline-block;
   width: calc(100% - 650px);
-  height: 527px;
+  height: 580px;
 `;
 
 const DetailImg = styled.img`

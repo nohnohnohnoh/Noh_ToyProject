@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ProdcutLayOut from "./ProductLayOut";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { recommendProduct } from "../api/Prodcut";
 import { ProductType } from "../types/type";
 import styled from "styled-components";
@@ -13,6 +13,7 @@ const RecommendProduct = ({ title }: TitleProps) => {
   const [recommendData, setRecommendData] = useState([]);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const observerTargetEl = useRef<HTMLDivElement>(null);
   const dataCount = recommendData?.length;
 
@@ -37,6 +38,7 @@ const RecommendProduct = ({ title }: TitleProps) => {
             <ProductListBox
               onClick={() => {
                 navigate(`/product/${_id}`);
+                window.location.reload();
               }}
               key={_id}
             >

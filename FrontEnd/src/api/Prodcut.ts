@@ -19,9 +19,9 @@ export const mainNewProdcutPagination = async (query: string | undefined) => {
   }
 };
 
-export const newProduct = async () => {
+export const newProduct = async (query: string | undefined) => {
   try {
-    const { data } = await defaultAxios.get("/product/new");
+    const { data } = await defaultAxios.get(`/product/new/?page=${query}`);
     return data;
   } catch (error: any) {
     const { data } = error.response;
@@ -51,5 +51,3 @@ export const productId = async (params: string | undefined) => {
     return errorData;
   }
 };
-
-// export const recommendProductId = async () => {};

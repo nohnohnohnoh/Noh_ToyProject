@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ProdcutLayOut from "./ProductLayOut";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { newProduct } from "../api/Prodcut";
 import { ProductType } from "../types/type";
 import styled from "styled-components";
@@ -10,16 +10,23 @@ interface TitleProps {
 }
 
 const Newproduct = ({ title }: TitleProps) => {
-  const [newData, setNewData] = useState([]);
+  const [newData, setNewData] = useState<Array<ProductType>>([]);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const dataCount = newData?.length;
 
   useEffect(() => {
-    newProduct().then(({ newProducts }) => {
+    const page = "2";
+    newProduct(page).then(({ newProducts }) => {
       setNewData(newProducts);
     });
   }, []);
+
+  const paginationOnClick = () => {
+    const page = 2;
+    navigate(`?page=${page}`);
+  };
 
   return (
     <ProdcutLayOut title={title}>
@@ -52,11 +59,11 @@ const Newproduct = ({ title }: TitleProps) => {
       </ProductList>
       <ProductListNumberBox>
         <ProductListNumber>
-          <ProductNumber>1</ProductNumber>
-          <ProductNumber>2</ProductNumber>
-          <ProductNumber>3</ProductNumber>
-          <ProductNumber>4</ProductNumber>
-          <ProductNumber>5</ProductNumber>
+          <ProductNumber onClick={paginationOnClick}>1</ProductNumber>
+          <ProductNumber onClick={paginationOnClick}>2</ProductNumber>
+          <ProductNumber onClick={paginationOnClick}>3</ProductNumber>
+          <ProductNumber onClick={paginationOnClick}>4</ProductNumber>
+          <ProductNumber onClick={paginationOnClick}>5</ProductNumber>
         </ProductListNumber>
       </ProductListNumberBox>
     </ProdcutLayOut>

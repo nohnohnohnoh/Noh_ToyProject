@@ -3,40 +3,107 @@ import Content from "./Content";
 import Comment from "./Comment";
 import QnA from "./QnA";
 import Change from "./Change";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { current } from "@reduxjs/toolkit";
 
-const DetailContentLayOut = () => {
-  const [currentIndex, SetCurrentIndex] = useState(0);
+interface DetailContentProps {
+  src: string | undefined;
+}
+
+const DetailContentLayOut = ({ src }: DetailContentProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const liMenu = [
-    { title: "상세정보", content: <Content /> },
-    { title: "상품후기", content: <Comment /> },
-    { title: "상품문의", content: <QnA /> },
-    { title: "배송/교환/환불 안내", content: <Change /> },
+    { id: 0, content: <Content src={src} /> },
+    { id: 1, content: <Comment /> },
+    { id: 2, content: <QnA /> },
+    { id: 3, content: <Change /> },
   ];
+
   return (
     <ContentLayOutComponent>
-      <ContentSection>
+      <section>
         <ContentTabBox>
           <ContentTab>
-            {liMenu.map((current, index) => (
-              <ContentTabLi key={index}>{current.title}</ContentTabLi>
-            ))}
+            {currentIndex === 0 ? (
+              <ContentActiveLi>상세정보</ContentActiveLi>
+            ) : (
+              <ContentTabLi onClick={() => setCurrentIndex(0)}>
+                상세정보
+              </ContentTabLi>
+            )}
+
+            {currentIndex === 1 ? (
+              <ContentActiveLi>상품후기</ContentActiveLi>
+            ) : (
+              <ContentTabLi onClick={() => setCurrentIndex(1)}>
+                상품후기
+              </ContentTabLi>
+            )}
+            {currentIndex === 2 ? (
+              <ContentActiveLi>상품문의</ContentActiveLi>
+            ) : (
+              <ContentTabLi onClick={() => setCurrentIndex(2)}>
+                상품문의
+              </ContentTabLi>
+            )}
+            {currentIndex === 3 ? (
+              <ContentActiveLi>배송/교환/환불 안내</ContentActiveLi>
+            ) : (
+              <ContentTabLi onClick={() => setCurrentIndex(3)}>
+                배송/교환/환불 안내
+              </ContentTabLi>
+            )}
           </ContentTab>
         </ContentTabBox>
-        <div>{liMenu[currentIndex].content}</div>
-      </ContentSection>
+
+        {liMenu
+          .filter((current) => currentIndex === current.id)
+          .map((current) => {
+            return <div key={current.id}>{current.content}</div>;
+          })}
+      </section>
     </ContentLayOutComponent>
   );
 };
 
-const ContentLayOutComponent = styled.div``;
+const ContentLayOutComponent = styled.div`
+  max-width: 1230px;
+  width: 92%;
+  margin: 0 auto 120px auto;
+`;
 
-const ContentSection = styled.section``;
+const ContentTabBox = styled.div`
+  display: block;
+  height: 64px;
+  margin: 0 auto 40px;
+`;
 
-const ContentTabBox = styled.div``;
+const ContentTab = styled.ul`
+  clear: both;
+`;
 
-const ContentTab = styled.ul``;
+const ContentTabLi = styled.li`
+  display: inline-block;
+  width: 25%;
+  vertical-align: top;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #111;
+  border-left: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+  height: 60px;
+  color: #9a9a9a;
+  font-size: 14px;
+  line-height: 60px;
+  text-align: center;
+  cursor: pointer;
+`;
 
-const ContentTabLi = styled.li``;
+const ContentActiveLi = styled(ContentTabLi)`
+  color: #1a1a1a;
+  background-color: #fff;
+  border: 1px solid #1a1a1a;
+  border-bottom: 0;
+`;
 
 export default DetailContentLayOut;

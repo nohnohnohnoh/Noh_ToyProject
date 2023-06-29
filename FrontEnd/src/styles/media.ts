@@ -9,7 +9,7 @@ type MediaQueryProps = {
 const sizes: MediaQueryProps = {
   mobile: 580,
   tablet: 768,
-  desktop: 1284,
+  desktop: 1280,
 };
 
 type BackQuoteArgs = string[];

@@ -17,8 +17,9 @@ const RecommendDetail = ({ title }: TitleProps) => {
   useEffect(() => {
     productId(pageId).then(({ recommendProducts }) => {
       setDetailData(recommendProducts);
+      console.log(detailData);
     });
-  });
+  }, []);
   return (
     <DetailLayOut title={title}>
       <DetailAreaLayOut
@@ -27,7 +28,7 @@ const RecommendDetail = ({ title }: TitleProps) => {
         name={detailData?.name}
         price={detailData?.price}
       ></DetailAreaLayOut>
-      <DetailContentLayOut></DetailContentLayOut>
+      <DetailContentLayOut src={detailData?.src}></DetailContentLayOut>
     </DetailLayOut>
   );
 };

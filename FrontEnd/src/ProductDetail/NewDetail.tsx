@@ -17,7 +17,9 @@ const NewDetail = ({ title }: TitleProps) => {
   useEffect(() => {
     productId(pageId).then(({ newProducts }) => {
       setDetailData(newProducts);
+      console.log(detailData);
     });
+    // console.log(detailData);
   }, []);
 
   return (
@@ -28,7 +30,7 @@ const NewDetail = ({ title }: TitleProps) => {
         name={detailData?.name}
         price={detailData?.price}
       ></DetailAreaLayOut>
-      <DetailContentLayOut></DetailContentLayOut>
+      <DetailContentLayOut src={detailData?.src}></DetailContentLayOut>
     </DetailLayOut>
   );
 };
