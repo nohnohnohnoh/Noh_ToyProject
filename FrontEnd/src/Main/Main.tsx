@@ -28,8 +28,6 @@ const Main = () => {
     },
   ];
 
-  console.log("scroll 값:", window.scrollY);
-
   return (
     <MainComponent>
       <MainComponentSection>

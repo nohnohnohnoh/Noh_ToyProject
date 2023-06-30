@@ -17,11 +17,13 @@ const NavSecondList = () => {
   const navigateRecommendProduct = () => {
     navigate("/product");
     dispatch(setProductType({ productType: "추천상품" }));
+    window.location.reload();
   };
 
   const navigateNewProdcut = () => {
     navigate("/product");
     dispatch(setProductType({ productType: "신제품" }));
+    window.location.reload();
   };
 
   return (

@@ -1,38 +1,55 @@
 import { useEffect, useState } from "react";
 import ProdcutLayOut from "./ProductLayOut";
-import { useNavigate, useLocation } from "react-router-dom";
 import { newProduct } from "../api/Prodcut";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ProductType } from "../types/type";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface TitleProps {
   title: string;
 }
 
 const Newproduct = ({ title }: TitleProps) => {
-  const [newData, setNewData] = useState<Array<ProductType>>([]);
+  const [newData, setNewData] = useState<any>([]);
+  const [totalData, setTotalData] = useState();
+  const [totalPage, setTotalPage] = useState();
 
   const navigate = useNavigate();
   const location = useLocation();
-  const dataCount = newData?.length;
+  const urlSearchParam = new URLSearchParams(location.search);
+
+  const currentPageString = urlSearchParam.get("page");
+  const currentPageNumber = Number(currentPageString);
 
   useEffect(() => {
-    const page = "2";
-    newProduct(page).then(({ newProducts }) => {
-      setNewData(newProducts);
+    newProduct("").then((data) => {
+      setNewData(data.newProducts);
+      setTotalData(data.count);
+      setTotalPage(data.totalPages);
     });
   }, []);
 
-  const paginationOnClick = () => {
-    const page = 2;
-    navigate(`?page=${page}`);
+  const queryNavigate = (pageNumber: number) => {
+    const page = pageNumber;
+    const limit = 16;
+    navigate(`/product/?page=${page}&limit=${limit}`);
+    newProduct(`?page=${page}&limit=${limit}` || location.search).then(
+      (data) => {
+        setNewData(data.newProducts);
+      }
+    );
+    window.scrollTo(0, 0);
   };
+
+  const totalPageNummber = Array(totalPage)
+    .fill(1)
+    .map((n, idx) => n + idx);
 
   return (
     <ProdcutLayOut title={title}>
       <ProdcutListHeader>
         <ProdcutListTotal>
-          총 <strong className="dataCount">{dataCount}</strong>개의 상품이
+          총 <strong className="dataCount">{totalData}</strong>개의 상품이
           있습니다.
         </ProdcutListTotal>
       </ProdcutListHeader>
@@ -58,13 +75,33 @@ const Newproduct = ({ title }: TitleProps) => {
         })}
       </ProductList>
       <ProductListNumberBox>
-        <ProductListNumber>
-          <ProductNumber onClick={paginationOnClick}>1</ProductNumber>
-          <ProductNumber onClick={paginationOnClick}>2</ProductNumber>
-          <ProductNumber onClick={paginationOnClick}>3</ProductNumber>
-          <ProductNumber onClick={paginationOnClick}>4</ProductNumber>
-          <ProductNumber onClick={paginationOnClick}>5</ProductNumber>
-        </ProductListNumber>
+        <FristPage />
+        <PrevPage />
+        <div>
+          {totalPageNummber?.map((pageNumber, index) => {
+            if (currentPageNumber === pageNumber) {
+              return (
+                <OnProductNumber
+                  onClick={() => queryNavigate(pageNumber)}
+                  key={index}
+                >
+                  {pageNumber}
+                </OnProductNumber>
+              );
+            } else {
+              return (
+                <ProductNumber
+                  onClick={() => queryNavigate(pageNumber)}
+                  key={index}
+                >
+                  {pageNumber}
+                </ProductNumber>
+              );
+            }
+          })}
+          <NextPage />
+          <LastPage />
+        </div>
       </ProductListNumberBox>
     </ProdcutLayOut>
   );
@@ -131,12 +168,14 @@ const ProductListPrice = styled.div`
   font-weight: bold;
 `;
 
+const FristPage = styled.div``;
+
+const PrevPage = styled.div``;
+
 const ProductListNumberBox = styled.div`
   margin: 60px 0 0 0;
   text-align: center;
 `;
-
-const ProductListNumber = styled.div``;
 
 const ProductNumber = styled.div`
   display: inline-block;
@@ -146,6 +185,16 @@ const ProductNumber = styled.div`
   color: #6d6d6d;
   border: 1px solid #e5e5e5;
   background: #fff;
+  cursor: pointer;
 `;
+
+const OnProductNumber = styled(ProductNumber)`
+  color: #000;
+  border-color: #000;
+`;
+
+const NextPage = styled.div``;
+
+const LastPage = styled.div``;
 
 export default Newproduct;

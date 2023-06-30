@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  mainNewProdcut,
-  mainNewProdcutPagination,
-  newProduct,
-} from "../api/Prodcut";
-import { useNavigate } from "react-router-dom";
+import { mainNewProduct, newProduct } from "../api/Prodcut";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { ProductType } from "../types/type";
 
@@ -13,7 +9,7 @@ const MainNew = () => {
   const [newData, setNewData] = useState([]);
 
   useEffect(() => {
-    mainNewProdcut().then(({ newProducts, newProduct }) => {
+    mainNewProduct("").then(({ newProducts, newProduct }) => {
       setMainNewData(newProducts);
       setNewData(newProduct);
     });
@@ -23,7 +19,7 @@ const MainNew = () => {
     if (mainNewData.length === 0) return;
     const lastImgArr: ProductType = mainNewData[mainNewData.length - 1];
     const lastImgId = lastImgArr._id;
-    mainNewProdcutPagination(lastImgId).then(({ newProducts }) => {
+    mainNewProduct(`?lastid=${lastImgId}`).then(({ newProducts }) => {
       setMainNewData((prevData) => [...prevData, ...newProducts]);
     });
   };

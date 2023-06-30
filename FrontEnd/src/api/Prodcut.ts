@@ -1,18 +1,9 @@
 import { Pagination } from "swiper";
 import { defaultAxios } from ".";
 
-export const mainNewProdcut = async () => {
+export const mainNewProduct = async (query: string | undefined) => {
   try {
-    const { data } = await defaultAxios.get("/product/main");
-    return data;
-  } catch (error: any) {
-    console.log(error);
-  }
-};
-
-export const mainNewProdcutPagination = async (query: string | undefined) => {
-  try {
-    const { data } = await defaultAxios.get(`/product/main?lastid=${query}`);
+    const { data } = await defaultAxios.get(`/product/main/${query}`);
     return data;
   } catch (error: any) {
     console.log(error);
@@ -21,7 +12,7 @@ export const mainNewProdcutPagination = async (query: string | undefined) => {
 
 export const newProduct = async (query: string | undefined) => {
   try {
-    const { data } = await defaultAxios.get(`/product/new/?page=${query}`);
+    const { data } = await defaultAxios.get(`/product/new/${query}`);
     return data;
   } catch (error: any) {
     const { data } = error.response;
