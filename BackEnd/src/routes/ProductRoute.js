@@ -9,11 +9,30 @@ productRouter.get("/main", async (req, res) => {
   try {
     const { lastid } = req.query;
     const conditionQuery = lastid ? { _id: { $gt: lastid } } : {};
-    const [newProducts, newProduct] = await Promise.all([
+    const [newProducts, count] = await Promise.all([
       await NewProduct.find(conditionQuery).sort({ _id: 1 }).limit(8),
-      await NewProduct.find({}),
+      await NewProduct.count(),
     ]);
-    return res.json({ newProducts, newProduct });
+    return res.json({
+      newProducts,
+      totalPage: Math.ceil(count / 8),
+    });
+  } catch (e) {
+    return res.status(500).json({ err: e.message });
+  }
+});
+
+productRouter.get("/recommend", async (req, res) => {
+  try {
+    const { page = 0, limit = 16 } = req.query;
+    const [recommendProducts, count] = await Promise.all([
+      await RecommendProduct.find({})
+        .sort({ _id: 1 })
+        .limit(limit)
+        .skip((page - 1) * limit),
+      await RecommendProduct.count(),
+    ]);
+    return res.json({ recommendProducts, count });
   } catch (e) {
     return res.status(500).json({ err: e.message });
   }
@@ -34,18 +53,6 @@ productRouter.get("/new", async (req, res) => {
       count,
       totalPages: Math.ceil(count / limit),
     });
-  } catch (e) {
-    return res.status(500).json({ err: e.message });
-  }
-});
-
-productRouter.get("/recommend", async (req, res) => {
-  try {
-    const { page } = req.query;
-    const recommendProducts = await RecommendProduct.find({})
-      .sort({ _id: 1 })
-      .limit(16);
-    return res.json({ recommendProducts });
   } catch (e) {
     return res.status(500).json({ err: e.message });
   }
