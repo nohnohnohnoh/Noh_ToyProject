@@ -17,9 +17,7 @@ const NewDetail = ({ title }: TitleProps) => {
   useEffect(() => {
     productId(pageId).then(({ newProducts }) => {
       setDetailData(newProducts);
-      console.log(detailData);
     });
-    // console.log(detailData);
   }, []);
 
   return (

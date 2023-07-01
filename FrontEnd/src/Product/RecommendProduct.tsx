@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import ProdcutLayOut from "./ProductLayOut";
 import { useNavigate, useLocation } from "react-router-dom";
 import { recommendProduct } from "../api/Prodcut";
@@ -10,37 +10,55 @@ interface TitleProps {
 }
 
 const RecommendProduct = ({ title }: TitleProps) => {
-  const [recommendData, setRecommendData] = useState([]);
+  const [recommendData, setRecommendData] = useState<ProductType[]>([]);
+  const [totalData, setTotalData] = useState();
+  const [hasNextPage, setHasNextPage] = useState<boolean>(true);
+  const page = useRef<number>(1);
+  const observerTargetEl = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const observerTargetEl = useRef<HTMLDivElement>(null);
-  const dataCount = recommendData?.length;
+
+  const infiniteProduct = useCallback(async () => {
+    await recommendProduct(`?page=${page.current}&limit=16`).then(
+      ({ recommendProducts }) => {
+        setRecommendData((prevData) => [...prevData, ...recommendProducts]);
+        setHasNextPage(recommendProducts.length === 16);
+        if (recommendProducts.length) {
+          page.current += 1;
+        }
+      }
+    );
+  }, []);
 
   useEffect(() => {
-    recommendProduct().then(({ recommendProducts }) => {
-      setRecommendData(recommendProducts);
+    if (!observerTargetEl.current) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) infiniteProduct();
     });
-  }, []);
+    observer.observe(observerTargetEl.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [infiniteProduct]);
 
   return (
     <ProdcutLayOut title={title}>
       <ProdcutListHeader>
         <ProdcutListTotal>
-          총 <strong className="dataCount">{dataCount}</strong>개의 상품이
+          총 <strong className="dataCount">{totalData}</strong>개의 상품이
           있습니다.
         </ProdcutListTotal>
       </ProdcutListHeader>
-      <ProductList ref={observerTargetEl}>
-        {recommendData?.map(({ _id, src, name, price }: ProductType) => {
+      <ProductList>
+        {recommendData?.map(({ _id, src, name, price }: ProductType, index) => {
           const priceComma = price?.toLocaleString();
           return (
             <ProductListBox
               onClick={() => {
                 navigate(`/product/${_id}`);
-                window.location.reload();
               }}
-              key={_id}
+              key={index}
             >
               <ProductListImgBox>
                 <ProductListImg src={src} />
@@ -52,6 +70,7 @@ const RecommendProduct = ({ title }: TitleProps) => {
             </ProductListBox>
           );
         })}
+        <div ref={observerTargetEl} />
       </ProductList>
     </ProdcutLayOut>
   );

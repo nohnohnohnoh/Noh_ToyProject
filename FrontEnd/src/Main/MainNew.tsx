@@ -6,12 +6,12 @@ import { ProductType } from "../types/type";
 
 const MainNew = () => {
   const [mainNewData, setMainNewData] = useState<Array<ProductType>>([]);
-  const [newData, setNewData] = useState([]);
+  const [totalPage, setTotalPage] = useState();
 
   useEffect(() => {
-    mainNewProduct("").then(({ newProducts, newProduct }) => {
+    mainNewProduct("").then(({ newProducts, totalPage }) => {
       setMainNewData(newProducts);
-      setNewData(newProduct);
+      setTotalPage(totalPage);
     });
   }, []);
 
@@ -24,7 +24,6 @@ const MainNew = () => {
     });
   };
 
-  const totalPage = Math.ceil(newData.length / 8);
   const currentPage = Math.ceil(mainNewData.length / 8);
 
   return (

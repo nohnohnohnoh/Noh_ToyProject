@@ -17,7 +17,6 @@ const RecommendDetail = ({ title }: TitleProps) => {
   useEffect(() => {
     productId(pageId).then(({ recommendProducts }) => {
       setDetailData(recommendProducts);
-      console.log(detailData);
     });
   }, []);
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import styled from "styled-components";
 import DetailAreaImg from "./DetailAreaImg";
 import DetailAreaButton from "./DetailAreaButton";

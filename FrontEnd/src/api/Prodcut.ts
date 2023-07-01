@@ -21,9 +21,9 @@ export const newProduct = async (query: string | undefined) => {
   }
 };
 
-export const recommendProduct = async () => {
+export const recommendProduct = async (query: string | undefined) => {
   try {
-    const { data } = await defaultAxios.get("/product/recommend");
+    const { data } = await defaultAxios.get(`/product/recommend${query}`);
     return data;
   } catch (error: any) {
     const { data } = error.response;
