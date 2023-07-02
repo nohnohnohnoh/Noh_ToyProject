@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { setProductType } from "../../reducers/productSlice";
+import { setProductType, setToggleSearch } from "../../reducers/productSlice";
 import { BsSearch, BsBasket, BsPerson } from "react-icons/bs";
 
 const NavSecondList = () => {
@@ -17,15 +17,16 @@ const NavSecondList = () => {
   const navigateRecommendProduct = () => {
     navigate("/product");
     dispatch(setProductType({ productType: "추천상품" }));
-    window.location.reload();
   };
 
   const navigateNewProdcut = () => {
-    navigate("/product");
+    navigate("/product/?page=1&limit=16");
     dispatch(setProductType({ productType: "신제품" }));
-    window.location.reload();
   };
 
+  const navigateSearch = () => {
+    dispatch(setToggleSearch({ toggleSearch: true }));
+  };
   return (
     <NavSecondListSection>
       <NavHeaderLogo onClick={navigateMain}>THE DAJU</NavHeaderLogo>
@@ -42,7 +43,7 @@ const NavSecondList = () => {
         </NavMenuUl>
       </NavMenu>
       <NavMyPage>
-        <SearchIcon />
+        <SearchIcon onClick={navigateSearch} />
         <MyPageIcon />
         <ProductIcon />
       </NavMyPage>

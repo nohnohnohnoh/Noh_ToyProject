@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ProdcutLayOut from "./ProductLayOut";
 import { newProduct } from "../api/Prodcut";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -13,16 +13,28 @@ const Newproduct = ({ title }: TitleProps) => {
   const [newData, setNewData] = useState<any>([]);
   const [totalData, setTotalData] = useState();
   const [totalPage, setTotalPage] = useState();
+  const queryPage = useRef<number>(1);
 
   const navigate = useNavigate();
   const location = useLocation();
   const urlSearchParam = new URLSearchParams(location.search);
 
   const currentPageString = urlSearchParam.get("page");
-  const currentPageNumber = Number(currentPageString);
+  let currentPageNumber = Number(currentPageString);
+  console.log(currentPageNumber);
+
+  const navigateFirst = () => {
+    console.log("확인");
+    // navigate(`/product/?page=${}`)
+    newProduct(`?page=${currentPageNumber}&limit=16`).then((data) => {
+      setNewData(data.newProducts);
+    });
+  };
+
+  const navigatePrev = () => {};
 
   useEffect(() => {
-    newProduct("").then((data) => {
+    newProduct(location.search).then((data) => {
       setNewData(data.newProducts);
       setTotalData(data.count);
       setTotalPage(data.totalPages);
@@ -31,13 +43,10 @@ const Newproduct = ({ title }: TitleProps) => {
 
   const queryNavigate = (pageNumber: number) => {
     const page = pageNumber;
-    const limit = 16;
-    navigate(`/product/?page=${page}&limit=${limit}`);
-    newProduct(`?page=${page}&limit=${limit}` || location.search).then(
-      (data) => {
-        setNewData(data.newProducts);
-      }
-    );
+    navigate(`/product/?page=${page}&limit=16`);
+    newProduct(`?page=${page}&limit=16` || location.search).then((data) => {
+      setNewData(data.newProducts);
+    });
     window.scrollTo(0, 0);
   };
 
@@ -75,10 +84,15 @@ const Newproduct = ({ title }: TitleProps) => {
         })}
       </ProductList>
       <ProductListNumberBox>
-        <FristPage />
-        <PrevPage />
+        <FristPage
+          onClick={navigateFirst}
+          src={"https://thedaju.cafe24.com/SkinImg/img/btn_page_first.png"}
+        />
+        <PrevPage
+          src={"	https://thedaju.cafe24.com/SkinImg/img/btn_page_prev.png"}
+        />
         <div>
-          {totalPageNummber?.map((pageNumber, index) => {
+          {totalPageNummber?.map((pageNumber = queryPage, index) => {
             if (currentPageNumber === pageNumber) {
               return (
                 <OnProductNumber
@@ -99,9 +113,13 @@ const Newproduct = ({ title }: TitleProps) => {
               );
             }
           })}
-          <NextPage />
-          <LastPage />
         </div>
+        <NextPage
+          src={"https://thedaju.cafe24.com/SkinImg/img/btn_page_next.png"}
+        />
+        <LastPage
+          src={"	https://thedaju.cafe24.com/SkinImg/img/btn_page_last.png"}
+        />
       </ProductListNumberBox>
     </ProdcutLayOut>
   );
@@ -168,11 +186,15 @@ const ProductListPrice = styled.div`
   font-weight: bold;
 `;
 
-const FristPage = styled.div``;
+const FristPage = styled.img`
+  width: 40px;
+  height: 40px;
+`;
 
-const PrevPage = styled.div``;
+const PrevPage = styled(FristPage)``;
 
 const ProductListNumberBox = styled.div`
+  ${({ theme }) => theme.flexMixIn("center", "center")};
   margin: 60px 0 0 0;
   text-align: center;
 `;
@@ -193,8 +215,8 @@ const OnProductNumber = styled(ProductNumber)`
   border-color: #000;
 `;
 
-const NextPage = styled.div``;
+const NextPage = styled(FristPage)``;
 
-const LastPage = styled.div``;
+const LastPage = styled(FristPage)``;
 
 export default Newproduct;

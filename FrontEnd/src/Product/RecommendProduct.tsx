@@ -19,15 +19,14 @@ const RecommendProduct = ({ title }: TitleProps) => {
   const navigate = useNavigate();
 
   const infiniteProduct = useCallback(async () => {
-    await recommendProduct(`?page=${page.current}&limit=16`).then(
-      ({ recommendProducts }) => {
-        setRecommendData((prevData) => [...prevData, ...recommendProducts]);
-        setHasNextPage(recommendProducts.length === 16);
-        if (recommendProducts.length) {
-          page.current += 1;
-        }
+    await recommendProduct(`?page=${page.current}&limit=16`).then((data) => {
+      setRecommendData((prevData) => [...prevData, ...data.recommendProducts]);
+      setTotalData(data.count);
+      setHasNextPage(data.recommendProducts.length === 16);
+      if (data.recommendProducts.length) {
+        page.current += 1;
       }
-    );
+    });
   }, []);
 
   useEffect(() => {
