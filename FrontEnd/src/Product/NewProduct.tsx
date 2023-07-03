@@ -21,17 +21,6 @@ const Newproduct = ({ title }: TitleProps) => {
 
   const currentPageString = urlSearchParam.get("page");
   let currentPageNumber = Number(currentPageString);
-  console.log(currentPageNumber);
-
-  const navigateFirst = () => {
-    console.log("확인");
-    // navigate(`/product/?page=${}`)
-    newProduct(`?page=${currentPageNumber}&limit=16`).then((data) => {
-      setNewData(data.newProducts);
-    });
-  };
-
-  const navigatePrev = () => {};
 
   useEffect(() => {
     newProduct(location.search).then((data) => {
@@ -84,13 +73,6 @@ const Newproduct = ({ title }: TitleProps) => {
         })}
       </ProductList>
       <ProductListNumberBox>
-        <FristPage
-          onClick={navigateFirst}
-          src={"https://thedaju.cafe24.com/SkinImg/img/btn_page_first.png"}
-        />
-        <PrevPage
-          src={"	https://thedaju.cafe24.com/SkinImg/img/btn_page_prev.png"}
-        />
         <div>
           {totalPageNummber?.map((pageNumber = queryPage, index) => {
             if (currentPageNumber === pageNumber) {
@@ -114,12 +96,6 @@ const Newproduct = ({ title }: TitleProps) => {
             }
           })}
         </div>
-        <NextPage
-          src={"https://thedaju.cafe24.com/SkinImg/img/btn_page_next.png"}
-        />
-        <LastPage
-          src={"	https://thedaju.cafe24.com/SkinImg/img/btn_page_last.png"}
-        />
       </ProductListNumberBox>
     </ProdcutLayOut>
   );
@@ -186,13 +162,6 @@ const ProductListPrice = styled.div`
   font-weight: bold;
 `;
 
-const FristPage = styled.img`
-  width: 40px;
-  height: 40px;
-`;
-
-const PrevPage = styled(FristPage)``;
-
 const ProductListNumberBox = styled.div`
   ${({ theme }) => theme.flexMixIn("center", "center")};
   margin: 60px 0 0 0;
@@ -214,9 +183,5 @@ const OnProductNumber = styled(ProductNumber)`
   color: #000;
   border-color: #000;
 `;
-
-const NextPage = styled(FristPage)``;
-
-const LastPage = styled(FristPage)``;
 
 export default Newproduct;

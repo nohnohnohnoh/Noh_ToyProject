@@ -2,20 +2,15 @@ import React from "react";
 import MainService from "./MainService";
 import MainHot from "./MainHot";
 import MainBest from "./MainBest";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import styled from "styled-components";
 import MainNew from "./MainNew";
-import Search from "./Search/Search";
+import Search from "../Components/Search/Search";
 
 const Main = () => {
-  const toggleSearh = useSelector(
-    ({ product }: RootState) => product.toggleSearch
-  );
   const mainImg = [
     {
       id: 1,
@@ -36,7 +31,6 @@ const Main = () => {
 
   return (
     <MainComponent>
-      {toggleSearh && <Search />}
       <MainComponentSection>
         <MainImgComponent>
           <MainSwiper

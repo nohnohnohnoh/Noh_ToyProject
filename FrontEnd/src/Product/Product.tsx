@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import RecommendProduct from "./RecommendProduct";
 import Newproduct from "./NewProduct";
+import SearchProduct from "./Search/SearchProduct";
 
 const Prodcut = () => {
   const prodcutType = useSelector(
@@ -12,6 +13,7 @@ const Prodcut = () => {
     <>
       {prodcutType === "추천상품" && <RecommendProduct title="추천상품" />}
       {prodcutType === "신제품" && <Newproduct title="신제품" />}
+      {prodcutType === "상품검색" && <SearchProduct title="상품검색" />}
     </>
   );
 };

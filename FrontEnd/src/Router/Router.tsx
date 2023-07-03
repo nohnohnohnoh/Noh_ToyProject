@@ -6,12 +6,14 @@ import AuthLogin from "../Auth/Login";
 import AuthCreate from "../Auth/Create";
 import Product from "../Product/Product";
 import Detail from "../ProductDetail/Detail";
+import Search from "../Components/Search/Search";
 import ScrollToTop from "../SrcollToTop";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Nav />
+      <Search />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Main />} />

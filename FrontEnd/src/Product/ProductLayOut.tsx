@@ -21,9 +21,7 @@ const ProdcutLayOut = ({ children, title }: ProdcutProps) => {
         <ProdcutHeaderText>{title}</ProdcutHeaderText>
       </ProductHeader>
       <ProdcutTitle>
-        <ProductTitleText>
-          <div>{title}</div>
-        </ProductTitleText>
+        <ProductTitleText>{title}</ProductTitleText>
       </ProdcutTitle>
       <ProductListSection>{children}</ProductListSection>
     </ProdcutComponent>
