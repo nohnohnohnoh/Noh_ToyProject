@@ -9,6 +9,8 @@ const RecommendProductSchema = new Schema(
   { timestamps: true }
 );
 
+RecommendProductSchema.index({ name: "text" });
+
 const RecommendProduct = model("recommendproduct", RecommendProductSchema);
 
 module.exports = { RecommendProduct };

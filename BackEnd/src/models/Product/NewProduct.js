@@ -9,9 +9,7 @@ const NewProductSchema = new Schema(
   { timestamps: true }
 );
 
-NewProductSchema.index({ createdAt: 1 });
-// NewProductSchema.index({ title: "text", content: "text" });
-// NewProductSchema.index({ test: "test", content: "test" });
+NewProductSchema.index({ name: "text" });
 
 const NewProduct = model("newproduct", NewProductSchema);
 

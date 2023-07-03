@@ -22,6 +22,22 @@ productRouter.get("/main", async (req, res) => {
   }
 });
 
+productRouter.get("/search", async (req, res) => {
+  try {
+    const { search } = req.query;
+    const [searchProudctFirst, searchProductSecond] = await Promise.all([
+      await RecommendProduct.find({ $text: { $search: search } }),
+      await NewProduct.find({ $text: { $search: search } }),
+    ]);
+    const searchProduct = [...searchProudctFirst, ...searchProductSecond];
+    return res.json({
+      searchProduct,
+    });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
 productRouter.get("/recommend", async (req, res) => {
   try {
     const { page = 0, limit = 16 } = req.query;
