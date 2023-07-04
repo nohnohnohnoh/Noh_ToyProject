@@ -14,3 +14,18 @@ export const authLogin = createAsyncThunk(
     }
   }
 );
+
+export const searchProduct = createAsyncThunk(
+  "SEARCH",
+  async (query: string, thunkAPI) => {
+    try {
+      const { data } = await defaultAxios.get(
+        `/product/search?search=${query}`
+      );
+      return data;
+    } catch (error: any) {
+      const { data } = error.response;
+      return thunkAPI.rejectWithValue(data);
+    }
+  }
+);

@@ -43,7 +43,7 @@ const MainNew = () => {
                 </MainNewImgBox>
                 <MainNewTextBox>
                   <MainNewName>{name}</MainNewName>
-                  <MainNewPrice>{priceComma}</MainNewPrice>
+                  <MainNewPrice>{priceComma}원</MainNewPrice>
                 </MainNewTextBox>
               </MainNewListBox>
             );

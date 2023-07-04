@@ -1,29 +1,36 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import ProdcutLayOut from "./ProductLayOut";
-import { useNavigate, useLocation } from "react-router-dom";
-import { recommendProduct } from "../api/Prodcut";
-import { ProductType } from "../types/type";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { ProductType } from "../../types/type";
 import styled from "styled-components";
+import { useLocation, useNavigate } from "react-router-dom";
+import { searchProduct } from "../../api/Prodcut";
 
-interface TitleProps {
-  title: string;
-}
+const SearchProductSection = () => {
+  const productSearch = useSelector(
+    ({ product }: RootState) => product.productSearch
+  );
 
-const RecommendProduct = ({ title }: TitleProps) => {
-  const [recommendData, setRecommendData] = useState<ProductType[]>([]);
+  const [searchProductData, setSearchProductData] = useState<ProductType[]>([]);
   const [totalData, setTotalData] = useState();
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const page = useRef<number>(1);
   const observerTargetEl = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const infiniteProduct = useCallback(async () => {
-    await recommendProduct(`?page=${page.current}&limit=16`).then((data) => {
-      setRecommendData((prevData) => [...prevData, ...data.recommendProducts]);
-      setTotalData(data.count);
-      setHasNextPage(data.recommendProducts.length === 16);
-      if (data.recommendProducts.length) {
+    await searchProduct(
+      `?search=${productSearch}&page=${page.current}&limit=4` || location.search
+    ).then((data) => {
+      setSearchProductData((prevData: any) => [
+        ...prevData,
+        ...data.searchProduct,
+      ]);
+      setTotalData(data.totalProduct);
+      setHasNextPage(data.searchProduct.length === 8);
+      if (data.searchProduct.length) {
         page.current += 1;
       }
     });
@@ -42,23 +49,15 @@ const RecommendProduct = ({ title }: TitleProps) => {
   }, [infiniteProduct]);
 
   return (
-    <ProdcutLayOut title={title}>
-      <ProdcutListHeader>
-        <ProdcutListTotal>
-          총 <strong className="dataCount">{totalData}</strong>개의 상품이
-          있습니다.
-        </ProdcutListTotal>
-        <ProudctSort>
-          <ProductSortSelect>
-            <option>신상품</option>
-            <option>상품명</option>
-            <option>낮은가격</option>
-            <option>높은가격</option>
-          </ProductSortSelect>
-        </ProudctSort>
-      </ProdcutListHeader>
+    <SearchSection>
+      <SearchResult>
+        <SearchRecord>
+          상품 검색 결과
+          <strong className="boldText">{totalData}</strong>
+        </SearchRecord>
+      </SearchResult>
       <ProductList>
-        {recommendData?.map(({ _id, src, name, price }: ProductType) => {
+        {searchProductData?.map(({ _id, src, name, price }: ProductType) => {
           const priceComma = price?.toLocaleString();
           return (
             <ProductListBox
@@ -79,44 +78,33 @@ const RecommendProduct = ({ title }: TitleProps) => {
         })}
         <div ref={observerTargetEl} />
       </ProductList>
-    </ProdcutLayOut>
+    </SearchSection>
   );
 };
 
-const ProdcutListHeader = styled.div`
-  border-top: 0;
-  padding: 0 0 20px;
-  margin: 0;
-  border-bottom: 1px solid #ebebeb;
+const SearchSection = styled.section`
+  max-width: 1230px;
+  width: 92%;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const SearchResult = styled.div`
+  padding: 40px 0 0;
   overflow: hidden;
+  border-top: 1px solid #e0e0e0;
   text-align: right;
   line-height: 38px;
 `;
 
-const ProdcutListTotal = styled.div`
+const SearchRecord = styled.p`
   float: left;
   color: #7d7d7d;
-  .dataCount {
+  .boldText {
+    margin-left: 8px;
+    color: #000;
     font-weight: bold;
-    color: black;
   }
-`;
-
-const ProudctSort = styled.div``;
-
-const ProductSortSelect = styled.select`
-  max-width: 100%;
-  height: 40px;
-  padding: 0 30px 0 15px;
-  font-size: 13px;
-  border: 1px solid #e0e0e0;
-  box-sizing: border-box;
-  background: #fff
-    url(//img.echosting.cafe24.com/skin/skin/common/ico_select.png) no-repeat
-    right 10px center;
-  background-size: 14px 8px;
-  -webkit-appearance: none;
-  appearance: none;
 `;
 
 const ProductList = styled.div`
@@ -165,4 +153,4 @@ const ProductListPrice = styled.div`
   font-weight: bold;
 `;
 
-export default RecommendProduct;
+export default SearchProductSection;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
-import { authLogin } from "../actions/authAction";
+import { authLogin } from "../actions/Actions";
 import styled from "styled-components";
 
 const AuthLogin = () => {

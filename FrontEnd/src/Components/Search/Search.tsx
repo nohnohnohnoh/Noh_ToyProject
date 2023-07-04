@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { setProductType, setToggleSearch } from "../../reducers/productSlice";
+import {
+  setProductSearch,
+  setProductType,
+  setToggleSearch,
+} from "../../reducers/productSlice";
 import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
-import { searchProduct } from "../../api/Prodcut";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -21,7 +24,6 @@ const Search = () => {
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearch(value);
-    console.log(search);
   };
 
   const onClickClose = () => {
@@ -30,11 +32,14 @@ const Search = () => {
 
   const onSubmitSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(setProductType({ productType: "상품검색" }));
-    navigate(`product?search=${search}`);
-    await searchProduct(`?search=${search}`).then((data) => console.log(data));
-    dispatch(setToggleSearch({ toggleSearch: false }));
+    await Promise.all([
+      await dispatch(setProductType({ productType: "상품검색" })),
+      await dispatch(setProductSearch({ productSearch: search })),
+      await dispatch(setToggleSearch({ toggleSearch: false })),
+    ]);
+    navigate(`/product?search=${search}&page=1&limit=4`);
     setSearch("");
+    window.location.reload();
   };
   return (
     <>

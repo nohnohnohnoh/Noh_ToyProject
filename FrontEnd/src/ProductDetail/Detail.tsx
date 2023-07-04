@@ -10,7 +10,9 @@ const Detail = () => {
 
   return (
     <>
-      {detailType === "추천상품" && <RecommendDetail title="추천상품" />}
+      {(detailType === "추천상품" || detailType === "상품검색") && (
+        <RecommendDetail title="추천상품" />
+      )}
       {detailType === "신제품" && <NewDetail title="신제품" />}
     </>
   );

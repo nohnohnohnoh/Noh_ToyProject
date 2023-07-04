@@ -1,5 +1,8 @@
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../store";
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
+import { setProductSearch } from "../../reducers/productSlice";
 
 interface SearchProps {
   title: string;
@@ -7,6 +10,17 @@ interface SearchProps {
 }
 
 const SearchProductLayOut = ({ title, children }: SearchProps) => {
+  const dispatch = useDispatch();
+  const productSearch = useSelector(
+    ({ product }: RootState) => product.productSearch
+  );
+
+  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    dispatch(setProductSearch({ productSearch: value }));
+    console.log(productSearch);
+  };
+
   return (
     <SearchProductComponent>
       <SearchProductHeader>
@@ -22,7 +36,7 @@ const SearchProductLayOut = ({ title, children }: SearchProps) => {
       <SearchProductForm>
         <SearchProductFieldset>
           <SearchInputBox>
-            <SearchInput />
+            <SearchInput value={productSearch} onChange={onChangeSearch} />
             <SearchIcon />
           </SearchInputBox>
         </SearchProductFieldset>
