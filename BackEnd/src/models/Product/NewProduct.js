@@ -3,8 +3,8 @@ const { Schema, model } = require("mongoose");
 const NewProductSchema = new Schema(
   {
     src: { type: String },
-    name: { type: String, index: true },
-    price: { type: Number, index: true },
+    name: { type: String },
+    price: { type: Number },
   },
   { timestamps: true }
 );
