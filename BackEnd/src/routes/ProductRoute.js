@@ -61,36 +61,60 @@ productRouter.get("/search", async (req, res) => {
 
 productRouter.get("/recommend", async (req, res) => {
   try {
-    const { page = 1, limit = 16, sort } = req.query;
+    const { page = 1, limit = 8, sort } = req.query;
 
     if (sort === "높은가격") {
-      const priceData = await RecommendProduct.find({})
-        .sort({ price: -1 })
-        .limit(limit)
-        .skip((page - 1) * limit);
-      return res.json({ priceData });
-    } else if (sort === "낮은가격") {
-      const priceData = await await RecommendProduct.find({})
-        .sort({ price: 1 })
-        .limit(limit)
-        .skip((page - 1) * limit);
-      return res.json({ priceData });
+      const [recommendProducts, count] = await Promise.all([
+        await RecommendProduct.find({})
+          .sort({ price: -1 })
+          .limit(limit)
+          .skip((page - 1) * limit),
+        await RecommendProduct.count(),
+      ]);
+      return res.json({
+        recommendProducts,
+        count,
+      });
+    }
+    if (sort === "낮은가격") {
+      const [recommendProducts, count] = await Promise.all([
+        await RecommendProduct.find({})
+          .sort({ price: 1 })
+          .limit(limit)
+          .skip((page - 1) * limit),
+        await RecommendProduct.count(),
+      ]);
+      return res.json({
+        recommendProducts,
+        count,
+      });
     }
     if (sort === "상품명") {
-      const nameData = await RecommendProduct.find({})
-        .sort({ name: 1 })
-        .limit(limit)
-        .skip((page - 1) * limit);
-      return res.json({ nameData });
+      const [recommendProducts, count] = await Promise.all([
+        await RecommendProduct.find({})
+          .sort({ name: 1 })
+          .limit(limit)
+          .skip((page - 1) * limit),
+        await RecommendProduct.count(),
+      ]);
+      return res.json({
+        recommendProducts,
+        count,
+      });
     }
-    const [recommendProducts, count] = await Promise.all([
-      await RecommendProduct.find({})
-        .sort({ _id: 1 })
-        .limit(limit)
-        .skip((page - 1) * limit),
-      await RecommendProduct.count(),
-    ]);
-    return res.json({ recommendProducts, count });
+    if (!sort || sort === "신상품") {
+      const [recommendProducts, count] = await Promise.all([
+        await RecommendProduct.find({})
+          .sort({ _id: 1 })
+          .limit(limit)
+          .skip((page - 1) * limit),
+        await RecommendProduct.count(),
+      ]);
+      return res.json({
+        recommendProducts,
+        count,
+      });
+    }
   } catch (e) {
     return res.status(500).json({ err: e.message });
   }
