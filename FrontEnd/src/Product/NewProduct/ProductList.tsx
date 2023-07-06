@@ -11,14 +11,14 @@ const ProductList = ({ newData }: NewproductProps) => {
 
   return (
     <ProductListComponent>
-      {newData?.map(({ _id, src, name, price }: ProductType) => {
+      {newData?.map(({ _id, id, src, name, price }: ProductType) => {
         const priceComma = price?.toLocaleString();
         return (
           <ProductListBox
             onClick={() => {
               navigate(`/product/${_id}`);
             }}
-            key={_id}
+            key={id}
           >
             <ProductListImgBox>
               <ProductListImg src={src} />

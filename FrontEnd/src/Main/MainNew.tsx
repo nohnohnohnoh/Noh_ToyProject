@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { mainNewProduct, newProduct } from "../api/Prodcut";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store";
+import { setProductType } from "../reducers/productSlice";
+import { mainNewProduct } from "../api/Prodcut";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ProductType } from "../types/type";
 
 const MainNew = () => {
   const [mainNewData, setMainNewData] = useState<Array<ProductType>>([]);
   const [totalPage, setTotalPage] = useState();
+
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     mainNewProduct("").then(({ newProducts, totalPage }) => {
@@ -19,6 +25,7 @@ const MainNew = () => {
     if (mainNewData.length === 0) return;
     const lastImgArr: ProductType = mainNewData[mainNewData.length - 1];
     const lastImgId = lastImgArr._id;
+    console.log(lastImgId);
     mainNewProduct(`?lastid=${lastImgId}`).then(({ newProducts }) => {
       setMainNewData((prevData) => [...prevData, ...newProducts]);
     });
@@ -37,7 +44,13 @@ const MainNew = () => {
           {mainNewData?.map(({ _id, src, name, price }: ProductType) => {
             const priceComma = price?.toLocaleString();
             return (
-              <MainNewListBox key={_id}>
+              <MainNewListBox
+                onClick={() => {
+                  navigate(`/product/${_id}`);
+                  dispatch(setProductType({ productType: "신제품" }));
+                }}
+                key={_id}
+              >
                 <MainNewImgBox>
                   <MainNewImg src={src} />
                 </MainNewImgBox>

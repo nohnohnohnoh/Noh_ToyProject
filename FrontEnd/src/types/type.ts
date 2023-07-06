@@ -7,6 +7,7 @@ export type AuthType = {
 
 export type ProductType = {
   _id?: string | undefined;
+  id?: number | undefined;
   src?: string | undefined;
   name?: string | undefined;
   price?: number | undefined;

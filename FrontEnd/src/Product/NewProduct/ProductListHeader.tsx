@@ -4,13 +4,13 @@ import { ProductType } from "../../types/type";
 interface NewProductProps {
   totalData: number | undefined;
   querySort: string;
-  onChangeName: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChangeSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const ProductListHeader = ({
   totalData,
   querySort,
-  onChangeName,
+  onChangeSelect,
 }: NewProductProps) => {
   return (
     <ProductListHeaderComponent>
@@ -19,7 +19,7 @@ const ProductListHeader = ({
         있습니다.
       </ProdcutListTotal>
       <div>
-        <ProductSortSelect value={querySort} onChange={onChangeName}>
+        <ProductSortSelect value={querySort} onChange={onChangeSelect}>
           <option value="신상품">신상품</option>
           <option value="상품명">상품명</option>
           <option value="낮은가격">낮은가격</option>

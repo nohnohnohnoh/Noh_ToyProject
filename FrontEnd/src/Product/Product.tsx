@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import RecommendProduct from "./RecommendProduct";
+import RecommendProduct from "./RecommendProduct/RecommendProduct";
 import Newproduct from "./NewProduct/NewProduct";
 import SearchProduct from "./Search/SearchProduct";
 

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import styled from "styled-components";
@@ -15,12 +14,12 @@ const NavSecondList = () => {
   };
 
   const navigateRecommendProduct = () => {
-    navigate("/product");
+    navigate("/product?page=1&limit=8");
     dispatch(setProductType({ productType: "추천상품" }));
   };
 
   const navigateNewProdcut = () => {
-    navigate("/product/?page=1&limit=16");
+    navigate("/product?page=1&limit=16");
     dispatch(setProductType({ productType: "신제품" }));
   };
 

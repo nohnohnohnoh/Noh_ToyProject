@@ -29,6 +29,8 @@ const Newproduct = ({ title }: TitleProps) => {
     return data;
   }, [location]);
 
+  console.log(newData);
+
   useEffect(() => {
     newProductFetch().then((data) => {
       setNewData(data.newProducts);
@@ -43,7 +45,7 @@ const Newproduct = ({ title }: TitleProps) => {
     window.scrollTo(0, 0);
   };
 
-  const onChangeName = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setQuerySort(e.currentTarget.value);
     navigate(`/product?page=1&limit=16&sort=${e.currentTarget.value}`);
   };
@@ -57,7 +59,7 @@ const Newproduct = ({ title }: TitleProps) => {
       <ProductListHeader
         totalData={totalData}
         querySort={querySort}
-        onChangeName={onChangeName}
+        onChangeSelect={onChangeSelect}
       />
       <ProductList newData={newData} />
       <ProductListNumber
