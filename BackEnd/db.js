@@ -1,6 +1,7 @@
 // // new
 // [
 //   {
+// id:1
 //     src: "https://thedaju.s3.ap-northeast-2.amazonaws.com/thedaju_img/new/pexels-archie-binamira-1187317.jpg",
 //     name: "브라운커피 컵",
 //     price: "8,000",

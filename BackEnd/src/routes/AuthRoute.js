@@ -1,9 +1,15 @@
 const { Router } = require("express");
 const { hash, compare } = require("bcryptjs");
 const { Auth } = require("../models/Auth");
+const jwt = require("jsonwebtoken");
 const { authMiddleware } = require("../middleware/AuthMiddleware");
 
 const authRouter = Router();
+
+const createToken = (userId) => {
+  const token = jwt.sign({ _id: userId.toString() }, process.env.SECRET_KEY);
+  return token;
+};
 
 authRouter.post("/create", async (req, res) => {
   try {
@@ -34,14 +40,12 @@ authRouter.post("/login", async (req, res) => {
     const { id, passWord } = req.body;
     const isVaildId = await Auth.findOne({ id });
     const isVaildPassWord = await compare(passWord, isVaildId.passWord);
-    isVaildId.sessions.push({ createAt: new Date() });
-    const session = isVaildId.sessions[isVaildId.sessions.length - 1];
-    isVaildId.save();
     if (!isVaildPassWord) throw new Error("입력하신 정보가 올바르지 않습니다.");
+    const token = createToken(isVaildId._id);
     res.json({
       message: "로그인이 정상적으로 이루어졌습니다.",
       data: {
-        sessionId: session._id,
+        token,
         id: isVaildId.id,
         nickName: isVaildId.nickName,
       },

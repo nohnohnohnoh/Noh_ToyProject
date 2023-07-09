@@ -25,6 +25,7 @@ productRouter.get("/main", async (req, res) => {
 productRouter.get("/search", async (req, res) => {
   try {
     const { search, page = 1, limit = 4 } = req.query;
+
     const [
       searchProudctFirst,
       searchProductSecond,
@@ -62,7 +63,6 @@ productRouter.get("/search", async (req, res) => {
 productRouter.get("/recommend", async (req, res) => {
   try {
     const { page = 1, limit = 8, sort } = req.query;
-
     if (sort === "높은가격") {
       const [recommendProducts, count] = await Promise.all([
         await RecommendProduct.find({})
@@ -102,7 +102,7 @@ productRouter.get("/recommend", async (req, res) => {
         count,
       });
     }
-    if (!sort || sort === "신상품") {
+    if (sort === "null" || sort === "신상품") {
       const [recommendProducts, count] = await Promise.all([
         await RecommendProduct.find({})
           .sort({ _id: 1 })

@@ -2,9 +2,10 @@ const { Schema, model } = require("mongoose");
 
 const RecommendProductSchema = new Schema(
   {
-    src: { type: String },
-    name: { type: String },
-    price: { type: Number },
+    id: { type: Number, required: true, unique: true },
+    src: { type: String, required: true },
+    name: { type: String, index: true, required: true },
+    price: { type: Number, index: true, required: true },
   },
   { timestamps: true }
 );

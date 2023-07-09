@@ -6,11 +6,6 @@ const AuthSchema = new Schema(
     passWord: { type: String, required: true, trim: true },
     pwc: { type: String, required: true, trim: true },
     nickName: { type: String, required: true, unique: true },
-    sessions: [
-      {
-        createAt: { type: Date, required: true },
-      },
-    ],
   },
   { timestamps: true }
 );

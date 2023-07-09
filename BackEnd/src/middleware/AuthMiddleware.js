@@ -1,11 +1,18 @@
-const mongoose = require("mongoose");
 const { Auth } = require("../models/Auth");
+const jwt = require("jsonwebtoken");
 
 const authMiddleware = async (req, res, next) => {
-  const { sessionId } = req.headers;
-  if (!sessionId || !mongoose.isValidObjectId(sessionId)) return next();
-  await Auth.findOne({ "sessionId._id": sessionId });
-  return next();
+  const token = req.get("Authorization");
+
+  const authToken = jwt.verify(token, process.env.SECRET_KEY);
+  const { _id } = authToken;
+
+  const user = await Auth.findOne({ _id });
+  if (!user) return next();
+
+  req.user = user;
+
+  next();
 };
 
 module.exports = { authMiddleware };
