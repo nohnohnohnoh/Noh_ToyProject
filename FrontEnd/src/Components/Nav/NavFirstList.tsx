@@ -3,7 +3,7 @@ import { RootState, persistor } from "../../store";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 const NavFirstList = () => {
-  const localStorageToken = localStorage.getItem("auth_token");
+  const localStorageToken = localStorage.getItem("AUTH_TOKEN");
   const nickName = useSelector(
     ({ auth }: RootState) => auth.authData?.data.nickName
   );
@@ -20,7 +20,7 @@ const NavFirstList = () => {
   const logOut = async () => {
     localStorage.clear();
     await persistor.purge();
-    window.location.reload();
+    navigate("/");
   };
 
   return (

@@ -12,3 +12,14 @@ export type ProductType = {
   name?: string | undefined;
   price?: number | undefined;
 };
+
+export type myOrderProductType = {
+  createdAt: string | undefined;
+  updatedAt: string | undefined;
+  name: string | undefined;
+  price: number;
+  quantity: number;
+  src: string | undefined;
+  _id: string | undefined;
+  user: { _id: string | undefined };
+};

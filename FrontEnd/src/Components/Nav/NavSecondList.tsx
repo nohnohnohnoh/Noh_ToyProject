@@ -3,11 +3,12 @@ import { AppDispatch } from "../../store";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { setProductType, setToggleSearch } from "../../reducers/productSlice";
-import { BsSearch, BsBasket, BsPerson } from "react-icons/bs";
+import { BsSearch, BsBasket, BsPerson, BsHeart } from "react-icons/bs";
 
 const NavSecondList = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
+  const localStorageToken = localStorage.getItem("AUTH_TOKEN");
 
   const navigateMain = () => {
     navigate("/");
@@ -26,6 +27,31 @@ const NavSecondList = () => {
   const navigateSearch = () => {
     dispatch(setToggleSearch({ toggleSearch: true }));
   };
+
+  const navigateMyPage = () => {
+    if (localStorageToken) {
+      navigate("/mypage");
+    } else {
+      alert("로그인 후 이용 가능합니다.");
+    }
+  };
+
+  const navigateBasket = () => {
+    if (localStorageToken) {
+      navigate("/basket");
+    } else {
+      alert("로그인 후 이용 가능합니다.");
+    }
+  };
+
+  const navigateWishList = () => {
+    if (localStorageToken) {
+      navigate("/wishlist");
+    } else {
+      alert("로그인 후 이용 가능합니다.");
+    }
+  };
+
   return (
     <NavSecondListSection>
       <NavHeaderLogo onClick={navigateMain}>THE DAJU</NavHeaderLogo>
@@ -43,8 +69,9 @@ const NavSecondList = () => {
       </NavMenu>
       <NavMyPage>
         <SearchIcon onClick={navigateSearch} />
-        <MyPageIcon />
-        <ProductIcon />
+        <MyPageIcon onClick={navigateMyPage} />
+        <ProductIcon onClick={navigateBasket} />
+        <WishLIstIcon onClick={navigateWishList} />
       </NavMyPage>
     </NavSecondListSection>
   );
@@ -92,18 +119,24 @@ const NavMyPage = styled.div`
   ${({ theme }) => theme.postionMixIn("absolute", 60, -0.25)};
 `;
 const SearchIcon = styled(BsSearch)`
-  font-size: 25px;
-  margin: 0 7.5%;
+  font-size: 20px;
+  margin: 0 5%;
   cursor: pointer;
 `;
 const MyPageIcon = styled(BsPerson)`
   font-size: 25px;
-  margin: 0 7.5%;
+  margin: 0 5%;
   cursor: pointer;
 `;
 const ProductIcon = styled(BsBasket)`
-  font-size: 25px;
-  margin: 0 7.5%;
+  font-size: 20px;
+  margin: 0 5%;
+  cursor: pointer;
+`;
+
+const WishLIstIcon = styled(BsHeart)`
+  font-size: 20px;
+  margin: 0 5%;
   cursor: pointer;
 `;
 

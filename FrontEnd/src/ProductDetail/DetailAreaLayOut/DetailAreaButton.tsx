@@ -1,9 +1,29 @@
 import styled from "styled-components";
+import { postMyOrderProduct } from "../../api/ProductOrder";
+import { useNavigate } from "react-router-dom";
 
-const DetailAreaButton = () => {
+interface DeatilAreayProps {
+  src: string | undefined;
+  name: string | undefined;
+  price: number | undefined;
+  total: number | undefined;
+}
+
+const DetailAreaButton = ({ src, name, price, total }: DeatilAreayProps) => {
+  const navigate = useNavigate();
+
+  const onClickBuy = () => {
+    postMyOrderProduct({
+      src,
+      name,
+      price,
+      quantity: total,
+    });
+  };
+
   return (
     <ButtonBox>
-      <BuyButton>BUY IT NOW</BuyButton>
+      <BuyButton onClick={onClickBuy}>BUY IT NOW</BuyButton>
       <CartButton>CART</CartButton>
       <WishButton>WISH LIST</WishButton>
     </ButtonBox>

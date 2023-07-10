@@ -24,20 +24,18 @@ const Newproduct = ({ title }: TitleProps) => {
   const currentPageString = urlSearchParam.get("page");
   let currentPageNumber = Number(currentPageString);
 
-  const newProductFetch = useCallback(async () => {
+  const newProductAxios = useCallback(async () => {
     const data = await newProduct(location.search);
     return data;
   }, [location]);
 
-  console.log(newData);
-
   useEffect(() => {
-    newProductFetch().then((data) => {
+    newProductAxios().then((data) => {
       setNewData(data.newProducts);
       setTotalData(data.count);
       setTotalPage(data.totalPages);
     });
-  }, [newProductFetch]);
+  }, [newProductAxios]);
 
   const queryNavigate = (pageNumber: number) => {
     const page = pageNumber;

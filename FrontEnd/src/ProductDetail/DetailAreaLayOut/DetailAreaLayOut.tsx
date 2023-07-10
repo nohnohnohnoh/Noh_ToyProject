@@ -58,7 +58,7 @@ const DetailAreaLayOut = ({ src, name, price }: ProductType) => {
           <TotalText>Total</TotalText>
           <TotalText>{totalPriceComma}원</TotalText>
         </TotalPrice>
-        <DetailAreaButton />
+        <DetailAreaButton src={src} name={name} price={price} total={total} />
       </DetailInfoArea>
     </DetailArea>
   );

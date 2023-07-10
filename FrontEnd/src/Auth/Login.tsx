@@ -30,7 +30,7 @@ const AuthLogin = () => {
     dispatch(authLogin({ id, passWord })).then(({ payload }: any) => {
       if (payload.message === "로그인이 정상적으로 이루어졌습니다.") {
         alert(payload.message);
-        localStorage.setItem("auth_token", payload.data.sessionId);
+        localStorage.setItem("AUTH_TOKEN", payload.data.token);
         navigate("/");
       } else {
         alert(payload.message);

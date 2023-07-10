@@ -7,6 +7,16 @@ const axiosApi = (url = BASE_URL) => {
   return instance;
 };
 
-export const defaultAxios = axiosApi(BASE_URL);
+const axiosAuthApi = (url = BASE_URL) => {
+  const localStorageToken = localStorage.getItem("AUTH_TOKEN");
+  const instance = axios.create({
+    headers: {
+      Authorization: localStorageToken,
+    },
+    baseURL: url,
+  });
+  return instance;
+};
 
-axios.create({ baseURL: BASE_URL });
+export const defaultAxios = axiosApi(BASE_URL);
+export const authAxios = axiosAuthApi(BASE_URL);

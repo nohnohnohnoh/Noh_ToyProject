@@ -26,8 +26,8 @@ const RecommendDetail = ({ title }: TitleProps) => {
         src={detailData?.src}
         name={detailData?.name}
         price={detailData?.price}
-      ></DetailAreaLayOut>
-      <DetailContentLayOut src={detailData?.src}></DetailContentLayOut>
+      />
+      <DetailContentLayOut src={detailData?.src} />
     </DetailLayOut>
   );
 };

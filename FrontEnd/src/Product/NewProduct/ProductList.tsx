@@ -18,7 +18,7 @@ const ProductList = ({ newData }: NewproductProps) => {
             onClick={() => {
               navigate(`/product/${_id}`);
             }}
-            key={id}
+            key={_id}
           >
             <ProductListImgBox>
               <ProductListImg src={src} />
