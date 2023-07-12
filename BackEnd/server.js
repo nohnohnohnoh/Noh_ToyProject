@@ -5,6 +5,7 @@ const cors = require("cors");
 const { authRouter } = require("./src/routes/AuthRoute");
 const { productRouter } = require("./src/routes/ProductRoute");
 const { myorderRouter } = require("./src/routes/MyOrderRoute");
+const { wishListRouter } = require("./src/routes/WishListRoute");
 const { authMiddleware } = require("./src/middleware/AuthMiddleware");
 const PORT = process.env.PORT || 8080;
 
@@ -19,6 +20,7 @@ const server = async () => {
     app.use("/product", productRouter);
     app.use(authMiddleware);
     app.use("/myorder", myorderRouter);
+    app.use("/wishlist", wishListRouter);
     app.listen(PORT, () => {
       console.log(`${PORT}번에서 server 실행.`);
     });
