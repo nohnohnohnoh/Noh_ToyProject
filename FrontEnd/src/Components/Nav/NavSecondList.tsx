@@ -46,7 +46,7 @@ const NavSecondList = () => {
 
   const navigateWishList = () => {
     if (localStorageToken) {
-      navigate("/wishlist");
+      navigate("/wishlist?page=1&limit=4");
     } else {
       alert("로그인 후 이용 가능합니다.");
     }

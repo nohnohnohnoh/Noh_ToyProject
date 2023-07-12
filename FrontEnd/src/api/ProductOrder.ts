@@ -1,8 +1,17 @@
+import { useCallback } from "react";
 import { authAxios } from ".";
 
-export const postMyOrderProduct = async (body: any) => {
+interface BodyType {
+  src: string | undefined;
+  name: string | undefined;
+  price: number | undefined;
+  quantity: number | undefined;
+}
+
+export const postMyOrderProduct = async (body: BodyType) => {
   try {
-    await authAxios.post("/myorder", body);
+    const { data } = await authAxios.post("/myorder", body);
+    return data;
   } catch (error: any) {
     const { data } = error.response;
     const errorData = data;
@@ -12,7 +21,7 @@ export const postMyOrderProduct = async (body: any) => {
 
 export const getMyOrderProduct = async () => {
   try {
-    const data = await authAxios.get("/myorder");
+    const { data } = await authAxios.get("/myorder");
     return data;
   } catch (error: any) {
     const { data } = error.response;

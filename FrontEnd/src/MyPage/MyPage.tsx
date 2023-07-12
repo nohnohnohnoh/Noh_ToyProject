@@ -18,8 +18,7 @@ const MyPage = () => {
   }, []);
 
   useEffect(() => {
-    myOrderProductAxios().then(({ data }) => {
-      const { myOrders } = data;
+    myOrderProductAxios().then(({ myOrders }) => {
       setOrderProduct(myOrders);
     });
   }, [myOrderProductAxios]);

@@ -14,12 +14,23 @@ export type ProductType = {
 };
 
 export type myOrderProductType = {
-  createdAt: string | undefined;
-  updatedAt: string | undefined;
+  createdAt?: string | undefined;
+  updatedAt?: string | undefined;
   name: string | undefined;
   price: number;
   quantity: number;
   src: string | undefined;
   _id: string | undefined;
-  user: { _id: string | undefined };
+  user?: { _id: string | undefined };
+};
+
+export type WishListProductType = {
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  price: number;
+  src: string;
+  _id: string;
+  select: boolean;
+  user: { _id: string };
 };

@@ -1,31 +1,54 @@
 import styled from "styled-components";
 import { postMyOrderProduct } from "../../api/ProductOrder";
+import { postWishListProduct } from "../../api/WishList";
 import { useNavigate } from "react-router-dom";
 
 interface DeatilAreayProps {
+  _id: string | undefined;
   src: string | undefined;
   name: string | undefined;
   price: number | undefined;
   total: number | undefined;
 }
 
-const DetailAreaButton = ({ src, name, price, total }: DeatilAreayProps) => {
+const DetailAreaButton = ({
+  _id,
+  src,
+  name,
+  price,
+  total,
+}: DeatilAreayProps) => {
   const navigate = useNavigate();
 
   const onClickBuy = () => {
-    postMyOrderProduct({
-      src,
-      name,
-      price,
-      quantity: total,
-    });
+    if (window.confirm("구매하시겠습니까 ?") === true) {
+      postMyOrderProduct({
+        src,
+        name,
+        price,
+        quantity: total,
+      }).then((data) => {
+        alert(data.message);
+      });
+    } else return;
+  };
+
+  const onClickWishList = () => {
+    if (window.confirm("관심 상품에 등록하시겠습니끼 ?") === true) {
+      postWishListProduct({
+        _id,
+        src,
+        name,
+        price,
+      }).then((data) => alert(data.message));
+    } else return;
   };
 
   return (
     <ButtonBox>
       <BuyButton onClick={onClickBuy}>BUY IT NOW</BuyButton>
       <CartButton>CART</CartButton>
-      <WishButton>WISH LIST</WishButton>
+      <WishButton onClick={onClickWishList}>WISH LIST</WishButton>
     </ButtonBox>
   );
 };

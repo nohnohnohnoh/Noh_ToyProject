@@ -5,7 +5,7 @@ import DetailAreaButton from "./DetailAreaButton";
 import { ProductType } from "../../types/type";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
-const DetailAreaLayOut = ({ src, name, price }: ProductType) => {
+const DetailAreaLayOut = ({ _id, src, name, price }: ProductType) => {
   const [total, setTotal] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -58,7 +58,13 @@ const DetailAreaLayOut = ({ src, name, price }: ProductType) => {
           <TotalText>Total</TotalText>
           <TotalText>{totalPriceComma}원</TotalText>
         </TotalPrice>
-        <DetailAreaButton src={src} name={name} price={price} total={total} />
+        <DetailAreaButton
+          _id={_id}
+          src={src}
+          name={name}
+          price={price}
+          total={total}
+        />
       </DetailInfoArea>
     </DetailArea>
   );
