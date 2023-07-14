@@ -9,11 +9,11 @@ interface MyPageUserProps {
 }
 
 const MyPageUser = ({ orderProduct }: MyPageUserProps) => {
-  const [totalArr, setTotalArr] = useState<any>([]);
+  const [totalArr, setTotalArr] = useState<number[]>([]);
   let totalPrice = 0;
 
   useEffect(() => {
-    orderProduct.map(({ price, quantity }: any) => {
+    orderProduct.map(({ price, quantity }) => {
       return totalArr.push(price * quantity);
     });
   }, [orderProduct]);

@@ -26,6 +26,7 @@ const MyPage = () => {
   const navigateMain = () => {
     navigate("/");
   };
+
   return (
     <MypageComponent>
       <MyPageHeader navigateMain={navigateMain} />

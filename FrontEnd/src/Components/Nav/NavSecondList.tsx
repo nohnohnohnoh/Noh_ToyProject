@@ -36,9 +36,9 @@ const NavSecondList = () => {
     }
   };
 
-  const navigateBasket = () => {
+  const navigateCart = () => {
     if (localStorageToken) {
-      navigate("/basket");
+      navigate("/cart");
     } else {
       alert("로그인 후 이용 가능합니다.");
     }
@@ -70,7 +70,7 @@ const NavSecondList = () => {
       <NavMyPage>
         <SearchIcon onClick={navigateSearch} />
         <MyPageIcon onClick={navigateMyPage} />
-        <ProductIcon onClick={navigateBasket} />
+        <ProductIcon onClick={navigateCart} />
         <WishLIstIcon onClick={navigateWishList} />
       </NavMyPage>
     </NavSecondListSection>

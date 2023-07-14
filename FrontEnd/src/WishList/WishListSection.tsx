@@ -10,12 +10,11 @@ interface WishListProps {
 }
 
 const WishListSection = ({ wishListData }: WishListProps) => {
-  const [select, setSelect] = useState();
+  const [select, setSelect] = useState<boolean>(false);
   const [Test, setTest] = useState(false);
+  const [TEST, SETTEst] = useState(false);
 
   const navigate = useNavigate();
-
-  console.log(select);
 
   const onClickOneDelete = (_id: string) => {
     if (window.confirm("정말 삭제하시겠습니까 ?") === true) {
@@ -26,13 +25,8 @@ const WishListSection = ({ wishListData }: WishListProps) => {
   };
 
   const onClickSelect = (_id: string, select: boolean) => {
-    setTest(true);
-    patchSelectProduct(_id, select).then(({ wishList }) => setSelect(wishList));
-  };
-
-  const testSelect = (_id: string, select: boolean) => {
-    setTest(false);
-    patchSelectProduct(_id, select).then(({ wishList }) => setSelect(wishList));
+    setSelect(true);
+    patchSelectProduct(_id, select);
   };
 
   return (
@@ -41,25 +35,26 @@ const WishListSection = ({ wishListData }: WishListProps) => {
         <h3 className="title">나의 위시리스트</h3>
       </WishListHeader>
       <WishListSectionComponent>
-        {wishListData.map(({ _id, src, name, price }, index) => {
+        {wishListData.map(({ _id, src, name, price }, index: any) => {
           const priceComma = price?.toLocaleString();
-          const test = wishListData[index].select;
-          console.log(test);
+          const test: any = wishListData[index].select;
+          const Y: any = test === false;
+          const INDEX = wishListData.indexOf(Y);
           return (
             <WishListBox key={_id}>
-              <div
-                onClick={() => {
-                  console.log(index);
-                }}
-              >
-                test
-              </div>
               <Check>
-                {test !== false && (
-                  <OnCheckIcon onClick={() => onClickSelect(_id, Test)} />
-                )}
-                {test === false && (
-                  <OffCheckIcon onClick={() => testSelect(_id, Test)} />
+                {select === false ? (
+                  <CheckIcon
+                    type="checkbox"
+                    onChange={() => {
+                      onClickSelect(_id, true);
+                    }}
+                  />
+                ) : (
+                  <CheckIcon
+                    type="checkbox"
+                    onChange={() => onClickSelect(_id, true)}
+                  />
                 )}
               </Check>
               <WishListImgBox>
@@ -114,19 +109,19 @@ const Check = styled.span`
   margin: 0 10px 0 0;
 `;
 
-const OffCheckIcon = styled.div`
+const CheckIcon = styled.input`
   width: 24px;
   height: 24px;
   border: 1px solid #d9d9d9;
   background: url("https://thedaju.cafe24.com/SkinImg/img/checkbox_off.svg")
     no-repeat center;
   transition: none;
+  appearance: none;
   cursor: pointer;
-`;
-
-const OnCheckIcon = styled(OffCheckIcon)`
-  background: url("https://thedaju.cafe24.com/SkinImg/img/checkbox_on.svg")
-    no-repeat center;
+  &:checked {
+    background: url("https://thedaju.cafe24.com/SkinImg/img/checkbox_on.svg")
+      no-repeat center;
+  }
 `;
 
 const WishListImgBox = styled.div`

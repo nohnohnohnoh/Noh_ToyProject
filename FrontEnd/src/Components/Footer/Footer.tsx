@@ -26,9 +26,10 @@ const FooterComponents = styled.footer`
 `;
 
 const FooterSection = styled.section`
+  max-width: 1760px;
   width: 92%;
   margin: 0 auto;
-  padding: 4% 2% 0;
+  padding: 4% 0 0;
   color: #1a1a1a;
   display: flex;
   flex-direction: column;

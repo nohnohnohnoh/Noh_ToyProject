@@ -32,6 +32,7 @@ const AuthLogin = () => {
         alert(payload.message);
         localStorage.setItem("AUTH_TOKEN", payload.data.token);
         navigate("/");
+        window.location.reload();
       } else {
         alert(payload.message);
       }

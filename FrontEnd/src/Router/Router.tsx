@@ -8,7 +8,7 @@ import AuthCreate from "../Auth/Create";
 import Product from "../Product/Product";
 import Detail from "../ProductDetail/Detail";
 import MyPage from "../MyPage/MyPage";
-import Basket from "../Basket/Basket";
+import Basket from "../Cart/Cart";
 import WishList from "../WishList/WishList";
 import ScrollToTop from "../SrcollToTop";
 
@@ -25,7 +25,7 @@ const Router = () => {
         <Route path="/product" element={<Product />} />
         <Route path="/product/:pageId" element={<Detail />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/basket" element={<Basket />} />
+        <Route path="/cart" element={<Basket />} />
         <Route path="/wishlist" element={<WishList />} />
       </Routes>
       <Footer />

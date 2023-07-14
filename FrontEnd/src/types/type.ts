@@ -32,5 +32,18 @@ export type WishListProductType = {
   src: string;
   _id: string;
   select: boolean;
+  product_id: string;
+  user: { _id: string };
+};
+
+export type CartProudctType = {
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  price: number;
+  quantity: number;
+  src: string;
+  _id: string;
+  product_id: string;
   user: { _id: string };
 };
