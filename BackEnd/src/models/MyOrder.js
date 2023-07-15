@@ -5,10 +5,10 @@ const MyOrderSchema = new Schema(
     user: {
       _id: { type: Types.ObjectId, required: true },
     },
-    src: { type: String, required: true },
-    name: { type: String, required: true },
-    price: { type: Number, required: true },
-    quantity: { type: Number, reuired: true },
+    src: { type: String },
+    name: { type: String },
+    price: { type: Number },
+    quantity: { type: Number },
   },
   { timestamps: true }
 );

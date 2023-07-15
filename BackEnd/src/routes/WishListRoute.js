@@ -50,14 +50,14 @@ wishListRouter.get("/", async (req, res) => {
 });
 
 wishListRouter.delete("/", async (req, res) => {
-  const { type, id } = req.body;
   try {
+    const { type, id } = req.body;
     if (type === "전체삭제") {
       const wishList = await WishList.deleteMany({});
       return res.json({ wishList });
     }
     if (type === "선택삭제") {
-      const wishList = await WishList.deleteMany({ select: true });
+      const wishList = await WishList.deleteMany({ _id: id });
       return res.json({ wishList });
     }
     if (!mongoose.isValidObjectId(id))
