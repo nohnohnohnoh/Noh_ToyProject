@@ -23,11 +23,12 @@ const DetailAreaButton = ({
 
   const onClickBuy = () => {
     if (window.confirm("구매하시겠습니까 ?") === true) {
-      postMyOrderProduct({
+      postMyOrderProduct("", {
         src,
         name,
         price,
         quantity: total,
+        selectData: undefined,
       }).then((data) => {
         alert(data.message);
       });

@@ -2,9 +2,10 @@ import { useCallback, useEffect, useState } from "react";
 import { getCart } from "../api/Cart";
 import CartHeader from "./CartHeader";
 import CartSection from "./CartSection/CartSection";
+import CartFooter from "./CartFooter";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { CartProudctType } from "../types/type";
+import styled from "styled-components";
 
 const Cart = () => {
   const [cartData, setCartData] = useState<CartProudctType[]>([]);
@@ -18,7 +19,6 @@ const Cart = () => {
   useEffect(() => {
     cartProductAxios().then(({ cart }) => {
       setCartData(cart);
-      console.log(cart);
     });
   }, [cartProductAxios]);
 
@@ -29,7 +29,8 @@ const Cart = () => {
   return (
     <CartComponent>
       <CartHeader navigateMain={navigateMain} />
-      <CartSection cartData={cartData} />
+      <CartSection cartData={cartData} setCartData={setCartData} />
+      <CartFooter />
     </CartComponent>
   );
 };

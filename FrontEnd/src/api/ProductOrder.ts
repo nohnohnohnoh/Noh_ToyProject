@@ -1,16 +1,17 @@
-import { useCallback } from "react";
 import { authAxios } from ".";
+import { CartProudctType } from "../types/type";
 
 interface BodyType {
   src: string | undefined;
   name: string | undefined;
   price: number | undefined;
   quantity: number | undefined;
+  selectData: CartProudctType[] | undefined;
 }
 
-export const postMyOrderProduct = async (body: BodyType) => {
+export const postMyOrderProduct = async (query: string, body: BodyType) => {
   try {
-    const { data } = await authAxios.post("/myorder", body);
+    const { data } = await authAxios.post(`/myorder${query}`, body);
     return data;
   } catch (error: any) {
     const { data } = error.response;

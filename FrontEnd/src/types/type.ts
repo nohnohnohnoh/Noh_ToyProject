@@ -45,5 +45,6 @@ export type CartProudctType = {
   src: string;
   _id: string;
   product_id: string;
+  select: boolean;
   user: { _id: string };
 };
