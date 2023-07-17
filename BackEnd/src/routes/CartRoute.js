@@ -40,7 +40,12 @@ cartRouter.get("/", async (req, res) => {
 
 cartRouter.delete("/", async (req, res) => {
   try {
-    const { _id, type } = req.body;
+    const { type } = req.query;
+    const { _id } = req.body;
+    if (type === "선택삭제") {
+      const cart = await Cart.deleteMany({ select: true });
+      return res.json({ cart });
+    }
     if (!mongoose.isValidObjectId(_id))
       return res.status(400).send("유효하지 않은 아이디");
     const cart = await Cart.findOneAndDelete({ _id });
@@ -50,7 +55,7 @@ cartRouter.delete("/", async (req, res) => {
   }
 });
 
-cartRouter.patch("/", async (req, res) => {
+cartRouter.patch("/quantity", async (req, res) => {
   try {
     const { _id, quantity } = req.body;
     if (!mongoose.isValidObjectId(_id)) throw new Error("유효하지 않은 아이디");
@@ -62,6 +67,29 @@ cartRouter.patch("/", async (req, res) => {
       { new: true }
     );
     return res.json({ cartQuantity });
+  } catch (e) {
+    res.status(400).json({ message: e.message });
+  }
+});
+
+cartRouter.patch("/select", async (req, res) => {
+  try {
+    const { type } = req.query;
+    const { _id, select } = req.body;
+    if (type === "전체선택") {
+      const [cartRouter, cart] = await Promise.all([
+        await Cart.updateMany({}, { select: true }),
+        await Cart.find({}).sort({ createdAt: -1 }),
+      ]);
+      return res.json({ cart, message: "모든 selectt 변경 완료." });
+    }
+    if (!mongoose.isValidObjectId(_id)) throw new Error("유효하지 않은 아이디");
+    if (typeof select !== "boolean") throw new Error("불리언 타입이 아닙니다.");
+    const [cartRouter, cart] = await Promise.all([
+      await Cart.findByIdAndUpdate({ _id }, { select }, { new: true }),
+      await Cart.find({}).sort({ createdAt: -1 }),
+    ]);
+    return res.json({ cart, message: "select 변경 완료." });
   } catch (e) {
     res.status(400).json({ message: e.message });
   }

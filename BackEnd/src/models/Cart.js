@@ -10,6 +10,7 @@ const CartSchema = new Schema(
     name: { type: String, required: true },
     price: { type: Number, required: true },
     quantity: { type: Number, reuired: true },
+    select: { type: Boolean, default: false, required: true },
   },
   { timestamps: true }
 );
