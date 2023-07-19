@@ -1,5 +1,6 @@
 const { mongoose } = require("mongoose");
 const { Router } = require("express");
+const { WishList } = require("../models/WishList");
 const { Cart } = require("../models/Cart");
 
 const cartRouter = Router();
@@ -10,7 +11,8 @@ cartRouter.post("/", async (req, res) => {
     const { _id, src, name, price, quantity } = req.body;
     if (quantity === 0)
       throw new Error("1개 이상이어야 장바구니에 등록이 가능합니다.");
-    await new Cart({
+
+    const cart = new Cart({
       user: {
         _id: req.user._id,
       },
@@ -19,8 +21,15 @@ cartRouter.post("/", async (req, res) => {
       name,
       price,
       quantity,
-    }).save();
-    return res.json({ message: "장바구니에 등록하였습니다." });
+    });
+
+    const [deleteWishList, saveWishList, wishList] = await Promise.all([
+      await WishList.deleteOne({ product_id: _id }),
+      await cart.save(),
+      await WishList.find({}).sort({ createdAt: -1 }),
+    ]);
+
+    return res.json({ wishList, message: "장바구니에 등록하였습니다." });
   } catch (e) {
     res.status(400).json({ message: e.message });
   }
@@ -76,19 +85,23 @@ cartRouter.patch("/select", async (req, res) => {
   try {
     const { type } = req.query;
     const { _id, select } = req.body;
+
     if (type === "전체선택") {
       const [cartRouter, cart] = await Promise.all([
         await Cart.updateMany({}, { select: true }),
         await Cart.find({}).sort({ createdAt: -1 }),
       ]);
-      return res.json({ cart, message: "모든 selectt 변경 완료." });
+      return res.json({ cart, message: "모든 select 변경 완료." });
     }
+
     if (!mongoose.isValidObjectId(_id)) throw new Error("유효하지 않은 아이디");
     if (typeof select !== "boolean") throw new Error("불리언 타입이 아닙니다.");
+
     const [cartRouter, cart] = await Promise.all([
       await Cart.findByIdAndUpdate({ _id }, { select }, { new: true }),
       await Cart.find({}).sort({ createdAt: -1 }),
     ]);
+
     return res.json({ cart, message: "select 변경 완료." });
   } catch (e) {
     res.status(400).json({ message: e.message });

@@ -31,7 +31,15 @@ wishListRouter.post("/", async (req, res) => {
 wishListRouter.get("/", async (req, res) => {
   try {
     const { _id } = req.user;
-    const { page = 1, limit = 4 } = req.query;
+    const { page = 1, limit = 4, wishListId } = req.query;
+
+    if (wishListId) {
+      if (!mongoose.isValidObjectId(wishListId))
+        throw new Error("유효하지 않은 Id 입니다.");
+      const wishList = await WishList.findOne({ _id: wishListId });
+      return res.json({ wishList });
+    }
+
     if (!req.user) throw new Error("권환이 없습니다.");
     const [wishList, count] = await Promise.all([
       WishList.find({ "user._id": _id })
@@ -56,10 +64,12 @@ wishListRouter.delete("/", async (req, res) => {
       const wishList = await WishList.deleteMany({});
       return res.json({ wishList });
     }
+
     if (type === "선택삭제") {
-      const wishList = await WishList.deleteMany({ _id: id });
+      const wishList = await WishList.deleteMany({ select: true });
       return res.json({ wishList });
     }
+
     if (!mongoose.isValidObjectId(id))
       return res.status(400).send("유효하지 않은 아이디");
     const wishList = await WishList.findOneAndDelete({ _id: id });
@@ -72,16 +82,19 @@ wishListRouter.delete("/", async (req, res) => {
 wishListRouter.patch("/", async (req, res) => {
   try {
     const { _id, select } = req.body;
+
     if (!mongoose.isValidObjectId(_id)) throw new Error("유효하지 않은 아이디");
     if (typeof select !== "boolean") throw new Error("불리언타입이 아닙니다.");
-    const wishList = await WishList.findByIdAndUpdate(
-      { _id },
-      { select },
-      { new: true }
-    );
+
+    const [wishListRouter, wishList] = await Promise.all([
+      await WishList.findByIdAndUpdate({ _id }, { select }, { new: true }),
+      await WishList.find({}).sort({ createdAt: -1 }),
+    ]);
+
     return res.json({ wishList });
   } catch (e) {
     res.status(400).json({ message: e.message });
   }
 });
+
 module.exports = { wishListRouter };
