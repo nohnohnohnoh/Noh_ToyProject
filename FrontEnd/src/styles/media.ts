@@ -4,12 +4,14 @@ type MediaQueryProps = {
   mobile: number;
   tablet: number;
   desktop: number;
+  huge: number;
 };
 
 const sizes: MediaQueryProps = {
   mobile: 580,
   tablet: 768,
-  desktop: 1280,
+  desktop: 1086,
+  huge: 1285,
 };
 
 type BackQuoteArgs = string[];
@@ -30,6 +32,12 @@ const media = {
   desktop: (literals: TemplateStringsArray, ...args: BackQuoteArgs): CSSProp =>
     css`
       @media only screen and (max-width: ${sizes.desktop}px) {
+        ${css(literals, ...args)}
+      }
+    `,
+  huge: (literals: TemplateStringsArray, ...args: BackQuoteArgs): CSSProp =>
+    css`
+      @media only screen and (min-width: ${sizes.huge}px) {
         ${css(literals, ...args)}
       }
     `,

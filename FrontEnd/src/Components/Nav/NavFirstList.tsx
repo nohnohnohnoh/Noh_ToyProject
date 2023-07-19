@@ -52,6 +52,9 @@ const NavFirstListSection = styled.div`
   transform: translateY(0);
   position: relative;
   z-index: 11;
+  ${({ theme }) => theme.media.desktop`
+    display:none !important;
+  `}
 `;
 
 const NavCreate = styled.div`

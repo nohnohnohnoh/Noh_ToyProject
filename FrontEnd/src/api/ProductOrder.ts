@@ -2,6 +2,7 @@ import { authAxios } from ".";
 import { CartProudctType } from "../types/type";
 
 interface BodyType {
+  _id: string | undefined;
   src: string | undefined;
   name: string | undefined;
   price: number | undefined;

@@ -1,11 +1,13 @@
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { myOrderProductType } from "../types/type";
+import styled from "styled-components";
 
 interface MyPageListProps {
   orderProduct: myOrderProductType[];
 }
 
 const MyPageList = ({ orderProduct }: MyPageListProps) => {
+  const navigate = useNavigate();
   return (
     <MyPageListComponent>
       <MyPageListHeader>
@@ -13,14 +15,23 @@ const MyPageList = ({ orderProduct }: MyPageListProps) => {
       </MyPageListHeader>
       <MyPageListSection>
         {orderProduct.map(
-          ({ _id, src, name, price, quantity }: myOrderProductType) => {
+          ({
+            _id,
+            src,
+            name,
+            price,
+            quantity,
+            product_id,
+          }: myOrderProductType) => {
             const priceComma = price?.toLocaleString();
             const totalPrice = price * quantity;
             const totalPriceComma = totalPrice.toLocaleString();
             return (
               <MyPageListBox key={_id}>
                 <div className="padding">
-                  <MyPageImgBox>
+                  <MyPageImgBox
+                    onClick={() => navigate(`/product/${product_id}`)}
+                  >
                     <MyPageImg src={src} />
                   </MyPageImgBox>
                   <MyPageContentBox>

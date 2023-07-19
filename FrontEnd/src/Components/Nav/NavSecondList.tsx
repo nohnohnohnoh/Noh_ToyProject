@@ -96,6 +96,9 @@ const NavMenu = styled.div`
   width: 100%;
   margin: 1.5%;
   position: relative;
+  ${({ theme }) => theme.media.desktop`
+    display:none !important;
+  `}
 `;
 
 const NavMenuUl = styled.ul`
@@ -117,6 +120,9 @@ const NavMyPage = styled.div`
   width: 10%;
   ${({ theme }) => theme.flexMixIn("center", "center")}
   ${({ theme }) => theme.postionMixIn("absolute", 60, -0.25)};
+  ${({ theme }) => theme.media.desktop`
+    display:none !important;
+  `}
 `;
 const SearchIcon = styled(BsSearch)`
   font-size: 20px;

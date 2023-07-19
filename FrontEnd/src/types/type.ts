@@ -21,6 +21,7 @@ export type myOrderProductType = {
   quantity: number;
   src: string | undefined;
   _id: string | undefined;
+  product_id: string;
   user?: { _id: string | undefined };
 };
 

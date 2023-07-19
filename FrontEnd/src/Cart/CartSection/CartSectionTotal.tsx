@@ -15,6 +15,7 @@ const CartTotal = ({ totalPrice, selectDataArr }: CartSectionProps) => {
   const onClickEntireOrder = () => {
     if (window.confirm("전체상품을 주문하시겠습니까 ?") === true) {
       postMyOrderProduct("?type=전체상품주문", {
+        _id: undefined,
         src: undefined,
         name: undefined,
         price: undefined,
@@ -35,6 +36,7 @@ const CartTotal = ({ totalPrice, selectDataArr }: CartSectionProps) => {
   const onClickSelectOrder = () => {
     if (window.confirm("선택하신 상품을 주문하시겠습니까 ? ") === true) {
       postMyOrderProduct("?type=선택상품주문", {
+        _id: undefined,
         src: undefined,
         name: undefined,
         price: undefined,

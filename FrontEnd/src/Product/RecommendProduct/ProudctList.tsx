@@ -50,7 +50,7 @@ const ProductListBox = styled.div`
 
 const ProductListImgBox = styled.div`
   width: 100%;
-  height: 280px;
+  height: 260px;
   margin: 0 0 10px;
   text-align: center;
 `;

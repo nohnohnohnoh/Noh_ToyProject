@@ -114,13 +114,13 @@ const ProductList = styled.div`
 
 const ProductListBox = styled.div`
   display: inline-block;
-  width: 23%;
+  width: 22.8%;
   margin: 0 10px 60px 10px;
 `;
 
 const ProductListImgBox = styled.div`
   width: 100%;
-  height: 280px;
+  height: 260px;
   margin: 0 0 10px;
   text-align: center;
 `;

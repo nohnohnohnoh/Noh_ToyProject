@@ -1,18 +1,23 @@
-import { useRef, useState } from "react";
-import { deleteWishListProduct, patchSelectProduct } from "../api/WishList";
+import { useState } from "react";
+import {
+  deleteWishListProduct,
+  patchSelectProduct,
+  getWishListProduct,
+} from "../api/WishList";
 import { useNavigate } from "react-router-dom";
 import { WishListProductType } from "../types/type";
 import { AiOutlineClose } from "react-icons/ai";
 import styled from "styled-components";
+import WishListModal from "./WishListModal/WishListModal";
 
 interface WishListProps {
   wishListData: WishListProductType[];
+  setWishListData: (data: WishListProductType[]) => void;
 }
 
-const WishListSection = ({ wishListData }: WishListProps) => {
-  const [select, setSelect] = useState<boolean>(false);
-  const [Test, setTest] = useState(false);
-  const [TEST, SETTEst] = useState(false);
+const WishListSection = ({ wishListData, setWishListData }: WishListProps) => {
+  const [toggleModal, setToggleModal] = useState(false);
+  const [modalData, setModalData] = useState();
 
   const navigate = useNavigate();
 
@@ -24,9 +29,23 @@ const WishListSection = ({ wishListData }: WishListProps) => {
     } else return;
   };
 
-  const onClickSelect = (_id: string, select: boolean) => {
-    setSelect(true);
-    patchSelectProduct(_id, select);
+  const handleSingleCheck = (checked: any, _id: string) => {
+    if (checked) {
+      patchSelectProduct(_id, true).then((data) => {
+        setWishListData(data.wishList);
+      });
+    } else {
+      patchSelectProduct(_id, false).then((data) => {
+        setWishListData(data.wishList);
+      });
+    }
+  };
+
+  const onToggleModal = (_id: string) => {
+    setToggleModal(true);
+    getWishListProduct(`?wishListId=${_id}`).then(({ wishList }) =>
+      setModalData(wishList)
+    );
   };
 
   return (
@@ -35,29 +54,20 @@ const WishListSection = ({ wishListData }: WishListProps) => {
         <h3 className="title">나의 위시리스트</h3>
       </WishListHeader>
       <WishListSectionComponent>
-        {wishListData.map(({ _id, src, name, price }, index: any) => {
+        {wishListData.map(({ _id, src, name, price, product_id }, index) => {
           const priceComma = price?.toLocaleString();
-          const test: any = wishListData[index].select;
-          const Y: any = test === false;
-          const INDEX = wishListData.indexOf(Y);
           return (
             <WishListBox key={_id}>
               <Check>
-                {select === false ? (
-                  <CheckIcon
-                    type="checkbox"
-                    onChange={() => {
-                      onClickSelect(_id, true);
-                    }}
-                  />
-                ) : (
-                  <CheckIcon
-                    type="checkbox"
-                    onChange={() => onClickSelect(_id, true)}
-                  />
-                )}
+                <CheckIcon
+                  type="checkbox"
+                  onChange={(e) => handleSingleCheck(e.target.checked, _id)}
+                  checked={wishListData[index].select === true ? true : false}
+                />
               </Check>
-              <WishListImgBox>
+              <WishListImgBox
+                onClick={() => navigate(`/product/${product_id}`)}
+              >
                 <WishListImg src={src} />
               </WishListImgBox>
               <WishListContentBox>
@@ -66,12 +76,22 @@ const WishListSection = ({ wishListData }: WishListProps) => {
               </WishListContentBox>
               <WishListButtonBox>
                 <Delete onClick={() => onClickOneDelete(_id)} />
-                <CartButton>장바구니</CartButton>
-                <OrderButton>주문하기</OrderButton>
+                <CartButton onClick={() => onToggleModal(_id)}>
+                  장바구니
+                </CartButton>
+                <OrderButton onClick={() => onToggleModal(_id)}>
+                  주문하기
+                </OrderButton>
               </WishListButtonBox>
             </WishListBox>
           );
         })}
+        <WishListModal
+          toggleModal={toggleModal}
+          setToggleModal={setToggleModal}
+          modalData={modalData}
+          setWishListData={setWishListData}
+        />
       </WishListSectionComponent>
     </WishList>
   );

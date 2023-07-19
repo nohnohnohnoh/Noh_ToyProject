@@ -47,7 +47,10 @@ const WishList = () => {
   return (
     <WishListComponent>
       <WishListHeader navigateMain={navigateMain} />
-      <WishListSection wishListData={wishListData} />
+      <WishListSection
+        wishListData={wishListData}
+        setWishListData={setWishListData}
+      />
       <WishListButtonBox
         totalPageNumber={totalPageNumber}
         queryNavigate={queryNavigate}

@@ -43,7 +43,6 @@ const CartProduct = ({
           ({ _id, src, quantity, product_id, price, name }, index) => {
             const priceComma = price?.toLocaleString();
             const totalPriceComma = (price * quantity).toLocaleString();
-            console.log(cartData[index].select);
             return (
               <CartProductBox key={_id}>
                 <Check>

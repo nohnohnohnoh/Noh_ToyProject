@@ -1,10 +1,11 @@
 import { authAxios } from ".";
+import axios from "axios";
 
 interface BodyType {
-  _id: string | undefined;
-  src: string | undefined;
-  name: string | undefined;
-  price: number | undefined;
+  _id?: string | undefined;
+  src?: string | undefined;
+  name?: string | undefined;
+  price?: number | undefined;
 }
 
 export const postWishListProduct = async (body: BodyType) => {

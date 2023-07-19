@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CartProduct from "./CartSectionProudct/CartSectionProudct";
 import CartTotal from "./CartSectionTotal";
 import { deleteCart, patchCartSelect } from "../../api/Cart";
@@ -78,6 +78,7 @@ const CartSection = ({ cartData, setCartData }: CartProps) => {
   ) => {
     if (window.confirm("이 상품을 주문하시겠습니까 ?") === true) {
       postMyOrderProduct("", {
+        _id,
         src,
         name,
         price,
@@ -99,13 +100,11 @@ const CartSection = ({ cartData, setCartData }: CartProps) => {
     if (checked) {
       setSelectDataArr((prev: any) => [...prev, cartData]);
       patchCartSelect(_id, true, "").then((data) => {
-        console.log(data);
         setCartData(data.cart);
       });
     } else {
       setSelectDataArr(selectDataArr.filter((el) => el !== cartData));
       patchCartSelect(_id, false, "").then((data) => {
-        console.log(data);
         setCartData(data.cart);
       });
     }
@@ -115,11 +114,9 @@ const CartSection = ({ cartData, setCartData }: CartProps) => {
     if (checked) {
       const idArray: any[] = [];
       cartData.forEach((el: any) => {
-        console.log(el);
         idArray.push(el);
       });
       setSelectDataArr(idArray);
-      console.log(selectDataArr);
       patchCartSelect("", true, "?type=전체선택").then((data) => {
         setCartData(data.cart);
       });

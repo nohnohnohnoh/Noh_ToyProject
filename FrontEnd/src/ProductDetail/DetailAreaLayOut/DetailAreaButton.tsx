@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { postMyOrderProduct } from "../../api/ProductOrder";
 import { postWishListProduct } from "../../api/WishList";
-import { useNavigate } from "react-router-dom";
 import { postCart } from "../../api/Cart";
 
 interface DeatilAreayProps {
@@ -19,11 +18,13 @@ const DetailAreaButton = ({
   price,
   total,
 }: DeatilAreayProps) => {
-  const navigate = useNavigate();
+  const localStorageToken = localStorage.getItem("AUTH_TOKEN");
 
   const onClickBuy = () => {
+    if (!localStorageToken) return alert("로그인을 해주세요.");
     if (window.confirm("구매하시겠습니까 ?") === true) {
       postMyOrderProduct("", {
+        _id,
         src,
         name,
         price,
@@ -36,6 +37,7 @@ const DetailAreaButton = ({
   };
 
   const onClickCart = () => {
+    if (!localStorageToken) return alert("로그인을 해주세요.");
     if (window.confirm("장바구니에 등록하시겠습니끼?") === true) {
       postCart({
         _id,
@@ -48,6 +50,7 @@ const DetailAreaButton = ({
   };
 
   const onClickWishList = () => {
+    if (!localStorageToken) return alert("로그인을 해주세요.");
     if (window.confirm("관심 상품에 등록하시겠습니끼 ?") === true) {
       postWishListProduct({
         _id,

@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import { BsCurrencyDollar, BsPercent } from "react-icons/bs";
 import { myOrderProductType } from "../types/type";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { BiCube } from "react-icons/bi";
 
 interface MyPageUserProps {
@@ -9,10 +11,16 @@ interface MyPageUserProps {
 }
 
 const MyPageUser = ({ orderProduct }: MyPageUserProps) => {
+  const nickName = useSelector(
+    ({ auth }: RootState) => auth.authData?.data.nickName
+  );
+  const [member, setMember] = useState(" 일반회원 ");
   const [totalArr, setTotalArr] = useState<number[]>([]);
   let totalPrice = 0;
+  console.log(member);
 
   useEffect(() => {
+    if (orderProduct.length === totalArr.length) return;
     orderProduct.map(({ price, quantity }) => {
       return totalArr.push(price * quantity);
     });
@@ -24,7 +32,18 @@ const MyPageUser = ({ orderProduct }: MyPageUserProps) => {
     }
     return totalPrice;
   };
+
   totalPriceFunction();
+
+  useEffect(() => {
+    if (totalPrice > 500000 || orderProduct.length > 15) {
+      setMember(" VIP회원 ");
+    } else if (totalPrice > 300000 || orderProduct.length > 10) {
+      setMember(" 골드회원 ");
+    } else if (totalPrice > 200000 || orderProduct.length > 8) {
+      setMember(" 실버회원 ");
+    } else return setMember(" 일반회원 ");
+  }, [totalPrice, orderProduct.length]);
 
   return (
     <MypageUser>
@@ -41,9 +60,26 @@ const MyPageUser = ({ orderProduct }: MyPageUserProps) => {
               </UserIcon>
             </User>
             <UserInfo>
-              <UserTextHeader>안녕하세요 TEST 님!</UserTextHeader>
+              <UserTextHeader>안녕하세요 {nickName} 님!</UserTextHeader>
               <UserTextContent>
-                고객님의 회원등급은 일반회원 입니다.
+                고객님의 회원등급은
+                <span
+                  style={
+                    member === " 일반회원 "
+                      ? { color: "#6a6a6a" }
+                      : member === " 실버회원 "
+                      ? { color: "sliver" }
+                      : member === " 골드회원 "
+                      ? { color: "#d0df61" }
+                      : member === " VIP회원 "
+                      ? { color: "#f05650" }
+                      : undefined
+                  }
+                  className="member"
+                >
+                  {member}
+                </span>
+                입니다.
               </UserTextContent>
             </UserInfo>
           </MypageUserListLi>
@@ -125,6 +161,9 @@ const UserTextContent = styled.span`
   font-size: 14px;
   color: #6a6a6a;
   white-space: nowrap;
+  .member {
+    font-weight: bold;
+  }
 `;
 
 const MypageUserListLiFlex = styled(MypageUserListLi)`

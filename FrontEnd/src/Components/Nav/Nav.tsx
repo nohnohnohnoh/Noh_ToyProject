@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavFirstList from "./NavFirstList";
 import NavSecondList from "./NavSecondList";
 import styled, { css } from "styled-components";
+import media from "../../styles/media";
 
 interface ScrollYProps {
   scrollY: number;
@@ -32,7 +33,7 @@ const Nav = () => {
 };
 
 const NavComponents = styled.nav<ScrollYProps>`
-  width: 100vw;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   background: #fff;
