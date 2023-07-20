@@ -4,8 +4,8 @@ import { AppDispatch } from "../store";
 import { setProductType } from "../reducers/productSlice";
 import { mainNewProduct } from "../api/Prodcut";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { ProductType } from "../types/type";
+import styled from "styled-components";
 
 const MainNew = () => {
   const [mainNewData, setMainNewData] = useState<Array<ProductType>>([]);
@@ -25,7 +25,6 @@ const MainNew = () => {
     if (mainNewData.length === 0) return;
     const lastImgArr: ProductType = mainNewData[mainNewData.length - 1];
     const lastImgId = lastImgArr._id;
-    console.log(lastImgId);
     mainNewProduct(`?lastid=${lastImgId}`).then(({ newProducts }) => {
       setMainNewData((prevData) => [...prevData, ...newProducts]);
     });
@@ -113,6 +112,9 @@ const MainNewListBox = styled.div`
   display: inline-block;
   width: 23%;
   margin: 0 10px 60px 10px;
+  ${({ theme }) => theme.media.desktop`
+    width: 31%;
+  `}
 `;
 
 const MainNewImgBox = styled.div`
@@ -158,15 +160,15 @@ const MainButtonBox = styled.div`
 `;
 
 const NewButton = styled.div`
-  background-color: #fff;
   display: inline-block;
   min-width: auto;
-  font-weight: 500;
   padding: 21px 75px 22px;
+  font-size: 16px;
+  font-weight: 500;
   border: 1px solid #999999;
   text-align: center;
   transition: all 400ms;
-  font-size: 16px;
+  background-color: #fff;
   color: #1a1a1a;
   cursor: pointer;
 `;

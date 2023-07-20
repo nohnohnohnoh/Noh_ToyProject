@@ -1,4 +1,3 @@
-import React from "react";
 import FooterContent from "./FooterContent";
 import styled from "styled-components";
 
@@ -21,23 +20,25 @@ const Footer = () => {
 const FooterComponents = styled.footer`
   width: 100vw;
   margin: 0 auto;
-  padding: 0;
   background: #f5f5f5;
 `;
 
 const FooterSection = styled.section`
+  display: flex;
+  flex-direction: column;
   max-width: 1760px;
   width: 92%;
   margin: 0 auto;
   padding: 4% 0 0;
   color: #1a1a1a;
-  display: flex;
-  flex-direction: column;
 `;
 
 const FooterLogo = styled.h1`
   font-size: 40px;
   font-weight: bold;
+  ${({ theme }) => theme.media.desktop`
+    font-size: 35px;
+  `}
 `;
 
 const FooterBottom = styled.div`

@@ -1,10 +1,10 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { ProductType } from "../../types/type";
-import styled from "styled-components";
-import { useLocation, useNavigate } from "react-router-dom";
 import { searchProduct } from "../../api/Prodcut";
+import { ProductType } from "../../types/type";
+import { useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const SearchProductSection = () => {
   const productSearch = useSelector(
@@ -116,6 +116,9 @@ const ProductListBox = styled.div`
   display: inline-block;
   width: 22.8%;
   margin: 0 10px 60px 10px;
+  ${({ theme }) => theme.media.desktop`
+    width: 30.8%;
+  `}
 `;
 
 const ProductListImgBox = styled.div`

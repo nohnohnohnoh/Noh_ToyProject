@@ -60,8 +60,6 @@ const CartFooter = () => {
 const CartFooterComponent = styled.div`
   max-width: 1230px;
   width: 92%;
-  /* margin-left: auto;
-  margin-right: auto; */
   margin: 50px auto 8%;
   .title {
     display: block;
@@ -73,16 +71,16 @@ const CartFooterComponent = styled.div`
 `;
 
 const CartFooterContent = styled.div`
+  padding: 10px 20px 20px 20px;
   border-top: 2px solid #1a1a1a;
   border-right: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   border-left: 1px solid #e5e5e5;
-  padding: 10px 20px 20px 20px;
   .smallTitle {
     margin: 10px 0 5px;
-    color: #000;
     font-size: 12px;
     font-weight: normal;
+    color: #000;
   }
 `;
 
@@ -92,9 +90,9 @@ const CartFooterUl = styled.ul`
 
 const CartFooterLi = styled.li`
   padding: 0 0 0 12px;
-  color: #6d6d6d;
   font-size: 12px;
   line-height: 21px;
+  color: #6d6d6d;
 `;
 
 export default CartFooter;

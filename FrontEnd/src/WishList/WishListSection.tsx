@@ -4,11 +4,11 @@ import {
   patchSelectProduct,
   getWishListProduct,
 } from "../api/WishList";
+import WishListModal from "./WishListModal/WishListModal";
 import { useNavigate } from "react-router-dom";
 import { WishListProductType } from "../types/type";
 import { AiOutlineClose } from "react-icons/ai";
 import styled from "styled-components";
-import WishListModal from "./WishListModal/WishListModal";
 
 interface WishListProps {
   wishListData: WishListProductType[];

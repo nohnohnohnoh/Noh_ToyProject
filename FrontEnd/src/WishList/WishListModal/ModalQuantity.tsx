@@ -29,10 +29,10 @@ const WishListModalQuantity = ({
 };
 
 const WishQuantityBox = styled.div`
-  padding: 0 0 0 37px;
   ${({ theme }) => theme.flexMixIn("", "center")};
   width: 100%;
   margin: 24px 0;
+  padding: 0 0 0 37px;
   .label {
     flex: 1;
     font-size: 14px;

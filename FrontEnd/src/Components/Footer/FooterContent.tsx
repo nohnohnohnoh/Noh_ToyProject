@@ -120,18 +120,23 @@ const FooterContent = () => {
 };
 
 const FooterMySelfContent = styled.div`
-  display: flex;
-  justify-content: space-between;
+  ${({ theme }) => theme.flexMixIn("space-between", "")};
   font-size: 12px;
   font-weight: 400;
   color: #1a1a1a;
   line-height: 2;
   border-bottom: 1px solid #dadada;
+  ${({ theme }) => theme.media.desktop`
+    font-size: 10px;
+  `}
 `;
 
 const FooterMySelfLogo = styled.div`
   font-size: 16px;
   font-weight: bold;
+  ${({ theme }) => theme.media.desktop`
+    font-size: 14px;
+  `}
 `;
 
 const FooterMySelfContentList = styled.div`

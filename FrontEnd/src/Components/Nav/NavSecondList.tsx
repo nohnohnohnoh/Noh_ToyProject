@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { setProductType, setToggleSearch } from "../../reducers/productSlice";
+import { useNavigate } from "react-router-dom";
 import { BsSearch, BsBasket, BsPerson, BsHeart } from "react-icons/bs";
+import styled from "styled-components";
 
 const NavSecondList = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -78,10 +78,10 @@ const NavSecondList = () => {
 };
 
 const NavSecondListSection = styled.div`
-  width: 100%;
   ${({ theme }) => theme.flexMixIn("center", "center")}
   flex-wrap: wrap;
   position: relative;
+  width: 100%;
   margin-top: 10px;
 `;
 
@@ -93,12 +93,9 @@ const NavHeaderLogo = styled.h1`
 `;
 
 const NavMenu = styled.div`
+  position: relative;
   width: 100%;
   margin: 1.5%;
-  position: relative;
-  ${({ theme }) => theme.media.desktop`
-    display:none !important;
-  `}
 `;
 
 const NavMenuUl = styled.ul`
@@ -117,32 +114,29 @@ const NavMenuLi = styled.li`
 `;
 
 const NavMyPage = styled.div`
-  width: 10%;
   ${({ theme }) => theme.flexMixIn("center", "center")}
-  ${({ theme }) => theme.postionMixIn("absolute", 60, -0.25)};
-  ${({ theme }) => theme.media.desktop`
-    display:none !important;
-  `}
+  ${({ theme }) => theme.positionMixIn("absolute", 60, -0.25)};
+  width: 10%;
 `;
 const SearchIcon = styled(BsSearch)`
-  font-size: 20px;
   margin: 0 5%;
+  font-size: 20px;
   cursor: pointer;
 `;
 const MyPageIcon = styled(BsPerson)`
-  font-size: 25px;
   margin: 0 5%;
+  font-size: 25px;
   cursor: pointer;
 `;
 const ProductIcon = styled(BsBasket)`
-  font-size: 20px;
   margin: 0 5%;
+  font-size: 20px;
   cursor: pointer;
 `;
 
 const WishLIstIcon = styled(BsHeart)`
-  font-size: 20px;
   margin: 0 5%;
+  font-size: 20px;
   cursor: pointer;
 `;
 

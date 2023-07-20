@@ -4,7 +4,6 @@ import Comment from "./Comment";
 import QnA from "./QnA";
 import Change from "./Change";
 import { useEffect, useState } from "react";
-import { current } from "@reduxjs/toolkit";
 
 interface DetailContentProps {
   src: string | undefined;
@@ -14,10 +13,10 @@ const DetailContentLayOut = ({ src }: DetailContentProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const liMenu = [
-    { id: 0, content: <Content src={src} /> },
-    { id: 1, content: <Comment /> },
-    { id: 2, content: <QnA /> },
-    { id: 3, content: <Change /> },
+    { id: 0, title: "상세정보", content: <Content src={src} /> },
+    { id: 1, title: "상품후기", content: <Comment /> },
+    { id: 2, title: "상품문의", content: <QnA /> },
+    { id: 3, title: " 상품문의", content: <Change /> },
   ];
 
   return (

@@ -11,27 +11,25 @@ const ProductList = ({ recommendData, observerTargetEl }: RecommendProps) => {
   const navigate = useNavigate();
   return (
     <ProductListComponents>
-      {recommendData?.map(
-        ({ _id, id, src, name, price }: ProductType, index) => {
-          const priceComma = price?.toLocaleString();
-          return (
-            <ProductListBox
-              onClick={() => {
-                navigate(`/product/${_id}`);
-              }}
-              key={id}
-            >
-              <ProductListImgBox>
-                <ProductListImg src={src} />
-              </ProductListImgBox>
-              <ProductListTextBox>
-                <ProductListName>{name}</ProductListName>
-                <ProductListPrice>{priceComma}원</ProductListPrice>
-              </ProductListTextBox>
-            </ProductListBox>
-          );
-        }
-      )}
+      {recommendData?.map(({ _id, id, src, name, price }: ProductType) => {
+        const priceComma = price?.toLocaleString();
+        return (
+          <ProductListBox
+            onClick={() => {
+              navigate(`/product/${_id}`);
+            }}
+            key={id}
+          >
+            <ProductListImgBox>
+              <ProductListImg src={src} />
+            </ProductListImgBox>
+            <ProductListTextBox>
+              <ProductListName>{name}</ProductListName>
+              <ProductListPrice>{priceComma}원</ProductListPrice>
+            </ProductListTextBox>
+          </ProductListBox>
+        );
+      })}
       <div ref={observerTargetEl} />
     </ProductListComponents>
   );
@@ -46,6 +44,9 @@ const ProductListBox = styled.div`
   display: inline-block;
   width: 23%;
   margin: 0 10px 60px 10px;
+  ${({ theme }) => theme.media.desktop`
+    width: 31%;
+  `}
 `;
 
 const ProductListImgBox = styled.div`

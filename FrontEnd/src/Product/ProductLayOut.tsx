@@ -1,6 +1,5 @@
-import React, { Children } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 interface ProdcutProps {
   title: string;
@@ -29,25 +28,25 @@ const ProdcutLayOut = ({ children, title }: ProdcutProps) => {
 };
 
 const ProdcutComponent = styled.div`
+  position: relative;
   width: 100%;
   zoom: 1;
-  position: relative;
   margin: 0 auto;
 `;
 
 const ProductHeader = styled.div`
   ${({ theme }) => theme.flexMixIn("flex-end", "center")};
-  padding: 2.5% 0 0 0;
   max-width: 1230px;
   width: 92%;
   margin-left: auto;
   margin-right: auto;
+  padding: 2.5% 0 0 0;
 `;
 
 const ProdcutHeaderText = styled.div`
+  padding: 0.25%;
   font-size: 12px;
   color: #7d7d7d;
-  padding: 0.25%;
   cursor: pointer;
 `;
 

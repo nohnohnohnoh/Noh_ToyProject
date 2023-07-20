@@ -100,8 +100,8 @@ const MyPageContentBox = styled.div`
   width: 30%;
   margin-left: 3%;
   .text {
-    font-weight: 600;
     margin-bottom: 4%;
+    font-weight: 600;
   }
 `;
 

@@ -67,7 +67,6 @@ export const patchCartSelect = async (
       _id,
       select,
     });
-    console.log("patchData", data);
     return data;
   } catch (error: any) {
     const { data } = error.response;

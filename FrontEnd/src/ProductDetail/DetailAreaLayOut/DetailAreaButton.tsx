@@ -1,7 +1,7 @@
-import styled from "styled-components";
 import { postMyOrderProduct } from "../../api/ProductOrder";
 import { postWishListProduct } from "../../api/WishList";
 import { postCart } from "../../api/Cart";
+import styled from "styled-components";
 
 interface DeatilAreayProps {
   _id: string | undefined;

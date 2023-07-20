@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 const MainHot = () => {
@@ -80,22 +79,20 @@ const MainHotText = styled.div`
 `;
 
 const MainHotContentBox = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  /* flex-wrap: wrap; */
+  ${({ theme }) => theme.flexMixIn("flex-start")}
   margin: 0 -10px;
 `;
 
 const MainHotContent = styled.div`
-  margin: 0 0 30px;
   max-width: 416px;
+  margin: 0 0 30px;
   box-sizing: border-box;
   padding: 0 10px;
 `;
 
 const MainHotImg = styled.img`
   max-width: 100%;
-  height: auto;
+  height: 280px;
   box-sizing: border-box;
 `;
 
@@ -103,10 +100,10 @@ const MainHotContentTexTBox = styled.div`
   width: 100%;
   min-height: 33px;
   margin-top: 15px;
-  text-align: left;
   background: url(https://thedaju.com/SkinImg/img/banner_arrow.svg) no-repeat
     99% center;
   background-size: 33px;
+  text-align: left;
 `;
 
 const MainHotContentTextOne = styled.div`

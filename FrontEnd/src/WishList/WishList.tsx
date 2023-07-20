@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import styled from "styled-components";
 import WishListHeader from "./WishListHeader";
 import WishListSection from "./WishListSection";
 import WishListButtonBox from "./WishListButtonBox";
+import { getWishListProduct } from "../api/WishList";
 import { useLocation, useNavigate } from "react-router-dom";
 import { WishListProductType } from "../types/type";
-import { getWishListProduct } from "../api/WishList";
+import styled from "styled-components";
 
 const WishList = () => {
   const [wishListData, setWishListData] = useState<WishListProductType[]>([]);

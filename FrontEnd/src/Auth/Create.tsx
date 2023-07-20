@@ -115,14 +115,16 @@ const AuthCreateLogo = styled.h1`
 `;
 
 const AuthCreateForm = styled.form`
-  width: 50%;
+  width: 100%;
+  max-width: 400px;
   height: 60vh;
   ${({ theme }) => theme.flexMixIn("flex-start", "center")};
   flex-direction: column;
 `;
 
 const AuthCreateId = styled.input`
-  width: 50%;
+  width: 100%;
+  max-width: 400px;
   height: 48px;
   margin-bottom: 1%;
   padding: 0 20px;
@@ -134,7 +136,8 @@ const AuthCreatePwc = styled(AuthCreateId)``;
 const AtuhCreateName = styled(AuthCreateId)``;
 
 const AuthCreateButton = styled.button`
-  width: 50%;
+  width: 100%;
+  max-width: 400px;
   height: 56px;
   font-size: 16px;
   font-weight: bold;
@@ -147,7 +150,8 @@ const AuthCreateButton = styled.button`
 const AuthLoginBox = styled.div`
   ${({ theme }) => theme.flexMixIn("center", "center")};
   flex-direction: column;
-  width: 50%;
+  width: 100%;
+  max-width: 400px;
   height: 232px;
   margin-top: 5%;
   border: 1px solid #e3e3e3;

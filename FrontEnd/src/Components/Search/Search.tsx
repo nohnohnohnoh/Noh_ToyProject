@@ -7,9 +7,9 @@ import {
   setToggleSearch,
 } from "../../reducers/productSlice";
 import { useNavigate } from "react-router-dom";
-import styled, { css } from "styled-components";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
+import styled, { css } from "styled-components";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -60,16 +60,14 @@ const Search = () => {
 
 const SearchComponent = styled.div<{ visible: boolean }>`
   z-index: 1001;
-  position: fixed;
+  ${({ theme }) => theme.positionMixIn("fixed", 0, 0)};
   left: 0;
-  right: 0;
-  top: 0;
-  background: #fff;
   height: 389px;
   opacity: 0;
   visibility: hidden;
   transform: translate3d(0, -100%, 0);
   transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0.5s;
+  background: #fff;
   ${(props) =>
     props.visible &&
     css`
@@ -82,10 +80,10 @@ const SearchComponent = styled.div<{ visible: boolean }>`
 `;
 
 const SearchTitle = styled.div`
-  font-weight: 700;
-  color: #3a3a3a;
-  margin: 103px 0 54px;
   display: block;
+  margin: 103px 0 54px;
+  color: #3a3a3a;
+  font-weight: 700;
   font-size: 30px;
   text-align: center;
 `;
@@ -98,23 +96,21 @@ const SearchFieldSet = styled.fieldset`
 `;
 
 const SearchInput = styled.input`
+  flex: 1;
   width: 100%;
   height: 54px;
   padding: 15px 0;
-  flex: 1;
-  font-size: 18px;
   box-sizing: border-box;
   border: 0;
   background: #fff;
+  font-size: 18px;
 `;
 
 const BackGround = styled.div<{ visible: boolean }>`
   z-index: 1000;
-  position: fixed;
-  top: 0;
+  ${({ theme }) => theme.positionMixIn("fixed", 0, 0)};
   left: 0;
   bottom: 0;
-  right: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);

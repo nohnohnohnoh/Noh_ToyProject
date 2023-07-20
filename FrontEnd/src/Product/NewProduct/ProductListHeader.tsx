@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ProductType } from "../../types/type";
 
 interface NewProductProps {
   totalData: number | undefined;
@@ -31,9 +30,9 @@ const ProductListHeader = ({
 };
 
 const ProductListHeaderComponent = styled.div`
-  border-top: 0;
-  padding: 0 0 20px;
   margin: 0;
+  padding: 0 0 20px;
+  border-top: 0;
   border-bottom: 1px solid #ebebeb;
   overflow: hidden;
   text-align: right;

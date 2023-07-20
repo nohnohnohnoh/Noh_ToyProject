@@ -1,10 +1,9 @@
-import React from "react";
-import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
+import { Navigation, Scrollbar, A11y, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
+import styled from "styled-components";
 
 const MainBest = () => {
   const testImg = [
@@ -97,6 +96,44 @@ const MainBest = () => {
             }}
             autoplay={{ delay: 3000 }}
             scrollbar={{ draggable: true }}
+            breakpoints={{
+              380: {
+                spaceBetween: 10,
+                slidesPerView: 2,
+              },
+              480: {
+                spaceBetween: -50,
+                slidesPerView: 2,
+              },
+              600: {
+                spaceBetween: -70,
+                slidesPerView: 2,
+              },
+              700: {
+                spaceBetween: 80,
+                slidesPerView: 3,
+              },
+              800: {
+                spaceBetween: 30,
+                slidesPerView: 3,
+              },
+              900: {
+                spaceBetween: 150,
+                slidesPerView: 4,
+              },
+              1000: {
+                spaceBetween: 30,
+                slidesPerView: 4,
+              },
+              1100: {
+                spaceBetween: -20,
+                slidesPerView: 4,
+              },
+              1200: {
+                spaceBetween: 50,
+                slidesPerView: 5,
+              },
+            }}
           >
             {testImg.map(({ id, src, title, price }) => {
               return (
@@ -164,15 +201,14 @@ const MainBestSwiper = styled(Swiper)`
 `;
 
 const SwiperPrev = styled.div`
+  ${({ theme }) => theme.positionMixIn("absolute", 35)};
+  left: -23px;
+  z-index: 2;
+  width: 43px;
+  height: 43px;
   background: url(https://thedaju.com/SkinImg/img/slide_ar_l.svg) no-repeat
     center;
   background-size: 43px;
-  left: -23px;
-  width: 43px;
-  height: 43px;
-  top: 35%;
-  position: absolute;
-  z-index: 2;
   cursor: pointer;
   ::after {
     display: none;
@@ -180,15 +216,14 @@ const SwiperPrev = styled.div`
 `;
 
 const SwiperNext = styled.div`
+  ${({ theme }) => theme.positionMixIn("absolute", 35)};
+  right: -23px;
+  z-index: 2;
+  width: 43px;
+  height: 43px;
   background: url(https://thedaju.com/SkinImg/img/slide_ar_r.svg) no-repeat
     center;
   background-size: 43px;
-  right: -23px;
-  width: 43px;
-  height: 43px;
-  top: 35%;
-  position: absolute;
-  z-index: 2;
   cursor: pointer;
   ::after {
     display: none;

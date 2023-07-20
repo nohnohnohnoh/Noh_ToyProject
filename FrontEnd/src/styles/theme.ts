@@ -7,7 +7,7 @@ const theme = {
     justify-content: ${justify};
     align-items: ${align};
     `,
-  postionMixIn: (postion: string, top: number, left: number) => `
+  positionMixIn: (postion: string, top: number, left: number) => `
     position: ${postion};
     top: ${top}%;
     right: ${left}%;

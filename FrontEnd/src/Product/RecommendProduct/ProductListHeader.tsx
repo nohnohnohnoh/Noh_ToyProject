@@ -17,7 +17,7 @@ const ProductListHeader = ({
         총 <strong className="dataCount">{totalData}</strong>개의 상품이
         있습니다.
       </ProdcutListTotal>
-      <ProudctSort>
+      <div>
         <ProductSortSelect onChange={onChangeSelect}>
           {currentPageString === null && (
             <>
@@ -60,15 +60,15 @@ const ProductListHeader = ({
             </>
           )}
         </ProductSortSelect>
-      </ProudctSort>
+      </div>
     </ProdcutListHeader>
   );
 };
 
 const ProdcutListHeader = styled.div`
-  border-top: 0;
-  padding: 0 0 20px;
   margin: 0;
+  padding: 0 0 20px;
+  border-top: 0;
   border-bottom: 1px solid #ebebeb;
   overflow: hidden;
   text-align: right;
@@ -83,8 +83,6 @@ const ProdcutListTotal = styled.div`
     color: black;
   }
 `;
-
-const ProudctSort = styled.div``;
 
 const ProductSortSelect = styled.select`
   max-width: 100%;

@@ -100,11 +100,11 @@ const CartProudct = styled.div`
 `;
 
 const CartProductBox = styled.div`
-  position: relative;
   display: flex;
   flex-wrap: wrap;
-  border-bottom: 1px solid #e8e8e8;
+  position: relative;
   padding: 35px 0;
+  border-bottom: 1px solid #e8e8e8;
 `;
 
 const Check = styled.span`
@@ -128,9 +128,12 @@ const CheckIcon = styled.input`
 `;
 
 const CartListImgBox = styled.div`
-  width: 25%;
+  width: 28%;
   height: 150px;
   padding: 0 0 0 24px;
+  ${({ theme }) => theme.media.desktop`
+    height: 120px;
+  `}
 `;
 
 const CartListImg = styled.img`
@@ -150,6 +153,9 @@ const CartListContentBox = styled.div`
   .grayText {
     color: #7d7d7d;
   }
+  ${({ theme }) => theme.media.desktop`
+    font-size:14px;
+  `}
 `;
 
 const Delete = styled(AiOutlineClose)`
@@ -162,10 +168,10 @@ const Delete = styled(AiOutlineClose)`
 `;
 
 const TotalPriceBox = styled.div`
-  padding: 24px 0 0 0;
   ${({ theme }) => theme.flexMixIn("", "center")};
   width: 100%;
   margin: 0 0 24px 37px;
+  padding: 24px 0 0 0;
   border-top: 1px solid #e8e8e8;
   .label {
     flex: 1;
@@ -179,8 +185,8 @@ const TotalPriceBox = styled.div`
 `;
 
 const ButtonBox = styled.div`
-  width: 100%;
   display: flex;
+  width: 100%;
   margin: 0 0 0 37px;
 `;
 
@@ -188,10 +194,10 @@ const WishButton = styled.button`
   flex: 1;
   height: 50px;
   padding: 16px 20px;
+  background: rgb(255, 255, 255);
   border: 1px solid rgb(214, 214, 214);
   outline: none;
   font-weight: 400;
-  background: rgb(255, 255, 255);
 `;
 
 const OrderButton = styled(WishButton)`

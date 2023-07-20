@@ -1,5 +1,4 @@
 import { authAxios } from ".";
-import axios from "axios";
 
 interface BodyType {
   _id?: string | undefined;

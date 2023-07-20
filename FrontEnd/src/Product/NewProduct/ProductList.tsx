@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ProductType } from "../../types/type";
+import styled from "styled-components";
 
 interface NewproductProps {
   newData: ProductType[];
@@ -11,7 +11,7 @@ const ProductList = ({ newData }: NewproductProps) => {
 
   return (
     <ProductListComponent>
-      {newData?.map(({ _id, id, src, name, price }: ProductType) => {
+      {newData?.map(({ _id, src, name, price }: ProductType) => {
         const priceComma = price?.toLocaleString();
         return (
           <ProductListBox
@@ -43,6 +43,9 @@ const ProductListBox = styled.div`
   display: inline-block;
   width: 23%;
   margin: 0 10px 60px 10px;
+  ${({ theme }) => theme.media.desktop`
+    width: 31%;
+  `}
 `;
 
 const ProductListImgBox = styled.div`

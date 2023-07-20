@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 interface MainServiceProps {
@@ -63,11 +62,11 @@ const ServiceText = styled.p`
 
 const ServiceLink = styled.div`
   display: inline-block;
+  margin-top: 30px;
+  padding: 0 0 2px 0;
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
-  padding: 0 0 2px 0;
-  margin-top: 30px;
   border-bottom: 1px solid #3a3a3a;
   color: #3a3a3a;
 `;

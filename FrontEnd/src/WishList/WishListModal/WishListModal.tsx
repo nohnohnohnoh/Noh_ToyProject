@@ -42,7 +42,7 @@ const WishListModal = ({
           <CloseIcon onClick={offToggleModal} />
           <h2 className="title">옵션 선택</h2>
         </WishListModalHeader>
-        <Content>
+        <div>
           <WishListContentBox>
             <ImgBox>
               <Img src={modalData?.src} />
@@ -65,7 +65,7 @@ const WishListModal = ({
               <strong>{priceComma}원</strong>
             </span>
           </TotalPrice>
-        </Content>
+        </div>
         <WishListModalButton
           _id={modalData?.product_id}
           src={modalData?.src}
@@ -98,6 +98,9 @@ const WishListModalComponent = styled.div<{ visible: boolean }>`
       visibility: visible;
       right: 0;
     `}
+  ${({ theme }) => theme.media.desktop`
+    width: 35%;
+  `}
 `;
 
 const WishListModalHeader = styled.div`
@@ -116,9 +119,11 @@ const CloseIcon = styled(AiOutlineClose)`
   right: 10px;
   width: 35px;
   height: 35px;
+  ${({ theme }) => theme.media.desktop`
+    width: 25px;
+  height: 25px;
+  `}
 `;
-
-const Content = styled.div``;
 
 const WishListContentBox = styled.div`
   position: relative;

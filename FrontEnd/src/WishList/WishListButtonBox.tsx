@@ -20,7 +20,6 @@ const WishListButtonBox = ({
 
   const entireDelete = (type: string) => {
     setType(type);
-    console.log(type);
     if (window.confirm("전체 삭제하시겠습니까 ?") === true) {
       deleteWishListProduct("", type);
       alert("삭제가 완료되었습니다.");
@@ -55,14 +54,14 @@ const WishListButtonBox = ({
             }
           })}
         </NumberBox>
-        <DeleteBox>
+        <span>
           <EntireButton onClick={() => entireDelete("전체삭제")}>
             전체삭제
           </EntireButton>
           <SelectButton onClick={() => selectDelete("선택삭제")}>
             선택삭제
           </SelectButton>
-        </DeleteBox>
+        </span>
       </section>
     </ButtonComponent>
   );
@@ -101,11 +100,8 @@ const OnNumber = styled(Number)`
   border-color: #000;
 `;
 
-const DeleteBox = styled.span``;
-
 const EntireButton = styled.button`
-  position: absolute;
-  top: 0%;
+  ${({ theme }) => theme.positionMixin("absolute", 0)}
   right: -1%;
   margin: 1% 1%;
   padding: 17px 20px;

@@ -10,7 +10,6 @@ interface CartSectionProps {
 
 const CartTotal = ({ totalPrice, selectDataArr }: CartSectionProps) => {
   const navigate = useNavigate();
-  let selectTotalPrice = 0;
 
   const onClickEntireOrder = () => {
     if (window.confirm("전체상품을 주문하시겠습니까 ?") === true) {
@@ -89,9 +88,9 @@ const CartTotalBox = styled.div`
 `;
 
 const CartTotalComponent = styled.div`
-  border: 1px solid #000;
   margin-bottom: 10px;
   padding: 30px 24px;
+  border: 1px solid #000;
 `;
 
 const TotalPriceBox = styled.div`

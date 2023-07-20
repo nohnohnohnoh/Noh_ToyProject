@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import CartProduct from "./CartSectionProudct/CartSectionProudct";
 import CartTotal from "./CartSectionTotal";
 import { deleteCart, patchCartSelect } from "../../api/Cart";
-import { CartProudctType } from "../../types/type";
-import styled from "styled-components";
 import { postWishListProduct } from "../../api/WishList";
 import { postMyOrderProduct } from "../../api/ProductOrder";
 import { useNavigate } from "react-router-dom";
+import { CartProudctType } from "../../types/type";
+import styled from "styled-components";
 
 interface CartProps {
   cartData: CartProudctType[];
@@ -30,7 +30,6 @@ const CartSection = ({ cartData, setCartData }: CartProps) => {
   useEffect(() => {
     if (cartData.length === totalArr.length) return;
     cartData.map(({ price, quantity }) => {
-      console.log(totalArr);
       totalArr.push(price * quantity);
     });
   }, [cartData]);
@@ -167,8 +166,8 @@ const CartHeader = styled.div`
 `;
 
 const CartContainer = styled.div`
-  border-top: 2px solid #1a1a1a;
   display: flex;
+  border-top: 2px solid #1a1a1a;
 `;
 
 const CartButtonBox = styled.div`

@@ -21,17 +21,17 @@ const CartHeader = ({ navigateMain }: BasketProps) => {
 
 const BasketHeaderComponent = styled.div`
   ${({ theme }) => theme.flexMixIn("flex-end", "center")};
-  padding: 2.5% 0 0 0;
   max-width: 1230px;
   width: 92%;
   margin-left: auto;
   margin-right: auto;
+  padding: 2.5% 0 0 0;
 `;
 
 const BasketHeaderText = styled.div`
-  font-size: 12px;
-  color: #7d7d7d;
   padding: 0.25%;
+  color: #7d7d7d;
+  font-size: 12px;
   cursor: pointer;
 `;
 
@@ -41,8 +41,8 @@ const BasketHeaderBoldText = styled(BasketHeaderText)`
 `;
 
 const BasketTilte = styled.div`
-  width: 92%;
   max-width: 1230px;
+  width: 92%;
   margin: 0 auto 40px auto;
   padding: 45px 0 40px;
   text-align: center;

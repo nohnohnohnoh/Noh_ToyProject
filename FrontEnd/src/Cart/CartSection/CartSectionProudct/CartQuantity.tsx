@@ -20,7 +20,7 @@ const CartQuantity = ({ _id, quantity }: CartSectionProps) => {
   const minusQuantity = () => {
     if (quantity === 1) return alert("더 이상 수량을 줄일 수 없습니다.");
     setQuantityData(quantityData - 1);
-    patchCartQuantity(_id, quantity - 1).then((data) => console.log(data));
+    patchCartQuantity(_id, quantity - 1);
     window.location.reload();
   };
 
@@ -41,10 +41,10 @@ const CartQuantity = ({ _id, quantity }: CartSectionProps) => {
 };
 
 const CartQuantityBox = styled.div`
-  padding: 0 0 0 37px;
   ${({ theme }) => theme.flexMixIn("", "center")};
   width: 100%;
   margin: 24px 0;
+  padding: 0 0 0 37px;
   .label {
     flex: 1;
     font-size: 14px;

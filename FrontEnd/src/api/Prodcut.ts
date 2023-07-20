@@ -5,7 +5,9 @@ export const mainNewProduct = async (query: string | undefined) => {
     const { data } = await defaultAxios.get(`/product/main/${query}`);
     return data;
   } catch (error: any) {
-    console.log(error);
+    const { data } = error.response;
+    const errorData = data;
+    return errorData;
   }
 };
 

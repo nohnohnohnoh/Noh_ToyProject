@@ -1,11 +1,11 @@
+import ProductLayOut from "../ProductLayOut";
+import SearchProductSection from "./SearchProductSection";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../store";
-import ProductLayOut from "../ProductLayOut";
-import styled from "styled-components";
-import { BsSearch } from "react-icons/bs";
-import SearchProductSection from "./SearchProductSection";
 import { setProductSearch } from "../../reducers/productSlice";
 import { useNavigate } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+import styled from "styled-components";
 
 interface TitleProps {
   title: string;
@@ -52,8 +52,8 @@ const SearchProduct = ({ title }: TitleProps) => {
 };
 
 const SearchProductForm = styled.form`
-  padding: 22px 0;
   margin: -40px 0 59px;
+  padding: 22px 0;
 `;
 
 const SearchProductFieldSet = styled.fieldset`
@@ -72,11 +72,12 @@ const SearchProductInputBox = styled.div`
 `;
 
 const SearchProductInput = styled.input`
-  border: 0;
   width: 100%;
   height: 54px;
   font-size: 18px;
   background: #fff;
+  border: 0;
+  outline: 0;
 `;
 
 const SearchIcon = styled(BsSearch)`
@@ -94,7 +95,6 @@ const SearchDivBox = styled.div`
 const SearchDiv = styled.div`
   max-width: 1230px;
   width: 92%;
-  border: 0;
   border-bottom: 0.5px solid #eee;
 `;
 

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import NavFirstList from "./NavFirstList";
 import NavSecondList from "./NavSecondList";
 import styled, { css } from "styled-components";
-import media from "../../styles/media";
 
 interface ScrollYProps {
   scrollY: number;
@@ -33,11 +32,11 @@ const Nav = () => {
 };
 
 const NavComponents = styled.nav<ScrollYProps>`
+  position: relative;
+  z-index: 998;
   width: 100%;
   margin: 0 auto;
-  position: relative;
   background: #fff;
-  z-index: 998;
   border-bottom: 1px solid #e8e8e8;
   ${(props) =>
     props.scrollY! &&
@@ -51,12 +50,12 @@ const NavComponents = styled.nav<ScrollYProps>`
 `;
 
 const NavComponentsSection = styled.div`
+  ${({ theme }) => theme.flexMixIn("", "center")};
+  display: flex;
   max-width: 1760px;
   width: 92%;
   margin: 0 auto;
   padding: 0;
-  display: flex;
-  align-items: center;
   flex-direction: column;
 `;
 

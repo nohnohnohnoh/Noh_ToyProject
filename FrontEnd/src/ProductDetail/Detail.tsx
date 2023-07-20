@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
 import RecommendDetail from "./RecommendDetail";
 import NewDetail from "./NewDetail";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 const Detail = () => {
   const detailType = useSelector(

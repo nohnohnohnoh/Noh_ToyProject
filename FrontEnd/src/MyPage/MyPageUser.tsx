@@ -17,7 +17,6 @@ const MyPageUser = ({ orderProduct }: MyPageUserProps) => {
   const [member, setMember] = useState(" 일반회원 ");
   const [totalArr, setTotalArr] = useState<number[]>([]);
   let totalPrice = 0;
-  console.log(member);
 
   useEffect(() => {
     if (orderProduct.length === totalArr.length) return;
@@ -193,8 +192,8 @@ const CubeIcon = styled(BiCube)`
 const BoldText = styled.span`
   margin: 4% 0 0;
   font-size: 14px;
-  color: #1a1a1a;
   font-weight: bold;
+  color: #1a1a1a;
   text-align: center;
 `;
 

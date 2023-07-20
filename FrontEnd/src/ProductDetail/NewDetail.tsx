@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { productId } from "../api/Prodcut";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import DetailLayOut from "./DetailLayOut";
 import DetailContentLayOut from "./DetailContent/DetailContentLayOut";
 import DetailAreaLayOut from "./DetailAreaLayOut/DetailAreaLayOut";
+import { productId } from "../api/Prodcut";
+import { useParams } from "react-router-dom";
 import { ProductType } from "../types/type";
 
 interface TitleProps {

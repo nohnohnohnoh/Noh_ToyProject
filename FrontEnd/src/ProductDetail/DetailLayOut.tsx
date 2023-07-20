@@ -1,7 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import DetailContentLayOut from "./DetailContent/DetailContentLayOut";
 
 interface DetailProps {
   children: React.ReactNode;

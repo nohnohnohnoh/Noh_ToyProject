@@ -1,9 +1,8 @@
-import React, { useState, useMemo } from "react";
-import styled from "styled-components";
-import DetailAreaImg from "./DetailAreaImg";
+import { useState } from "react";
 import DetailAreaButton from "./DetailAreaButton";
 import { ProductType } from "../../types/type";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import styled from "styled-components";
 
 const DetailAreaLayOut = ({ _id, src, name, price }: ProductType) => {
   const [total, setTotal] = useState(0);
@@ -30,7 +29,9 @@ const DetailAreaLayOut = ({ _id, src, name, price }: ProductType) => {
 
   return (
     <DetailArea>
-      <DetailAreaImg src={src} />
+      <DetailImgBox>
+        <DetailImg src={src} />
+      </DetailImgBox>
       <DetailInfoArea>
         <DetailHead>{name}</DetailHead>
         <DetailContentTable>
@@ -80,31 +81,34 @@ const DetailArea = styled.div`
 const DetailImgBox = styled.div`
   display: inline-block;
   width: calc(100% - 650px);
-  height: 580px;
+  height: 540px;
+  ${({ theme }) => theme.media.desktop`
+    height: 340px;
+  `}
 `;
 
 const DetailImg = styled.img`
-  width: 100%;
-  margin: 0 auto;
   display: block;
   position: relative;
   max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
   height: 100%;
 `;
 
 const DetailInfoArea = styled.div`
+  display: inline-block;
   width: 600px;
   margin: 0 0 0 50px;
-  display: inline-block;
   font-size: 13px;
   line-height: 1;
   vertical-align: top;
 `;
 
 const DetailHead = styled.div`
-  border-top: 2px solid #000;
-  padding: 20px 0;
   margin-bottom: 15px;
+  padding: 20px 0;
+  border-top: 2px solid #000;
   font-size: 28px;
   font-weight: 400;
   line-height: 30px;
@@ -112,7 +116,6 @@ const DetailHead = styled.div`
 `;
 
 const DetailContentTable = styled.table`
-  margin-top: 20px;
   table-layout: fixed;
   border: 0;
   margin: 10px 0 0;
@@ -121,28 +124,26 @@ const DetailContentTable = styled.table`
 `;
 
 const DetailContentTh = styled.th`
-  font-weight: normal;
   width: 160px;
   padding: 7px 5px 6px 0;
   text-align: left;
   vertical-align: top;
   font-size: 12px;
-  color: #003852;
   font-weight: bold;
+  color: #003852;
 `;
 
 const DetailContentTd = styled.td`
   padding: 7px 6px 8px 0;
   vertical-align: middle;
   font-size: 12px;
-  color: #003852;
   font-weight: bold;
+  color: #003852;
 `;
 
 const TotalContent = styled.div`
+  ${({ theme }) => theme.flexMixIn("space-between")}
   padding: 27px 0 26px;
-  display: flex;
-  justify-content: space-between;
   font-size: 20px;
   border-top: 1px solid #e5e5e5;
   vertical-align: middle;
@@ -168,9 +169,8 @@ const DetailGuideArea = styled.div`
 `;
 
 const TotalPrice = styled.div`
+  ${({ theme }) => theme.flexMixIn("space-between")}
   padding: 27px 0 26px;
-  display: flex;
-  justify-content: space-between;
   font-size: 20px;
   border-top: 1px solid #e5e5e5;
   vertical-align: middle;
