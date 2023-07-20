@@ -8,6 +8,7 @@ const myorderRouter = Router();
 myorderRouter.post("/", async (req, res) => {
   try {
     if (!req.user) throw new Error("권환이 없습니다.");
+
     const { type } = req.query;
     const { _id, src, name, price, quantity, selectData } = req.body;
 

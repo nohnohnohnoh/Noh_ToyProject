@@ -7,11 +7,14 @@ const wishListRouter = Router();
 wishListRouter.post("/", async (req, res) => {
   try {
     if (!req.user) throw new Error("권환이 없습니다.");
+
     const { src, name, price, _id } = req.body;
     const wishProducts = await WishList.findOne({ product_id: _id });
+
     if (wishProducts) {
       throw new Error("이미 나의 위시리스트에 등록된 상품입니다.");
     }
+
     const wishList = new WishList({
       user: {
         _id: req.user._id,
@@ -22,7 +25,8 @@ wishListRouter.post("/", async (req, res) => {
       price,
     });
     await wishList.save();
-    res.json({ message: "나의 위시리스트에 등록하였습니다." });
+
+    return res.json({ message: "나의 위시리스트에 등록하였습니다." });
   } catch (e) {
     res.status(400).json({ message: e.message });
   }
@@ -50,7 +54,9 @@ wishListRouter.get("/", async (req, res) => {
         .skip((page - 1) * limit),
       await WishList.count(),
     ]);
+
     if (!wishList) throw new Error("유효하지 않은 유저");
+
     return res.json({ wishList, totalPages: Math.ceil(count / limit) });
   } catch (e) {
     res.status(400).json({ message: e.message });
@@ -72,6 +78,7 @@ wishListRouter.delete("/", async (req, res) => {
 
     if (!mongoose.isValidObjectId(id))
       return res.status(400).send("유효하지 않은 아이디");
+
     const wishList = await WishList.findOneAndDelete({ _id: id });
     return res.json({ wishList });
   } catch (e) {

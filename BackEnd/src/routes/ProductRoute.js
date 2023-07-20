@@ -9,10 +9,12 @@ productRouter.get("/main", async (req, res) => {
   try {
     const { lastid } = req.query;
     const conditionQuery = lastid ? { _id: { $gt: lastid } } : {};
+
     const [newProducts, count] = await Promise.all([
       await NewProduct.find(conditionQuery).sort({ _id: 1 }).limit(8),
       await NewProduct.count(),
     ]);
+
     return res.json({
       newProducts,
       totalPage: Math.ceil(count / 8),
@@ -63,6 +65,7 @@ productRouter.get("/search", async (req, res) => {
 productRouter.get("/recommend", async (req, res) => {
   try {
     const { page = 1, limit = 8, sort } = req.query;
+
     if (sort === "높은가격") {
       const [recommendProducts, count] = await Promise.all([
         await RecommendProduct.find({})
@@ -76,6 +79,7 @@ productRouter.get("/recommend", async (req, res) => {
         count,
       });
     }
+
     if (sort === "낮은가격") {
       const [recommendProducts, count] = await Promise.all([
         await RecommendProduct.find({})
@@ -89,6 +93,7 @@ productRouter.get("/recommend", async (req, res) => {
         count,
       });
     }
+
     if (sort === "상품명") {
       const [recommendProducts, count] = await Promise.all([
         await RecommendProduct.find({})
@@ -102,6 +107,7 @@ productRouter.get("/recommend", async (req, res) => {
         count,
       });
     }
+
     if (sort === "null" || sort === "신상품") {
       const [recommendProducts, count] = await Promise.all([
         await RecommendProduct.find({})
@@ -138,6 +144,7 @@ productRouter.get("/new", async (req, res) => {
         totalPages: Math.ceil(count / limit),
       });
     }
+
     if (sort === "낮은가격") {
       const [newProducts, count] = await Promise.all([
         await NewProduct.find({})
@@ -152,6 +159,7 @@ productRouter.get("/new", async (req, res) => {
         totalPages: Math.ceil(count / limit),
       });
     }
+
     if (sort === "상품명") {
       const [newProducts, count] = await Promise.all([
         await NewProduct.find({})
@@ -166,6 +174,7 @@ productRouter.get("/new", async (req, res) => {
         totalPages: Math.ceil(count / limit),
       });
     }
+
     if (!sort || sort === "신상품") {
       const [newProducts, count] = await Promise.all([
         await NewProduct.find({})
@@ -188,12 +197,15 @@ productRouter.get("/new", async (req, res) => {
 productRouter.get("/:productId", async (req, res) => {
   try {
     const { productId } = req.params;
+
     if (!mongoose.isValidObjectId(productId))
       throw new Error("유효하지 않는 Id 입니다.");
+
     const [recommendProducts, newProducts] = await Promise.all([
       await RecommendProduct.findOne({ _id: productId }),
       await NewProduct.findOne({ _id: productId }),
     ]);
+
     if (recommendProducts) return res.json({ recommendProducts });
     if (newProducts) return res.json({ newProducts });
   } catch (e) {
