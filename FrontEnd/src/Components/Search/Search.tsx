@@ -41,6 +41,7 @@ const Search = () => {
     setSearch("");
     window.location.reload();
   };
+
   return (
     <>
       <form onSubmit={onSubmitSearch}>

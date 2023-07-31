@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import CartProduct from "./CartSectionProudct/CartSectionProudct";
 import CartTotal from "./CartSectionTotal";
 import { deleteCart, patchCartSelect } from "../../api/Cart";
@@ -10,7 +10,7 @@ import styled from "styled-components";
 
 interface CartProps {
   cartData: CartProudctType[];
-  setCartData: any;
+  setCartData: (data: CartProudctType[]) => void;
 }
 
 const CartSection = ({ cartData, setCartData }: CartProps) => {
@@ -20,18 +20,18 @@ const CartSection = ({ cartData, setCartData }: CartProps) => {
 
   const navigate = useNavigate();
 
-  const totalPriceFunction = () => {
-    for (let i = 0; i < totalArr.length; i++) {
-      totalPrice += totalArr[i];
-    }
-    return totalPrice;
-  };
-
-  useEffect(() => {
+  useMemo(() => {
     if (cartData.length === totalArr.length) return;
     cartData.map(({ price, quantity }) => {
       totalArr.push(price * quantity);
     });
+  }, [cartData]);
+
+  useMemo(() => {
+    for (let i = 0; i < totalArr.length; i++) {
+      totalPrice += totalArr[i];
+    }
+    return totalPrice;
   }, [cartData]);
 
   const onClickOneDelete = (_id: string) => {
@@ -47,6 +47,7 @@ const CartSection = ({ cartData, setCartData }: CartProps) => {
       deleteCart("", "?type=선택삭제");
       window.location.reload();
       alert("삭제가 완료되었습니다.");
+      window.scrollTo(0, 0);
     } else return;
   };
 
@@ -109,20 +110,16 @@ const CartSection = ({ cartData, setCartData }: CartProps) => {
     }
   };
 
-  const handleAllCheck = (checked: any) => {
-    if (checked) {
-      const idArray: any[] = [];
-      cartData.forEach((el: any) => {
-        idArray.push(el);
-      });
-      setSelectDataArr(idArray);
-      patchCartSelect("", true, "?type=전체선택").then((data) => {
-        setCartData(data.cart);
-      });
-    }
+  const handleAllCheck = () => {
+    const idArray: CartProudctType[] = [];
+    cartData.forEach((el: CartProudctType) => {
+      idArray.push(el);
+    });
+    setSelectDataArr(idArray);
+    patchCartSelect("", true, "?type=전체선택").then((data) => {
+      setCartData(data.cart);
+    });
   };
-
-  totalPriceFunction();
 
   return (
     <CartSectionComponents>
@@ -186,3 +183,6 @@ const CartEntireButton = styled.button`
 const CartSelectDeleteButton = styled(CartEntireButton)``;
 
 export default CartSection;
+function totalPriceFunction(arg0: number) {
+  throw new Error("Function not implemented.");
+}

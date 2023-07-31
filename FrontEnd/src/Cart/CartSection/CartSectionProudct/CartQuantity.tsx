@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { patchCartQuantity } from "../../../api/Cart";
+import { CartProudctType } from "../../../types/type";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import styled from "styled-components";
 

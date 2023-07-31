@@ -101,7 +101,7 @@ const OnNumber = styled(Number)`
 `;
 
 const EntireButton = styled.button`
-  ${({ theme }) => theme.positionMixin("absolute", 0)}
+  ${({ theme }) => theme.positionMixIn("absolute", 0)}
   right: -1%;
   margin: 1% 1%;
   padding: 17px 20px;

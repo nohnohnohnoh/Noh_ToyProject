@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
 import { setProductType } from "../reducers/productSlice";
@@ -14,12 +14,17 @@ const MainNew = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
+  const mainNewProductAxios = useCallback(async () => {
+    const data = await mainNewProduct("");
+    return data;
+  }, []);
+
   useEffect(() => {
-    mainNewProduct("").then(({ newProducts, totalPage }) => {
+    mainNewProductAxios().then(({ newProducts, totalPage }) => {
       setMainNewData(newProducts);
       setTotalPage(totalPage);
     });
-  }, []);
+  }, [mainNewProductAxios]);
 
   const paginationOnClick = () => {
     if (mainNewData.length === 0) return;

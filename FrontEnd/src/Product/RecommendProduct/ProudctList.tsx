@@ -11,14 +11,14 @@ const ProductList = ({ recommendData, observerTargetEl }: RecommendProps) => {
   const navigate = useNavigate();
   return (
     <ProductListComponents>
-      {recommendData?.map(({ _id, id, src, name, price }: ProductType) => {
+      {recommendData?.map(({ _id, src, name, price }: ProductType) => {
         const priceComma = price?.toLocaleString();
         return (
           <ProductListBox
             onClick={() => {
               navigate(`/product/${_id}`);
             }}
-            key={id}
+            key={_id}
           >
             <ProductListImgBox>
               <ProductListImg src={src} />
