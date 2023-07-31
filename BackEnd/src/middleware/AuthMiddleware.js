@@ -2,17 +2,21 @@ const { Auth } = require("../models/Auth");
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = async (req, res, next) => {
-  const token = req.get("Authorization");
+  try {
+    const token = req.get("Authorization");
 
-  const authToken = jwt.verify(token, "JWT_SECRET_KEY");
-  const { _id } = authToken;
+    const authToken = jwt.verify(token, "JWT_SECRET_KEY");
+    const { _id } = authToken;
 
-  const user = await Auth.findOne({ _id });
-  if (!user) return next();
+    const user = await Auth.findOne({ _id });
+    if (!user) return next();
 
-  req.user = user;
+    req.user = user;
 
-  next();
+    next();
+  } catch (e) {
+    res.status(400).json({ message: e.message });
+  }
 };
 
 module.exports = { authMiddleware };
