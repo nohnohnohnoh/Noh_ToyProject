@@ -11,6 +11,9 @@ cartRouter.post("/", async (req, res) => {
 
     const { _id, src, name, price, quantity } = req.body;
 
+    const cartProduct = await Cart.findOne({ product_id: _id });
+
+    if (cartProduct) throw new Error("이미 장바구니에 등록된 상품입니다.");
     if (quantity === 0)
       throw new Error("1개 이상이어야 장바구니에 등록이 가능합니다.");
 
