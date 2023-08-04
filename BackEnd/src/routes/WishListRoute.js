@@ -9,11 +9,6 @@ wishListRouter.post("/", async (req, res) => {
     if (!req.user) throw new Error("권환이 없습니다.");
 
     const { src, name, price, _id } = req.body;
-    const wishProducts = await WishList.findOne({ product_id: _id });
-
-    if (wishProducts) {
-      throw new Error("이미 나의 위시리스트에 등록된 상품입니다.");
-    }
 
     const wishList = new WishList({
       user: {
@@ -95,7 +90,7 @@ wishListRouter.patch("/", async (req, res) => {
 
     const [wishListRouter, wishList] = await Promise.all([
       await WishList.findByIdAndUpdate({ _id }, { select }, { new: true }),
-      await WishList.find({}).sort({ createdAt: -1 }),
+      await WishList.find({ "user._id": req.user._id }).sort({ createdAt: -1 }),
     ]);
 
     return res.json({ wishList });

@@ -49,7 +49,7 @@ myorderRouter.post("/", async (req, res) => {
     const [deleteWishList, saveWishList, wishList] = await Promise.all([
       await WishList.deleteOne({ product_id: _id }),
       await myOrder.save(),
-      await WishList.find({}).sort({ createdAt: -1 }),
+      await WishList.find({ "user._id": req.user._id }).sort({ createdAt: -1 }),
     ]);
     return res.json({ wishList, message: "구매가 완료되었습니다." });
   } catch (e) {

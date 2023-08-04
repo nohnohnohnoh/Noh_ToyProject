@@ -11,9 +11,6 @@ cartRouter.post("/", async (req, res) => {
 
     const { _id, src, name, price, quantity } = req.body;
 
-    const cartProduct = await Cart.findOne({ product_id: _id });
-
-    if (cartProduct) throw new Error("이미 장바구니에 등록된 상품입니다.");
     if (quantity === 0)
       throw new Error("1개 이상이어야 장바구니에 등록이 가능합니다.");
 
@@ -31,7 +28,9 @@ cartRouter.post("/", async (req, res) => {
     const [deleteWishList, saveWishList, wishList] = await Promise.all([
       await WishList.deleteOne({ product_id: _id }),
       await cart.save(),
-      await WishList.find({}).sort({ createdAt: -1 }),
+      await WishList.find({ "user._id": req.user._id }).sort({
+        createdAt: -1,
+      }),
     ]);
 
     return res.json({ wishList, message: "장바구니에 등록하였습니다." });
@@ -107,7 +106,7 @@ cartRouter.patch("/select", async (req, res) => {
     if (type === "전체선택") {
       const [cartRouter, cart] = await Promise.all([
         await Cart.updateMany({}, { select: true }),
-        await Cart.find({}).sort({ createdAt: -1 }),
+        await Cart.find({ "user._id": req.user._id }).sort({ createdAt: -1 }),
       ]);
       return res.json({ cart, message: "모든 select 변경 완료." });
     }
@@ -117,7 +116,7 @@ cartRouter.patch("/select", async (req, res) => {
 
     const [cartRouter, cart] = await Promise.all([
       await Cart.findByIdAndUpdate({ _id }, { select }, { new: true }),
-      await Cart.find({}).sort({ createdAt: -1 }),
+      await Cart.find({ "user._id": req.user._id }).sort({ createdAt: -1 }),
     ]);
 
     return res.json({ cart, message: "select 변경 완료." });
