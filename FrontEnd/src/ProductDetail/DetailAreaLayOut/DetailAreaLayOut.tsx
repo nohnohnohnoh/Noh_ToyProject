@@ -150,7 +150,7 @@ const TotalContent = styled.div`
 `;
 
 const TotalBox = styled.div`
-  display: flex;
+  ${({ theme }) => theme.flexMixIn("", "center")}
   font-weight: bold;
 `;
 

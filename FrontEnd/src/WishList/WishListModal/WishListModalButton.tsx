@@ -11,6 +11,7 @@ interface WishListModalProp {
   quantity: number;
   setToggleModal: (toggle: boolean) => void;
   setWishListData: (data: WishListProductType[]) => void;
+  setQuantityData: (num: number) => void;
 }
 
 const WishListModalButton = ({
@@ -21,6 +22,7 @@ const WishListModalButton = ({
   quantity,
   setToggleModal,
   setWishListData,
+  setQuantityData,
 }: WishListModalProp) => {
   const wishListCart = () => {
     if (
@@ -35,11 +37,12 @@ const WishListModalButton = ({
       }).then((data) => {
         if (data.message === "장바구니에 등록하였습니다.") {
           setToggleModal(false);
-          alert(data.message);
           setWishListData(data.wishList);
+          alert(data.message);
+          setQuantityData(0);
         } else alert(data.message);
       });
-    } else return;
+    }
   };
 
   const wishListOrder = () => {
@@ -56,6 +59,7 @@ const WishListModalButton = ({
           setToggleModal(false);
           setWishListData(data.wishList);
           alert(data.message);
+          setQuantityData(0);
         } else alert(data.message);
       });
     }

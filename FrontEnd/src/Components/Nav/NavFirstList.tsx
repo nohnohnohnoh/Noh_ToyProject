@@ -17,6 +17,10 @@ const NavFirstList = () => {
     navigate("/create");
   };
 
+  const navigatePreparing = () => {
+    alert("준비 중에 있는 서비스 입니다.");
+  };
+
   const logOut = async () => {
     localStorage.clear();
     await persistor.purge();
@@ -35,9 +39,9 @@ const NavFirstList = () => {
       ) : (
         <NavLogin onClick={navigateLogin}>로그인</NavLogin>
       )}
-      <NavOrder>주문조회</NavOrder>
-      <NavProduct>최근본상품</NavProduct>
-      <NavClient>고객센터</NavClient>
+      <NavOrder onClick={navigatePreparing}>주문조회</NavOrder>
+      <NavProduct onClick={navigatePreparing}>최근본상품</NavProduct>
+      <NavClient onClick={navigatePreparing}>고객센터</NavClient>
     </NavFirstListSection>
   );
 };

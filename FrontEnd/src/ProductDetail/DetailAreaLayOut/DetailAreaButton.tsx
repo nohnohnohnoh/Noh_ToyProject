@@ -38,7 +38,7 @@ const DetailAreaButton = ({
 
   const onClickCart = () => {
     if (!localStorageToken) return alert("로그인을 해주세요.");
-    if (window.confirm("장바구니에 등록하시겠습니끼?") === true) {
+    if (window.confirm("장바구니에 등록하시겠습니까 ?") === true) {
       postCart({
         _id,
         src,
@@ -51,7 +51,7 @@ const DetailAreaButton = ({
 
   const onClickWishList = () => {
     if (!localStorageToken) return alert("로그인을 해주세요.");
-    if (window.confirm("관심 상품에 등록하시겠습니끼 ?") === true) {
+    if (window.confirm("관심 상품에 등록하시겠습니까 ?") === true) {
       postWishListProduct({
         _id,
         src,

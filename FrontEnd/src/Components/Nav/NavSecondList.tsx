@@ -52,6 +52,10 @@ const NavSecondList = () => {
     }
   };
 
+  const navigatePreparing = () => {
+    alert("준비 중에 있는 서비스 입니다.");
+  };
+
   return (
     <NavSecondListSection>
       <NavHeaderLogo onClick={navigateMain}>THE DAJU</NavHeaderLogo>
@@ -59,12 +63,14 @@ const NavSecondList = () => {
         <NavMenuUl>
           <NavMenuLi onClick={navigateRecommendProduct}>추천 상품</NavMenuLi>
           <NavMenuLi onClick={navigateNewProdcut}>신제품</NavMenuLi>
-          <NavMenuLi>잔/컵</NavMenuLi>
-          <NavMenuLi>접시/볼</NavMenuLi>
-          <NavMenuLi>수저/커트러리</NavMenuLi>
-          <NavMenuLi>조리도구/기타주방잡화</NavMenuLi>
-          <NavMenuLi>재질</NavMenuLi>
-          <NavMenuLi>브랜드</NavMenuLi>
+          <NavMenuLi onClick={navigatePreparing}>잔/컵</NavMenuLi>
+          <NavMenuLi onClick={navigatePreparing}>접시/볼</NavMenuLi>
+          <NavMenuLi onClick={navigatePreparing}>수저/커트러리</NavMenuLi>
+          <NavMenuLi onClick={navigatePreparing}>
+            조리도구/기타주방잡화
+          </NavMenuLi>
+          <NavMenuLi onClick={navigatePreparing}>재질</NavMenuLi>
+          <NavMenuLi onClick={navigatePreparing}>브랜드</NavMenuLi>
         </NavMenuUl>
       </NavMenu>
       <NavMyPage>

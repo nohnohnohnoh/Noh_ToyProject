@@ -13,13 +13,16 @@ const MainService = ({
   textTwo,
   textLink,
 }: MainServiceProps) => {
+  const alertPrepare = () => {
+    alert("준비중에 있는 서비스 입니다.");
+  };
   return (
     <ServiceComponent>
       <ServiceSection>
         <ServiceHeader>{header}</ServiceHeader>
         <ServiceText>{textOne}</ServiceText>
         <ServiceText>{textTwo}</ServiceText>
-        <ServiceLink>{textLink}</ServiceLink>
+        <ServiceLink onClick={alertPrepare}>{textLink}</ServiceLink>
       </ServiceSection>
     </ServiceComponent>
   );
@@ -69,6 +72,7 @@ const ServiceLink = styled.div`
   line-height: 1;
   border-bottom: 1px solid #3a3a3a;
   color: #3a3a3a;
+  cursor: pointer;
 `;
 
 export default MainService;

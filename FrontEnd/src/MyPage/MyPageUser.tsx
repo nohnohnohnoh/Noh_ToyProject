@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { BsCurrencyDollar, BsPercent } from "react-icons/bs";
@@ -17,22 +17,23 @@ const MyPageUser = ({ orderProduct }: MyPageUserProps) => {
   const [member, setMember] = useState(" 일반회원 ");
   const [totalArr, setTotalArr] = useState<number[]>([]);
   let totalPrice = 0;
+  console.log("order", orderProduct.length);
+  console.log(totalArr);
 
-  useEffect(() => {
+  useMemo(() => {
     if (orderProduct.length === totalArr.length) return;
     orderProduct.map(({ price, quantity }) => {
-      return totalArr.push(price * quantity);
+      totalArr.push(price * quantity);
     });
   }, [orderProduct]);
 
-  const totalPriceFunction = () => {
+  useMemo(() => {
     for (let i = 0; i < totalArr.length; i++) {
       totalPrice += totalArr[i];
     }
     return totalPrice;
-  };
-
-  totalPriceFunction();
+  }, [orderProduct]);
+  console.log(totalPrice);
 
   useEffect(() => {
     if (totalPrice > 500000 || orderProduct.length > 15) {
@@ -42,7 +43,7 @@ const MyPageUser = ({ orderProduct }: MyPageUserProps) => {
     } else if (totalPrice > 200000 || orderProduct.length > 8) {
       setMember(" 실버회원 ");
     } else return setMember(" 일반회원 ");
-  }, [totalPrice, orderProduct.length]);
+  }, [orderProduct]);
 
   return (
     <MypageUser>

@@ -72,6 +72,7 @@ const WishListModal = ({
           name={modalData?.name}
           price={modalData?.price}
           quantity={quantityData}
+          setQuantityData={setQuantityData}
           setToggleModal={setToggleModal}
           setWishListData={setWishListData}
         />
