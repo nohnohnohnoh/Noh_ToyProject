@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ProductType } from "../../types/type";
+import styled from "styled-components";
 
 interface RecommendProps {
   recommendData: ProductType[];

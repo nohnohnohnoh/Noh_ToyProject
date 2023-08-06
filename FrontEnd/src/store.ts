@@ -11,11 +11,17 @@ export type AppDispatch = typeof store.dispatch;
 export const store = configureStore({
   reducer: persistReducer,
   middleware: (getDefalutMiddleware) =>
-    getDefalutMiddleware({
-      serializableCheck: {
-        ignoredActions: [PERSIST, PURGE],
-      },
-    }).concat(logger),
+    process.env.NODE_ENV !== "production"
+      ? getDefalutMiddleware({
+          serializableCheck: {
+            ignoredActions: [PERSIST, PURGE],
+          },
+        }).concat(logger)
+      : getDefalutMiddleware({
+          serializableCheck: {
+            ignoredActions: [PERSIST, PURGE],
+          },
+        }),
   devTools: process.env.NODE_ENV !== "production",
 });
 

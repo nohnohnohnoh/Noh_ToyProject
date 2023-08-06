@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import CartProduct from "./CartSectionProudct/CartSectionProudct";
 import CartTotal from "./CartSectionTotal";
 import { deleteCart, patchCartSelect } from "../../api/Cart";

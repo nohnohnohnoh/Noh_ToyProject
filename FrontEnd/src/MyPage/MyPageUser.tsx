@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { BsCurrencyDollar, BsPercent } from "react-icons/bs";
 import { myOrderProductType } from "../types/type";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { BiCube } from "react-icons/bi";
 
 interface MyPageUserProps {
@@ -17,8 +17,6 @@ const MyPageUser = ({ orderProduct }: MyPageUserProps) => {
   const [member, setMember] = useState(" 일반회원 ");
   const [totalArr, setTotalArr] = useState<number[]>([]);
   let totalPrice = 0;
-  console.log("order", orderProduct.length);
-  console.log(totalArr);
 
   useMemo(() => {
     if (orderProduct.length === totalArr.length) return;
@@ -33,7 +31,6 @@ const MyPageUser = ({ orderProduct }: MyPageUserProps) => {
     }
     return totalPrice;
   }, [orderProduct]);
-  console.log(totalPrice);
 
   useEffect(() => {
     if (totalPrice > 500000 || orderProduct.length > 15) {
