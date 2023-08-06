@@ -19,10 +19,9 @@ const server = async () => {
     app.use(cors());
     app.use("/auth", authRouter);
     app.use("/product", productRouter);
-    app.use(authMiddleware);
-    app.use("/myorder", myorderRouter);
-    app.use("/wishlist", wishListRouter);
-    app.use("/cart", cartRouter);
+    app.use("/myorder", authMiddleware, myorderRouter);
+    app.use("/wishlist", authMiddleware, wishListRouter);
+    app.use("/cart", authMiddleware, cartRouter);
     app.listen(PORT, () => {
       console.log(`${PORT}번에서 server 실행.`);
     });
