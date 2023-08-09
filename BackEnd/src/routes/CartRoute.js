@@ -44,7 +44,6 @@ cartRouter.get("/", async (req, res) => {
     const { _id } = req.user;
 
     if (!req.user) throw new Error("권환이 없습니다.");
-
     const cart = await Cart.find({ "user._id": _id }).sort({ createdAt: -1 });
 
     if (!cart) throw new Error("유효하지 않은 유저");
