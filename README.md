@@ -5,7 +5,7 @@
   <br/>
   <br/>
 
-# :two:THE DAJU CONCAT
+# :two: THE DAJU CONCAT
 
 ### THE DAJU 사이트를 실제로 볼 수 있습니다. :point_right: [THE DAJU 배포 링크](http://fethedaju.s3-website.ap-northeast-2.amazonaws.com/)<br/>
 
