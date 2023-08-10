@@ -79,9 +79,9 @@ SECRET_KEY = JWT_SECRET_KEY
 
 # :four: THE DAJU 사용기술
 
-### FE : JavaScript, TypeScript, React, Redux, React-Redux, Redux-toolkit, styled-component AWS(S3)
+### FE : JavaScript, TypeScript, React, Redux, React-Redux, <br/>Redux-toolkit, styled-component, AWS(S3)
 
-### BE : Node, Mongodb, Mongoose AWS(EC2, S3)
+### BE : Node, Mongodb, Mongoose, AWS(EC2, S3)
 
 <br/>
 
