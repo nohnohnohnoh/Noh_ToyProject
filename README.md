@@ -5,18 +5,22 @@
   <br/>
   <br/>
 
-# THE DAJU CONCAT
+# :two:THE DAJU CONCAT
 
-[THE DAJU 배포 링크](http://fethedaju.s3-website.ap-northeast-2.amazonaws.com/)<br/>
-[THE DAJU YouTube 데모영상](https://www.youtube.com/watch?v=Yqh1gq_i_vE&list=PLHbABm9_UpIvYsLV9xivIpsAbut97q_Ex)<br/>
-[THE DAJU 후기 Velog](https://velog.io/@nohnohnohnoh/ToyProject%EB%8D%94%EB%8B%A4%EC%A3%BC-%ED%9B%84%EA%B8%B0)<br/>
-[THE DAJU 관련 Velog](https://velog.io/@nohnohnohnoh/series/ToyProject%EB%8D%94%EB%8B%A4%EC%A3%BC)
+### THE DAJU 사이트를 실제로 볼 수 있습니다. :point_right: [THE DAJU 배포 링크](http://fethedaju.s3-website.ap-northeast-2.amazonaws.com/)<br/>
+
+### THE DAJU 사이트를 한 눈에 볼 수 있습니다. :point_right: [THE DAJU YouTube 데모영상](https://www.youtube.com/watch?v=Yqh1gq_i_vE&list=PLHbABm9_UpIvYsLV9xivIpsAbut97q_Ex)<br/>
+
+### THE DAJU 사이트에 관련한 후기를 볼 수 있습니다. :point_right: [THE DAJU 후기 Velog](https://velog.io/@nohnohnohnoh/ToyProject%EB%8D%94%EB%8B%A4%EC%A3%BC-%ED%9B%84%EA%B8%B0)<br/>
+
+### 자세한 THE DAJU 사이트를 볼 수 있습니다. :point_right: [THE DAJU 관련 Velog](https://velog.io/@nohnohnohnoh/series/ToyProject%EB%8D%94%EB%8B%A4%EC%A3%BC)
+
 <br/>
 <br/>
 
-# THE DAJU 실행방법
+# :three: THE DAJU 실행방법
 
-## 배포된 서버를 내리지 않았을 때
+## :arrow_forward: 배포된 서버를 내리지 않았을 때
 
 ### 1. git clone을 진행한다.
 
@@ -37,7 +41,7 @@ npm install
 npm start
 ```
 
-## 배포된 서버를 내렸을 때 혹은 서버 코드를 실행시키고 싶을 때
+## :arrow_forward: 배포된 서버를 내렸을 때 혹은 서버 코드를 실행시키고 싶을 때
 
 ### 1. git clone을 진행한다.
 
@@ -59,7 +63,7 @@ npm install
 npm start
 ```
 
-### 주의 !
+### :heavy_exclamation_mark: 주의 !
 
 > BackEnd 파일에 .env 파일을 만든다.<br/>
 > 아래를 복사해 붙여넣는다.
@@ -73,15 +77,15 @@ SECRET_KEY = JWT_SECRET_KEY
 <br/>
 <br/>
 
-# THE DAJU 사용기술
+# :four: THE DAJU 사용기술
 
-### FE : JavaScript, TypeScript, React, Redux, React-Redux, Redux-toolkit, styled-component
+### FE : JavaScript, TypeScript, React, Redux, React-Redux, Redux-toolkit, styled-component AWS(S3)
 
-### BE : Node, Mongodb, Mongoose
+### BE : Node, Mongodb, Mongoose AWS(EC2, S3)
 
 <br/>
 
-# THE DAJU 사용 라이브러리
+# :five: THE DAJU 사용 라이브러리
 
 ### FE : react-router, swiper, axios, redux-logger, redux-persis
 
