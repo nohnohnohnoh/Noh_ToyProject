@@ -54,8 +54,8 @@ export const Footer_Data = [
   {
     id: 8,
     boldContent: "더다주 GITHUB ",
-    content: "https://github.com/nohnohnohnoh/Noh_ToyProject",
-    href: "https://github.com/nohnohnohnoh/Noh_ToyProject",
+    content: "https://github.com/nohnohnohnoh/ToyProject_TheDaJu",
+    href: "https://github.com/nohnohnohnoh/ToyProject_TheDaJu",
   },
   {
     id: 9,
