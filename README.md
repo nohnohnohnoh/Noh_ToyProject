@@ -1,4 +1,4 @@
-# THE DAJU
+# :one: THE DAJU 소개
 
 - 접시 컵 숟가락 젓가락 등에 정보를 제공해주고 판매하는 사이트입니다.
 - 실제 사이트인 THE DAJU 사이트를 모티브로 제작하였습니다.
@@ -75,14 +75,14 @@ SECRET_KEY = JWT_SECRET_KEY
 
 # THE DAJU 사용기술
 
-## FE : JavaScript, TypeScript, React, Redux, React-Redux, Redux-toolkit, styled-component
+### FE : JavaScript, TypeScript, React, Redux, React-Redux, Redux-toolkit, styled-component
 
-## BE : Node, Mongodb, Mongoose
+### BE : Node, Mongodb, Mongoose
 
 <br/>
 
 # THE DAJU 사용 라이브러리
 
-## FE : react-router, swiper, axios, redux-logger, redux-persis
+### FE : react-router, swiper, axios, redux-logger, redux-persis
 
-## BE : express, nodemon, bcryptjs, cors, dotenv, jsonwebtoken
+### BE : express, nodemon, bcryptjs, cors, dotenv, jsonwebtoken
