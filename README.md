@@ -81,7 +81,7 @@ SECRET_KEY = JWT_SECRET_KEY
 
 ### FE : JavaScript, TypeScript, React, Redux, React-Redux, <br/>Redux-toolkit, styled-component, AWS(S3)
 
-### BE : Node, Mongodb, Mongoose, AWS(EC2, S3)
+### BE : Node, Express, Mongodb, Mongoose, AWS(EC2, S3)
 
 <br/>
 
@@ -89,4 +89,4 @@ SECRET_KEY = JWT_SECRET_KEY
 
 ### FE : react-router, swiper, axios, redux-logger, redux-persis
 
-### BE : express, nodemon, bcryptjs, cors, dotenv, jsonwebtoken
+### BE : nodemon, bcryptjs, cors, dotenv, jsonwebtoken
