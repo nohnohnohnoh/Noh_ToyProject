@@ -9,7 +9,7 @@
 
 ### THE DAJU 사이트를 실제로 볼 수 있습니다. :point_right: [THE DAJU 배포 링크](http://fethedaju.s3-website.ap-northeast-2.amazonaws.com/)<br/>
 
-### THE DAJU 사이트를 한 눈에 볼 수 있습니다. :point_right: [THE DAJU YouTube 데모영상](https://www.youtube.com/watch?v=Yqh1gq_i_vE&list=PLHbABm9_UpIvYsLV9xivIpsAbut97q_Ex)<br/>
+### THE DAJU 사이트를 한 눈에 볼 수 있습니다. :point_right: [THE DAJU YouTube 데모영상](https://www.youtube.com/watch?v=-OFUjqkxnTY&list=PLHbABm9_UpIukFrGGQ6Yi__c6gM5rCEP3)<br/>
 
 ### THE DAJU 사이트에 관련한 후기를 볼 수 있습니다. :point_right: [THE DAJU 후기 Velog](https://velog.io/@nohnohnohnoh/ToyProject%EB%8D%94%EB%8B%A4%EC%A3%BC-%ED%9B%84%EA%B8%B0)<br/>
 
