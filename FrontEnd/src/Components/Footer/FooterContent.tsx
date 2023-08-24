@@ -102,8 +102,8 @@ const FooterContent = () => {
         )}
       </FooterMySelfContentList>
       <FooterMySelfContentList>
-        <FooterMySelfLogo>THE DAJU 상세정보</FooterMySelfLogo>
-        {Footer_Data.slice(7, 10).map(
+        {/* <FooterMySelfLogo>THE DAJU 상세정보</FooterMySelfLogo> */}
+        {/* {Footer_Data.slice(7, 10).map(
           ({ id, boldContent, content, href }: any) => {
             return (
               <FooterMySelfBox key={id}>
@@ -112,7 +112,7 @@ const FooterContent = () => {
               </FooterMySelfBox>
             );
           }
-        )}
+        )} */}
       </FooterMySelfContentList>
     </FooterMySelfContent>
   );

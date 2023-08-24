@@ -77,6 +77,7 @@ const MainComponentSection = styled.section`
 const MainImgComponent = styled.div`
   width: 100vw;
   margin-bottom: 8%;
+  overflow-y: clip;
 `;
 
 const MainSwiper = styled(Swiper)`

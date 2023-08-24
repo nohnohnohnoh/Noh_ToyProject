@@ -2,10 +2,11 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { setProductType, setToggleSearch } from "../../reducers/productSlice";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineMenu } from "react-icons/ai";
 import { BsSearch, BsBasket, BsPerson, BsHeart } from "react-icons/bs";
 import styled from "styled-components";
 
-const NavSecondList = () => {
+const NavSecondList = ({ setToggleAside }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const localStorageToken = localStorage.getItem("AUTH_TOKEN");
@@ -56,9 +57,15 @@ const NavSecondList = () => {
     alert("준비 중에 있는 서비스 입니다.");
   };
 
+  const onToggleAisde = () => {
+    setToggleAside(true);
+  };
+
   return (
     <NavSecondListSection>
+      <MediaMenuIcon onClick={onToggleAisde} />
       <NavHeaderLogo onClick={navigateMain}>THE DAJU</NavHeaderLogo>
+      <MediaSearchIcon onClick={navigateSearch} />
       <NavMenu>
         <NavMenuUl>
           <NavMenuLi onClick={navigateRecommendProduct}>추천 상품</NavMenuLi>
@@ -89,6 +96,12 @@ const NavSecondListSection = styled.div`
   position: relative;
   width: 100%;
   margin-top: 10px;
+  ${({ theme }) => theme.media.desktop`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0;
+  `}
 `;
 
 const NavHeaderLogo = styled.h1`
@@ -96,12 +109,43 @@ const NavHeaderLogo = styled.h1`
   font-weight: bold;
   text-align: center;
   cursor: pointer;
+  ${({ theme }) => theme.media.desktop`
+    font-size: 32px;
+    padding: 16px 0;
+  `}
+  ${({ theme }) => theme.media.mobile`
+    font-size: 26px;
+    padding: 16px 0;
+  `}
+`;
+
+const MediaMenuIcon = styled(AiOutlineMenu)`
+  font-size: 32px;
+  ${({ theme }) => theme.media.desktopHuge`
+  display: none;
+  `}
+  ${({ theme }) => theme.media.desktop`
+    font-size: 24px;
+  `}
+`;
+
+const MediaSearchIcon = styled(BsSearch)`
+  font-size: 30px;
+  ${({ theme }) => theme.media.desktopHuge`
+  display: none;
+  `}
+  ${({ theme }) => theme.media.desktop`
+    font-size: 22px;
+  `}
 `;
 
 const NavMenu = styled.div`
   position: relative;
   width: 100%;
   margin: 1.5%;
+  ${({ theme }) => theme.media.desktop`
+  display: none;
+  `}
 `;
 
 const NavMenuUl = styled.ul`
@@ -123,6 +167,9 @@ const NavMyPage = styled.div`
   ${({ theme }) => theme.flexMixIn("center", "center")}
   ${({ theme }) => theme.positionMixIn("absolute", 60, -0.25)};
   width: 10%;
+  ${({ theme }) => theme.media.desktop`
+  display: none;
+  `}
 `;
 const SearchIcon = styled(BsSearch)`
   margin: 0 5%;

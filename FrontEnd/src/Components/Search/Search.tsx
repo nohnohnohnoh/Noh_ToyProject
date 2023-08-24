@@ -78,6 +78,9 @@ const SearchComponent = styled.div<{ visible: boolean }>`
         visibility 0s linear 0s;
       transform: translateZ(0);
     `}
+  ${({ theme }) => theme.media.desktop`
+  height: 260px;
+  `}
 `;
 
 const SearchTitle = styled.div`
@@ -87,6 +90,12 @@ const SearchTitle = styled.div`
   font-weight: 700;
   font-size: 30px;
   text-align: center;
+  ${({ theme }) => theme.media.desktop`
+  margin: 50px 0 29px;
+    display: block;
+    font-size: 30px;
+    text-align: center;
+  `}
 `;
 
 const SearchFieldSet = styled.fieldset`
@@ -94,6 +103,9 @@ const SearchFieldSet = styled.fieldset`
   width: 650px;
   margin: 0 auto;
   border-bottom: 1px solid #000;
+  ${({ theme }) => theme.media.desktop`
+    width: 90%;
+  `}
 `;
 
 const SearchInput = styled.input`
@@ -105,6 +117,9 @@ const SearchInput = styled.input`
   border: 0;
   background: #fff;
   font-size: 18px;
+  ${({ theme }) => theme.media.desktop`
+  height: 58px;
+  `}
 `;
 
 const BackGround = styled.div<{ visible: boolean }>`
@@ -139,6 +154,13 @@ const CloseIcon = styled(AiOutlineClose)`
   width: 35px;
   height: 35px;
   cursor: pointer;
+  ${({ theme }) => theme.media.desktop`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  `}
 `;
 
 export default Search;

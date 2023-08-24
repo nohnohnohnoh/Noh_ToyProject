@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import NavFirstList from "./NavFirstList";
 import NavSecondList from "./NavSecondList";
 import styled, { css } from "styled-components";
+import Aside from "./Aside/Aside";
 
 interface ScrollYProps {
   scrollY: number;
@@ -9,6 +10,7 @@ interface ScrollYProps {
 
 const Nav = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [toggleAside, setToggleAside] = useState(false);
 
   const onScroll = () => {
     setScrollY(window.scrollY);
@@ -25,7 +27,8 @@ const Nav = () => {
     <NavComponents scrollY={scrollY}>
       <NavComponentsSection>
         <NavFirstList />
-        <NavSecondList />
+        <NavSecondList setToggleAside={setToggleAside} />
+        <Aside toggleAside={toggleAside} setToggleAside={setToggleAside} />
       </NavComponentsSection>
     </NavComponents>
   );
@@ -46,6 +49,9 @@ const NavComponents = styled.nav<ScrollYProps>`
       left: 0;
       right: 0;
       transform: translateY(-50px);
+    `}
+  ${({ theme }) => theme.media.desktop`
+     transform: translateY(-70px);
     `}
 `;
 
