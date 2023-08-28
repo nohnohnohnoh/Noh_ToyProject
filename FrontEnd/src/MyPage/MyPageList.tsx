@@ -39,8 +39,14 @@ const MyPageList = ({ orderProduct }: MyPageListProps) => {
                     <span className="text">{priceComma}원</span>
                   </MyPageContentBox>
                   <MyPageTotalBox>
-                    <span className="text">주문 개수 {quantity}개</span>
-                    <span className="text">주문금액 {totalPriceComma}원</span>
+                    <MediaMyPageContentBox>
+                      <span className="text">{name}</span>
+                      <span className="text">{priceComma}원</span>
+                    </MediaMyPageContentBox>
+                    <MediaMyPageTotal>
+                      <span className="text">주문 개수 {quantity}개</span>
+                      <span className="text">주문금액 {totalPriceComma}원</span>
+                    </MediaMyPageTotal>
                   </MyPageTotalBox>
                 </div>
               </MyPageListBox>
@@ -84,9 +90,17 @@ const MyPageListBox = styled.div`
 `;
 
 const MyPageImgBox = styled.div`
-  width: 30%;
+  width: 40%;
   height: 200px;
   padding: 0 0 0 24px;
+  ${({ theme }) => theme.media.tablet`
+  width: 45%;
+  height: 150px;
+  `}
+  @media screen and (max-width: 500px) {
+    width: 50%;
+    padding: 0;
+  }
 `;
 
 const MyPageImg = styled.img`
@@ -98,11 +112,39 @@ const MyPageContentBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
+  height: 100%;
   margin-left: 3%;
   .text {
     margin-bottom: 4%;
     font-weight: 600;
   }
+  ${({ theme }) => theme.media.tablet`
+  font-size: 15px;
+  `}
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
+  ${({ theme }) => theme.media.mobile`
+  font-size: 12px;
+  `}
+`;
+
+const MediaMyPageContentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  @media screen and (min-width: 501px) {
+    display: none;
+  }
+  @media screen and (max-width: 420px) {
+    ${({ theme }) => theme.flexMixIn("flex-end", "flex-end")};
+  }
+`;
+
+const MediaMyPageTotal = styled.div`
+  ${({ theme }) => theme.flexMixIn("flex-end", "flex-end")};
+  flex-direction: column;
+  width: 95%;
 `;
 
 const MyPageTotalBox = styled.div`
@@ -113,6 +155,18 @@ const MyPageTotalBox = styled.div`
     font-weight: bold;
     margin: 0 8% 4% 0;
   }
+  ${({ theme }) => theme.media.tablet`
+  font-size: 15px;
+  `}
+  @media screen and (max-width: 500px) {
+    width: 50%;
+    ${({ theme }) => theme.flexMixIn("space-between", "")};
+    flex-direction: column;
+    font-size: 13px;
+  }
+  ${({ theme }) => theme.media.mobile`
+  font-size: 12px;
+  `}
 `;
 
 export default MyPageList;

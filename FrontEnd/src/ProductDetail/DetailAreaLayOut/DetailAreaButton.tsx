@@ -72,6 +72,9 @@ const DetailAreaButton = ({
 
 const ButtonBox = styled.div`
   display: flex;
+  ${({ theme }) => theme.media.desktop`
+  flex-wrap: wrap;
+  `}
 `;
 
 const BuyButton = styled.button`
@@ -84,6 +87,11 @@ const BuyButton = styled.button`
   color: #fff;
   border: none;
   cursor: pointer;
+  ${({ theme }) => theme.media.desktop`
+    flex: none;
+    width: 100%;
+    margin-bottom: 12px;
+  `}
 `;
 
 const CartButton = styled(BuyButton)`
@@ -92,8 +100,15 @@ const CartButton = styled(BuyButton)`
   background: #fff;
   color: #1a1a1a;
   border: 1px solid #d6d6d6;
+  ${({ theme }) => theme.media.desktop`
+    margin-left: 0;
+  `}
 `;
 
-const WishButton = styled(CartButton)``;
+const WishButton = styled(CartButton)`
+  ${({ theme }) => theme.media.desktop`
+    margin-left: 20px;
+  `}
+`;
 
 export default DetailAreaButton;

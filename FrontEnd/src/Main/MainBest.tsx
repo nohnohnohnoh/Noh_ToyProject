@@ -97,16 +97,40 @@ const MainBest = () => {
             autoplay={{ delay: 3000 }}
             scrollbar={{ draggable: true }}
             breakpoints={{
-              380: {
+              250: {
+                spaceBetween: -10,
+                slidesPerView: 1,
+              },
+              300: {
+                spaceBetween: -40,
+                slidesPerView: 1,
+              },
+              350: {
+                spaceBetween: -80,
+                slidesPerView: 1,
+              },
+              400: {
+                spaceBetween: 120,
+                slidesPerView: 2,
+              },
+              450: {
+                spaceBetween: 120,
+                slidesPerView: 2,
+              },
+              500: {
                 spaceBetween: 10,
                 slidesPerView: 2,
               },
-              480: {
-                spaceBetween: -50,
+              550: {
+                spaceBetween: -30,
                 slidesPerView: 2,
               },
               600: {
                 spaceBetween: -70,
+                slidesPerView: 2,
+              },
+              650: {
+                spaceBetween: -120,
                 slidesPerView: 2,
               },
               700: {
@@ -115,6 +139,10 @@ const MainBest = () => {
               },
               800: {
                 spaceBetween: 30,
+                slidesPerView: 3,
+              },
+              850: {
+                spaceBetween: -30,
                 slidesPerView: 3,
               },
               900: {
@@ -126,11 +154,11 @@ const MainBest = () => {
                 slidesPerView: 4,
               },
               1100: {
-                spaceBetween: -20,
+                spaceBetween: -30,
                 slidesPerView: 4,
               },
               1200: {
-                spaceBetween: 50,
+                spaceBetween: 80,
                 slidesPerView: 5,
               },
             }}
@@ -213,6 +241,12 @@ const SwiperPrev = styled.div`
   ::after {
     display: none;
   }
+  @media screen and (max-width: 551px) {
+    background-size: 35px;
+  }
+  @media screen and (max-width: 400px) {
+    background-size: 25px;
+  }
 `;
 
 const SwiperNext = styled.div`
@@ -227,6 +261,12 @@ const SwiperNext = styled.div`
   cursor: pointer;
   ::after {
     display: none;
+  }
+  @media screen and (max-width: 551px) {
+    background-size: 35px;
+  }
+  @media screen and (max-width: 400px) {
+    background-size: 25px;
   }
 `;
 

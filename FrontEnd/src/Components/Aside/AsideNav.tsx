@@ -1,23 +1,23 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store";
-import { setProductType } from "../../../reducers/productSlice";
+import { AppDispatch } from "../../store";
+import { setProductType, setToggleAside } from "../../reducers/productSlice";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const AsideNav = ({ setToggleAside }: any) => {
+const AsideNav = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
   const navigateRecommendProduct = () => {
     navigate("/product?page=1&limit=8");
     dispatch(setProductType({ productType: "추천상품" }));
-    setToggleAside(false);
+    dispatch(setToggleAside({ toggleAside: false }));
   };
 
   const navigateNewProdcut = () => {
     navigate("/product?page=1&limit=16");
     dispatch(setProductType({ productType: "신제품" }));
-    setToggleAside(false);
+    dispatch(setToggleAside({ toggleAside: false }));
   };
 
   const navigatePreparing = () => {

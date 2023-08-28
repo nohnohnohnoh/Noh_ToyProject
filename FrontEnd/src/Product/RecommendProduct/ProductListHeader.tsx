@@ -73,6 +73,9 @@ const ProdcutListHeader = styled.div`
   overflow: hidden;
   text-align: right;
   line-height: 38px;
+  ${({ theme }) => theme.media.desktop`
+      padding: 0 0 5px;
+  `}
 `;
 
 const ProdcutListTotal = styled.div`
@@ -82,6 +85,9 @@ const ProdcutListTotal = styled.div`
     font-weight: bold;
     color: black;
   }
+  ${({ theme }) => theme.media.desktop`
+     font-size: 13px;
+  `}
 `;
 
 const ProductSortSelect = styled.select`

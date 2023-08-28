@@ -54,7 +54,8 @@ export const Footer_Data = [
   {
     id: 8,
     boldContent: "더다주 GITHUB ",
-    content: "https://github.com/nohnohnohnoh/ToyProject_TheDaJu",
+    content: `https://github.com/nohnohnohnoh
+    /ToyProject_TheDaJu`,
     href: "https://github.com/nohnohnohnoh/ToyProject_TheDaJu",
   },
   {
@@ -66,8 +67,8 @@ export const Footer_Data = [
   {
     id: 10,
     boldContent: "더다주 관련 velog",
-    content:
-      "https://velog.io/@nohnohnohnoh/series/ToyProject%EB%8D%94%EB%8B%A4%EC%A3%BC",
+    content: `https://velog.io/@nohnohnohnoh/serie
+    /ToyProject%EB%8D%94%EB%8B%A4%EC%A3%BC`,
     href: "https://velog.io/@nohnohnohnoh/series/ToyProject%EB%8D%94%EB%8B%A4%EC%A3%BC",
   },
 ];
@@ -102,8 +103,8 @@ const FooterContent = () => {
         )}
       </FooterMySelfContentList>
       <FooterMySelfContentList>
-        {/* <FooterMySelfLogo>THE DAJU 상세정보</FooterMySelfLogo> */}
-        {/* {Footer_Data.slice(7, 10).map(
+        <FooterMySelfLogo>THE DAJU 상세정보</FooterMySelfLogo>
+        {Footer_Data.slice(7, 10).map(
           ({ id, boldContent, content, href }: any) => {
             return (
               <FooterMySelfBox key={id}>
@@ -112,7 +113,7 @@ const FooterContent = () => {
               </FooterMySelfBox>
             );
           }
-        )} */}
+        )}
       </FooterMySelfContentList>
     </FooterMySelfContent>
   );
@@ -126,7 +127,10 @@ const FooterMySelfContent = styled.div`
   line-height: 2;
   border-bottom: 1px solid #dadada;
   ${({ theme }) => theme.media.desktop`
-    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 0;
   `}
 `;
 
@@ -135,6 +139,9 @@ const FooterMySelfLogo = styled.div`
   font-weight: bold;
   ${({ theme }) => theme.media.desktop`
     font-size: 14px;
+  `}
+  ${({ theme }) => theme.media.mobile`
+  font-size: 12px;
   `}
 `;
 
@@ -150,6 +157,9 @@ const FooterMySelfBold = styled.span`
   font-weight: 700;
   color: #1a1a1a;
   line-height: 2;
+  ${({ theme }) => theme.media.mobile`
+  font-size: 9px;
+  `}
 `;
 
 const FooterMySelf = styled(Link)`
@@ -157,6 +167,9 @@ const FooterMySelf = styled(Link)`
   color: #1a1a1a;
   line-height: 2;
   text-decoration-line: none;
+  ${({ theme }) => theme.media.mobile`
+  font-size: 9px;
+  `}
 `;
 
 export default FooterContent;

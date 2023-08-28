@@ -30,8 +30,7 @@ const Search = () => {
     dispatch(setToggleSearch({ toggleSearch: false }));
   };
 
-  const onSubmitSearch = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onClickSearch = async () => {
     await Promise.all([
       await dispatch(setProductType({ productType: "상품검색" })),
       await dispatch(setProductSearch({ productSearch: search })),
@@ -42,6 +41,11 @@ const Search = () => {
     window.location.reload();
   };
 
+  const onSubmitSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onClickSearch();
+  };
+
   return (
     <>
       <form onSubmit={onSubmitSearch}>
@@ -49,7 +53,7 @@ const Search = () => {
           <SearchTitle>SEARCH</SearchTitle>
           <SearchFieldSet>
             <SearchInput value={search} onChange={onChangeSearch} type="text" />
-            <SerchIcon />
+            <SerchIcon onClick={onClickSearch} />
           </SearchFieldSet>
           <CloseIcon onClick={onClickClose} />
         </SearchComponent>
@@ -118,7 +122,14 @@ const SearchInput = styled.input`
   background: #fff;
   font-size: 18px;
   ${({ theme }) => theme.media.desktop`
-  height: 58px;
+    width: 100%;
+    height: 58px;
+    padding: 19px 0;
+    flex: 1;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 0;
+    background: #fff;
   `}
 `;
 
@@ -143,23 +154,26 @@ const BackGround = styled.div<{ visible: boolean }>`
 const SerchIcon = styled(BsSearch)`
   width: 28px;
   height: 28px;
-  margin: 15px 0 0;
+  margin: 16px 0 0;
   cursor: pointer;
+  ${({ theme }) => theme.media.desktop`
+    width: 25px;
+    height: 25px;
+    margin: 17px 0 0;
+`}
 `;
 
 const CloseIcon = styled(AiOutlineClose)`
   position: absolute;
   top: 35px;
   right: 50px;
-  width: 35px;
-  height: 35px;
+  font-size: 35px;
   cursor: pointer;
   ${({ theme }) => theme.media.desktop`
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 30px;
-  height: 30px;
+  font-size: 30px;
   `}
 `;
 

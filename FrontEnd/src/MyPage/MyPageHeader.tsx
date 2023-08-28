@@ -26,6 +26,9 @@ const MypageHeader = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 2.5% 0 0 0;
+  ${({ theme }) => theme.media.desktop`
+  display: none;
+  `}
 `;
 
 const MypageHeaderText = styled.div`
@@ -46,12 +49,19 @@ const MypageTitle = styled.div`
   margin: 0 auto 40px auto;
   padding: 45px 0 40px;
   text-align: center;
+  ${({ theme }) => theme.media.desktop`
+    margin: 0 auto;
+    padding: 20px 0;
+  `}
 `;
 
 const MypageTitleText = styled.div`
   font-weight: 700;
   font-size: 30px;
   color: #1a1a1a;
+  ${({ theme }) => theme.media.desktop`
+    font-size: 18px;
+  `}
 `;
 
 export default MyPageHeader;

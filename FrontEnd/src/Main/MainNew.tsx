@@ -115,11 +115,29 @@ const MainNewList = styled.div`
 
 const MainNewListBox = styled.div`
   display: inline-block;
-  width: 23%;
+  width: 22%;
   margin: 0 10px 60px 10px;
   ${({ theme }) => theme.media.desktop`
-    width: 31%;
+    width: 30%;
   `}
+  ${({ theme }) => theme.media.tablet`
+    width: 46.5%;
+  `}
+  @media screen and (max-width: 650px) {
+    width: 46%;
+  }
+  @media screen and (max-width: 600px) {
+    width: 45.5%;
+  }
+  @media screen and (max-width: 500px) {
+    width: 44.5%;
+  }
+  @media screen and (max-width: 400px) {
+    width: 42.5%;
+  }
+  @media screen and (max-width: 300px) {
+    width: 40.5%;
+  }
 `;
 
 const MainNewImgBox = styled.div`
@@ -127,6 +145,30 @@ const MainNewImgBox = styled.div`
   height: 280px;
   margin: 0 0 10px;
   text-align: center;
+  @media screen and (max-width: 1100px) {
+    height: 240px;
+  }
+  ${({ theme }) => theme.media.desktop`
+  height: 260px;
+  `}
+  ${({ theme }) => theme.media.tablet`
+  height: 240px;
+  `}
+  @media screen and (max-width: 540px) {
+    height: 220px;
+  }
+  @media screen and (max-width: 470px) {
+    height: 200px;
+  }
+  @media screen and (max-width: 400px) {
+    height: 180px;
+  }
+  @media screen and (max-width: 330px) {
+    height: 160px;
+  }
+  ${({ theme }) => theme.media.mobile`
+  height: 140px;
+  `}
 `;
 
 const MainNewImg = styled.img`

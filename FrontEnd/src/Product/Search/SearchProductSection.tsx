@@ -95,6 +95,9 @@ const SearchResult = styled.div`
   border-top: 1px solid #e0e0e0;
   text-align: right;
   line-height: 38px;
+  ${({ theme }) => theme.media.desktop`
+     font-size: 13px;
+  `}
 `;
 
 const SearchRecord = styled.p`
@@ -114,18 +117,67 @@ const ProductList = styled.div`
 
 const ProductListBox = styled.div`
   display: inline-block;
-  width: 22.8%;
+  width: 22%;
   margin: 0 10px 60px 10px;
   ${({ theme }) => theme.media.desktop`
-    width: 30.8%;
+    width: 30%;
+    margin: 0 10px 25px 10px;
+  `}
+  ${({ theme }) => theme.media.tablet`
+    width: 46%;
+  `}
+  @media screen and (max-width: 589px) {
+    width: 45%;
+  }
+  @media screen and (max-width: 472px) {
+    width: 44%;
+  }
+  @media screen and (max-width: 393px) {
+    width: 42.5%;
+  }
+  ${({ theme }) => theme.media.mobile`
+    width: 41.5%;
   `}
 `;
 
 const ProductListImgBox = styled.div`
   width: 100%;
-  height: 260px;
+  height: 230px;
   margin: 0 0 10px;
   text-align: center;
+  @media screen and (max-width: 1100px) {
+    height: 210px;
+  }
+  ${({ theme }) => theme.media.desktop`
+  height: 260px;
+  `}
+  @media screen and (max-width: 900px) {
+    height: 220px;
+  }
+  ${({ theme }) => theme.media.tablet`
+  height: 299px;
+  `}
+  @media screen and (max-width: 700px) {
+    height: 270px;
+  }
+  @media screen and (max-width: 600px) {
+    height: 220px;
+  }
+  @media screen and (max-width: 540px) {
+    height: 205px;
+  }
+  @media screen and (max-width: 470px) {
+    height: 175px;
+  }
+  @media screen and (max-width: 400px) {
+    height: 148px;
+  }
+  @media screen and (max-width: 330px) {
+    height: 118px;
+  }
+  ${({ theme }) => theme.media.mobile`
+  height: 100px;
+  `}
 `;
 
 const ProductListImg = styled.img`
@@ -136,12 +188,15 @@ const ProductListImg = styled.img`
 `;
 
 const ProductListTextBox = styled.div`
-  margin: 20px 20px 0 0;
+  margin: 15px 0 0 0;
   padding: 0;
   font-size: 12px;
   line-height: 18px;
   text-align: left;
   white-space: normal;
+  ${({ theme }) => theme.media.desktop`
+   margin: 0;
+  `}
 `;
 
 const ProductListName = styled.div`

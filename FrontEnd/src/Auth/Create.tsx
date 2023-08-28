@@ -95,7 +95,6 @@ const AuthCreate = () => {
 
 const AuthCreateMain = styled.main`
   width: 100vw;
-  height: 100vh;
 `;
 
 const AuthCreateSection = styled.section`
@@ -104,22 +103,34 @@ const AuthCreateSection = styled.section`
 `;
 
 const AuthCreateLogoBox = styled.div`
-  height: 20vh;
-  padding-top: 5%;
+  max-width: 1230px;
+  width: 92%;
+  margin: 40px auto 40px;
   ${({ theme }) => theme.flexMixIn("center", "center")};
+  ${({ theme }) => theme.media.desktop`
+    margin: 0;
+    padding: 20px 0;
+  `}
 `;
 
 const AuthCreateLogo = styled.h1`
   font-size: 30px;
   font-weight: bold;
+  ${({ theme }) => theme.media.desktop`
+    font-size: 18px;
+  `}
 `;
 
 const AuthCreateForm = styled.form`
   width: 100%;
   max-width: 400px;
-  height: 60vh;
   ${({ theme }) => theme.flexMixIn("flex-start", "center")};
   flex-direction: column;
+  ${({ theme }) => theme.media.desktop`
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  `}
 `;
 
 const AuthCreateId = styled.input`
@@ -129,6 +140,9 @@ const AuthCreateId = styled.input`
   margin-bottom: 1%;
   padding: 0 20px;
   border: 1px solid #e3e3e3;
+  ${({ theme }) => theme.media.desktop`
+    max-width: 90%;
+  `}
 `;
 
 const AuthCreatePassWord = styled(AuthCreateId)``;
@@ -139,12 +153,16 @@ const AuthCreateButton = styled.button`
   width: 100%;
   max-width: 400px;
   height: 56px;
+  margin-top: 3%;
   font-size: 16px;
   font-weight: bold;
-  margin-top: 3%;
+  border: none;
   background: #1a1a1a;
   color: #fff;
   cursor: pointer;
+  ${({ theme }) => theme.media.desktop`
+    max-width: 90%;
+  `}
 `;
 
 const AuthLoginBox = styled.div`
@@ -153,8 +171,14 @@ const AuthLoginBox = styled.div`
   width: 100%;
   max-width: 400px;
   height: 232px;
-  margin-top: 5%;
+  margin: 5% 0 40px 0;
   border: 1px solid #e3e3e3;
+  ${({ theme }) => theme.media.desktop`
+    max-width: 90%;
+  `}
+  ${({ theme }) => theme.media.mobile`
+    height: 182px;
+  `}
 `;
 
 const AuthLoginBoxTitle = styled.div`
@@ -165,16 +189,19 @@ const AuthLoginBoxTitle = styled.div`
 `;
 
 const AuthLoginBoxContent = styled.div`
+  ${({ theme }) => theme.flexMixIn("center", "center")};
+  flex-direction: column;
   margin-bottom: 4%;
   font-size: 14px;
   line-height: 1.5;
   color: #8a8a8a;
-  ${({ theme }) => theme.flexMixIn("center", "center")};
-  flex-direction: column;
+  ${({ theme }) => theme.media.mobile`
+  font-size: 12px;
+  `}
 `;
 
 const AuthLoginBoxButton = styled.button`
-  width: 37%;
+  width: 150px;
   height: 56px;
   font-size: 16px;
   font-weight: 700;

@@ -18,6 +18,9 @@ const DetailLayOut = ({ children, title }: DetailProps) => {
         <DetailText>/</DetailText>
         <DetailText>{title}</DetailText>
       </DetailHeader>
+      <DetailLogoBox>
+        <DetailLogo>상품상세 정보</DetailLogo>
+      </DetailLogoBox>
       <section>{children}</section>
     </DetailLayOutComponent>
   );
@@ -37,6 +40,27 @@ const DetailHeader = styled.div`
   width: 92%;
   margin-left: auto;
   margin-right: auto;
+  ${({ theme }) => theme.media.desktop`
+  display: none;
+  `}
+`;
+
+const DetailLogoBox = styled.div`
+  ${({ theme }) => theme.media.desktopHuge`
+  display: none;
+  `}
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+`;
+
+const DetailLogo = styled.h1`
+  ${({ theme }) => theme.media.desktopHuge`
+  display: none;
+  `}
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(26, 26, 26);
 `;
 
 const DetailText = styled.div`

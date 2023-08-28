@@ -54,6 +54,10 @@ const SearchProduct = ({ title }: TitleProps) => {
 const SearchProductForm = styled.form`
   margin: -40px 0 59px;
   padding: 22px 0;
+  ${({ theme }) => theme.media.desktop`
+    margin: 0 !important;
+    padding: 0 0 24px !important;
+  `}
 `;
 
 const SearchProductFieldSet = styled.fieldset`
@@ -69,6 +73,9 @@ const SearchProductInputBox = styled.div`
   width: 650px;
   padding: 0 36px 0 0;
   border-bottom: 1px solid #000;
+  ${({ theme }) => theme.media.desktop`
+  width: 92%;
+  `}
 `;
 
 const SearchProductInput = styled.input`
@@ -86,6 +93,9 @@ const SearchIcon = styled(BsSearch)`
   right: 0;
   font-size: 26px;
   cursor: pointer;
+  ${({ theme }) => theme.media.desktop`
+  font-size: 22px;
+  `}
 `;
 
 const SearchDivBox = styled.div`

@@ -114,6 +114,9 @@ const MypageUserBox = styled.div`
   border: 1px solid #e3e3e3;
   margin: 0 auto;
   box-sizing: border-box;
+  ${({ theme }) => theme.media.desktop`
+  border: none;
+  `}
 `;
 
 const MypageUserList = styled.ul`
@@ -125,6 +128,20 @@ const MypageUserListLi = styled.li`
   ${({ theme }) => theme.flexMixIn("center", "center")};
   padding: 50px 0;
   flex: 2;
+  ${({ theme }) => theme.media.desktop`
+  flex:auto;
+  flex-direction: column;
+  padding: 40px 0;
+  width: 100%;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  `}
+  ${({ theme }) => theme.media.tablet`
+    padding: 20px 0;
+  `}
+  ${({ theme }) => theme.media.mobile`
+    padding: 10px 0;
+  `}
 `;
 
 const User = styled.div`
@@ -145,6 +162,10 @@ const UserInfo = styled.div`
   flex-direction: column;
   margin-left: 16px;
   text-align: left;
+  ${({ theme }) => theme.media.desktop`
+    text-align: center;
+    margin: 16px auto 0;
+  `}
 `;
 
 const UserTextHeader = styled.span`
@@ -161,30 +182,46 @@ const UserTextContent = styled.span`
   .member {
     font-weight: bold;
   }
+  ${({ theme }) => theme.media.desktop`
+  margin: 8px 0 0;
+  `}
 `;
 
 const MypageUserListLiFlex = styled(MypageUserListLi)`
   flex: 1;
   flex-direction: column;
   border-left: 1px solid #e3e3e3;
+  border-right: 1px solid #e3e3e3;
 `;
 
 const DollarIcon = styled(BsCurrencyDollar)`
   width: 32px;
   height: 32px;
   margin: 0 auto;
+  ${({ theme }) => theme.media.tablet`
+  width: 26px;
+  height: 26px;
+  `}
 `;
 
 const CouponIcon = styled(BsPercent)`
   width: 32px;
   height: 32px;
   margin: 0 auto;
+  ${({ theme }) => theme.media.tablet`
+  width: 26px;
+  height: 26px;
+  `}
 `;
 
 const CubeIcon = styled(BiCube)`
   width: 32px;
   height: 32px;
   margin: 0 auto;
+  ${({ theme }) => theme.media.tablet`
+  width: 26px;
+  height: 26px;
+  `}
 `;
 
 const BoldText = styled.span`
@@ -193,12 +230,18 @@ const BoldText = styled.span`
   font-weight: bold;
   color: #1a1a1a;
   text-align: center;
+  ${({ theme }) => theme.media.tablet`
+  font-size: 12px;
+  `}
 `;
 
 const Text = styled.span`
   margin: 4% 0 0;
   font-size: 13px;
   color: #6d6d6d;
+  ${({ theme }) => theme.media.tablet`
+  font-size: 11px;
+  `}
 `;
 
 export default MyPageUser;

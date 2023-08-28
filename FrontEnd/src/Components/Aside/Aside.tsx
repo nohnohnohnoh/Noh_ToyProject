@@ -1,37 +1,27 @@
+import AsideHeaderUser from "./AsideHeaderUser";
 import AsideNav from "./AsideNav";
-import { AiOutlineClose } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { setToggleAside } from "../../reducers/productSlice";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
 import styled, { css } from "styled-components";
 
-interface AsideProps {
-  toggleAside: boolean;
-  setToggleAside: (B: boolean) => void;
-}
-
-const Aside = ({ toggleAside, setToggleAside }: AsideProps) => {
+const Aside = () => {
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-
-  const offToggleAside = () => {
-    setToggleAside(false);
-  };
 
   const navigateHome = () => {
     navigate("/");
-    setToggleAside(false);
+    dispatch(setToggleAside({ toggleAside: false }));
   };
 
-  const navigateLogin = () => {
-    navigate("/login");
-    setToggleAside(false);
-  };
+  const toggleAside = useSelector(
+    ({ product }: RootState) => product.toggleAside
+  );
 
-  const navigateCreate = () => {
-    navigate("/create");
-    setToggleAside(false);
-  };
-
-  const navigatePreparing = () => {
-    alert("준비 중에 있는 서비스 입니다.");
+  const offToggleAside = () => {
+    dispatch(setToggleAside({ toggleAside: false }));
   };
 
   return (
@@ -40,22 +30,9 @@ const Aside = ({ toggleAside, setToggleAside }: AsideProps) => {
       <AsideComponent visible={toggleAside}>
         <AsideHeader>
           <AsideHeaderLogo onClick={navigateHome}>THE DAJU</AsideHeaderLogo>
-          <AsideHeaderUser>
-            <AsideHeaderUserText onClick={navigateCreate}>
-              회원가입
-            </AsideHeaderUserText>
-            <AsideHeaderUserText onClick={navigateLogin}>
-              로그인
-            </AsideHeaderUserText>
-            <AsideHeaderUserText onClick={navigatePreparing}>
-              주문조회
-            </AsideHeaderUserText>
-            <AsideHeaderUserText onClick={navigatePreparing}>
-              최근본상품
-            </AsideHeaderUserText>
-          </AsideHeaderUser>
+          <AsideHeaderUser />
         </AsideHeader>
-        <AsideNav setToggleAside={setToggleAside} />
+        <AsideNav />
         <AsideClose onClick={offToggleAside} />
       </AsideComponent>
     </>
@@ -111,33 +88,20 @@ const AsideHeaderLogo = styled.h1`
   cursor: pointer;
 `;
 
-const AsideHeaderUser = styled.div`
-  margin: 23px auto 0;
-  ${({ theme }) => theme.flexMixIn("center", "wrap")}
-`;
-
-const AsideHeaderUserText = styled.div`
-  font-size: 13px;
-  line-height: 1;
-  color: #1a1a1a;
-  ${({ theme }) => theme.flexMixIn("", "center")}
-  white-space: nowrap;
-  padding: 0 5px 5px 5px;
-  cursor: pointer;
-`;
-
 const AsideClose = styled(AiOutlineClose)`
   position: absolute;
   top: 12px;
   right: 22px;
-  font-size: 35px;
-  ${({ theme }) => theme.media.tablet`
+  font-size: 30px;
+  ${({ theme }) => theme.media.desktop`
   position: absolute;
   top: 5px;
   right: 12px;
   `}
-  ${({ theme }) => theme.media.mobile`
-  font-size: 30px;
+  ${({ theme }) => theme.media.tablet`
+  position: absolute;
+  top: 5px;
+  right: 5px;
   `}
 `;
 

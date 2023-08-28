@@ -76,14 +76,32 @@ const DetailArea = styled.div`
   width: 92%;
   margin: 0 auto 80px;
   padding: 30px 0 0 0;
+  ${({ theme }) => theme.media.desktop`
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  `}
 `;
 
 const DetailImgBox = styled.div`
   display: inline-block;
   width: calc(100% - 650px);
   height: 540px;
+  @media screen and (max-width: 1200px) {
+    height: 470px;
+  }
+  @media screen and (max-width: 1150px) {
+    height: 420px;
+  }
+  @media screen and (max-width: 1100px) {
+    height: 380px;
+  }
+  @media screen and (max-width: 1050px) {
+    height: 330px;
+  }
   ${({ theme }) => theme.media.desktop`
-    height: 340px;
+    width: 100%;
+    height: 100%;
   `}
 `;
 
@@ -103,6 +121,10 @@ const DetailInfoArea = styled.div`
   font-size: 13px;
   line-height: 1;
   vertical-align: top;
+  ${({ theme }) => theme.media.desktop`
+    width: 100%;
+    margin: 0;
+  `}
 `;
 
 const DetailHead = styled.div`
@@ -113,6 +135,16 @@ const DetailHead = styled.div`
   font-weight: 400;
   line-height: 30px;
   vertical-align: middle;
+  ${({ theme }) => theme.media.desktop`
+     margin-top: 25px;
+     margin-bottom: 0;
+  `}
+  @media screen and (max-width: 600px) {
+    font-size: 26px;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 24px;
+  }
 `;
 
 const DetailContentTable = styled.table`
@@ -147,6 +179,12 @@ const TotalContent = styled.div`
   font-size: 20px;
   border-top: 1px solid #e5e5e5;
   vertical-align: middle;
+  @media screen and (max-width: 600px) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 16px;
+  }
 `;
 
 const TotalBox = styled.div`
@@ -156,16 +194,28 @@ const TotalBox = styled.div`
 
 const Plus = styled(AiOutlinePlusCircle)`
   font-size: 18px;
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 
 const Minus = styled(AiOutlineMinusCircle)`
   font-size: 18px;
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 
 const DetailGuideArea = styled.div`
   margin: 45px 0 15px 0;
   font-size: 13px;
   color: #9a9a9a;
+  ${({ theme }) => theme.media.desktop`
+    margin: 25px 0 15px 0;
+  `}
+  ${({ theme }) => theme.media.tablet`
+    margin: 0 0 15px 0;
+  `}
 `;
 
 const TotalPrice = styled.div`
@@ -174,6 +224,12 @@ const TotalPrice = styled.div`
   font-size: 20px;
   border-top: 1px solid #e5e5e5;
   vertical-align: middle;
+  @media screen and (max-width: 600px) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 16px;
+  }
 `;
 
 const TotalText = styled.span`

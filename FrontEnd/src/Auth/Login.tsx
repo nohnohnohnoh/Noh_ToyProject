@@ -71,7 +71,6 @@ const AuthLogin = () => {
 
 const AuthLoginMain = styled.main`
   width: 100vw;
-  height: 100vh;
 `;
 
 const AuthLoginSection = styled.section`
@@ -80,22 +79,34 @@ const AuthLoginSection = styled.section`
 `;
 
 const AuthLoginLogoBox = styled.div`
-  height: 20vh;
-  padding-top: 5%;
+  max-width: 1230px;
+  width: 92%;
+  margin: 40px auto 40px;
   ${({ theme }) => theme.flexMixIn("center", "center")};
+  ${({ theme }) => theme.media.desktop`
+    margin: 0;
+    padding: 20px 0;
+  `}
 `;
 
 const AuthLoginLogo = styled.h1`
   font-size: 30px;
   font-weight: bold;
+  ${({ theme }) => theme.media.desktop`
+    font-size: 18px;
+  `}
 `;
 
 const AuthLoginForm = styled.form`
   width: 100%;
   max-width: 400px;
-  height: 60vh;
   ${({ theme }) => theme.flexMixIn("flex-start", "center")};
   flex-direction: column;
+  ${({ theme }) => theme.media.desktop`
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  `}
 `;
 
 const AuthLoginId = styled.input`
@@ -105,6 +116,9 @@ const AuthLoginId = styled.input`
   margin-bottom: 1%;
   padding: 0 20px;
   border: 1px solid #e3e3e3;
+  ${({ theme }) => theme.media.desktop`
+    max-width: 90%;
+  `}
 `;
 
 const AuthLoginPassWord = styled(AuthLoginId)``;
@@ -116,9 +130,13 @@ const AuthLoginButton = styled.button`
   margin-top: 3%;
   font-size: 16px;
   font-weight: bold;
+  border: none;
   background: #1a1a1a;
   color: #fff;
   cursor: pointer;
+  ${({ theme }) => theme.media.desktop`
+    max-width: 90%;
+  `}
 `;
 
 const AuthCreateBox = styled.div`
@@ -127,8 +145,14 @@ const AuthCreateBox = styled.div`
   width: 100%;
   max-width: 400px;
   height: 232px;
-  margin-top: 5%;
+  margin: 5% 0 40px 0;
   border: 1px solid #e3e3e3;
+  ${({ theme }) => theme.media.desktop`
+    max-width: 90%;
+  `}
+  ${({ theme }) => theme.media.mobile`
+      height: 202px;
+  `}
 `;
 
 const AuthCreateBoxTitle = styled.div`
@@ -148,7 +172,7 @@ const AuthCreateBoxContent = styled.div`
 `;
 
 const AuhtCreteBoxButton = styled.button`
-  width: 37%;
+  width: 150px;
   height: 56px;
   font-size: 16px;
   font-weight: 700;

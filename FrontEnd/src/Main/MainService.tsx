@@ -43,6 +43,12 @@ const ServiceSection = styled.section`
   padding: 100px 0;
   text-align: center;
   background-color: #fafafa;
+  ${({ theme }) => theme.media.desktop`
+    padding: 50px 0;
+  `}
+  ${({ theme }) => theme.media.tablet`
+    margin: 0 auto 50px;
+  `}
 `;
 
 const ServiceHeader = styled.div`
@@ -52,6 +58,9 @@ const ServiceHeader = styled.div`
   font-size: 24px;
   font-weight: bold;
   line-height: 1;
+  ${({ theme }) => theme.media.mobile`
+  font-size: 20px;
+  `}
 `;
 
 const ServiceText = styled.p`
@@ -61,6 +70,9 @@ const ServiceText = styled.p`
   line-height: 1.5;
   color: #1a1a1a;
   margin: 0 auto;
+  ${({ theme }) => theme.media.mobile`
+  font-size: 12px;
+  `}
 `;
 
 const ServiceLink = styled.div`

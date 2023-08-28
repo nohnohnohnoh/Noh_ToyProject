@@ -1,12 +1,16 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import { setProductType, setToggleSearch } from "../../reducers/productSlice";
+import {
+  setProductType,
+  setToggleSearch,
+  setToggleAside,
+} from "../../reducers/productSlice";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { BsSearch, BsBasket, BsPerson, BsHeart } from "react-icons/bs";
 import styled from "styled-components";
 
-const NavSecondList = ({ setToggleAside }: any) => {
+const NavSecondList = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const localStorageToken = localStorage.getItem("AUTH_TOKEN");
@@ -58,7 +62,7 @@ const NavSecondList = ({ setToggleAside }: any) => {
   };
 
   const onToggleAisde = () => {
-    setToggleAside(true);
+    dispatch(setToggleAside({ toggleAside: true }));
   };
 
   return (

@@ -39,6 +39,12 @@ const FooterLogo = styled.h1`
   ${({ theme }) => theme.media.desktop`
     font-size: 35px;
   `}
+  ${({ theme }) => theme.media.tablet`
+  font-size: 28px;
+  `}
+    ${({ theme }) => theme.media.mobile`
+  font-size: 23px;
+  `}
 `;
 
 const FooterBottom = styled.div`
@@ -51,6 +57,9 @@ const FooterBottomContent = styled.span`
   font-weight: 400;
   color: #a8a8a8;
   line-height: 1.6;
+  ${({ theme }) => theme.media.mobile`
+  font-size: 8px;
+  `}
 `;
 
 export default Footer;

@@ -11,12 +11,14 @@ import MyPage from "../MyPage/MyPage";
 import Basket from "../Cart/Cart";
 import WishList from "../WishList/WishList";
 import ScrollToTop from "../SrcollToTop";
+import Aside from "../Components/Aside/Aside";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Nav />
       <Search />
+      <Aside />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Main />} />

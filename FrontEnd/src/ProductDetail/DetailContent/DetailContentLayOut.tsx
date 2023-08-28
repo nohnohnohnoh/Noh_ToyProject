@@ -47,10 +47,10 @@ const DetailContentLayOut = ({ src }: DetailContentProps) => {
               </ContentTabLi>
             )}
             {currentIndex === 3 ? (
-              <ContentActiveLi>배송/교환/환불 안내</ContentActiveLi>
+              <ContentActiveLi>구매안내</ContentActiveLi>
             ) : (
               <ContentTabLi onClick={() => setCurrentIndex(3)}>
-                배송/교환/환불 안내
+                구매안내
               </ContentTabLi>
             )}
           </ContentTab>

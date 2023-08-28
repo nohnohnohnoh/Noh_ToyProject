@@ -88,12 +88,18 @@ const ChangeComponents = styled.div`
 
 const ChangeGuideBox = styled.div`
   width: 50%;
+  ${({ theme }) => theme.media.desktop`
+  width: 100%;
+  `}
 `;
 
 const ChangeTitle = styled.div`
   padding: 25px 0;
   font-weight: bold;
   font-size: 20px;
+  ${({ theme }) => theme.media.desktop`
+  border-top: 1px solid black;
+  `}
 `;
 
 const ChangeContents = styled.div`
@@ -105,6 +111,9 @@ const ChangeContents = styled.div`
   .bold {
     font-weight: bold;
   }
+  ${({ theme }) => theme.media.desktop`
+  padding-bottom: 25px;
+  `}
 `;
 
 export default Change;

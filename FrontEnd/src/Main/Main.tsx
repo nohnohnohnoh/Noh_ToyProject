@@ -26,6 +26,23 @@ const Main = () => {
       src: "https://file.cafe24cos.com/banner-admin-live/upload/thedaju/649b783e-9a09-4084-bcb3-d03b2e8e38be.jpeg",
     },
   ];
+  const mediaMainImg = [
+    {
+      id: 1,
+      alt: "mainImgOne",
+      src: "https://file.cafe24cos.com/banner-admin-live/upload/thedaju/824b0006-f229-4f0b-ddf2-be63d2edc405.jpeg",
+    },
+    {
+      id: 2,
+      alt: "mainImgTwo",
+      src: "https://file.cafe24cos.com/banner-admin-live/upload/thedaju/25bad0b3-4049-4ed6-a2b6-235fd7d61e49.jpeg",
+    },
+    {
+      id: 3,
+      alt: "mainImgThree",
+      src: "https://file.cafe24cos.com/banner-admin-live/upload/thedaju/7497c929-e669-46d3-b2bb-4b50795ba243.jpeg",
+    },
+  ];
 
   return (
     <MainComponent>
@@ -45,6 +62,20 @@ const Main = () => {
               </MainImgBox>
             ))}
           </MainSwiper>
+          <MediaMainSwiper
+            modules={[Pagination, Autoplay]}
+            slidesPerView={1}
+            pagination={{
+              clickable: true,
+            }}
+            autoplay={{ delay: 5000 }}
+          >
+            {mediaMainImg.map(({ id, alt, src }) => (
+              <MainImgBox key={id}>
+                <MainImg alt={alt} src={src} />
+              </MainImgBox>
+            ))}
+          </MediaMainSwiper>
         </MainImgComponent>
         <MainService
           header="더다주 도매방법"
@@ -86,6 +117,21 @@ const MainSwiper = styled(Swiper)`
     width: 10px;
     height: 10px;
     margin: 0 5px !important;
+  }
+  ${({ theme }) => theme.media.tablet`
+    display:none;
+  `}
+`;
+
+const MediaMainSwiper = styled(Swiper)`
+  .swiper-pagination-bullet {
+    background-color: black;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px !important;
+  }
+  @media screen and (min-width: 769px) {
+    display: none;
   }
 `;
 

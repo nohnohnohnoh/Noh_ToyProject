@@ -78,22 +78,42 @@ const MainHotText = styled.div`
   margin-top: 15px;
 `;
 
-const MainHotContentBox = styled.div`
+const MainHotContentBox = styled.ul`
   ${({ theme }) => theme.flexMixIn("flex-start")}
   margin: 0 -10px;
+  ${({ theme }) => theme.media.desktop`
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+    flex-direction: row;
+    justify-content: flex-start !important;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+  `}
 `;
 
-const MainHotContent = styled.div`
+const MainHotContent = styled.li`
   max-width: 416px;
   margin: 0 0 30px;
   box-sizing: border-box;
   padding: 0 10px;
+  ${({ theme }) => theme.media.desktop`
+  scroll-snap-align: center;
+    margin: 0;
+    max-width: 100%;
+    width: 88%;
+    flex: none;
+`}
 `;
 
 const MainHotImg = styled.img`
   max-width: 100%;
-  height: 280px;
+  height: auto;
   box-sizing: border-box;
+  ${({ theme }) => theme.media.desktop`
+  width: 100%;
+`}
 `;
 
 const MainHotContentTexTBox = styled.div`
