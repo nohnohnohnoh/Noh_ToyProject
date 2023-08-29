@@ -52,11 +52,11 @@ const AsideHeaderUser = () => {
     <>
       <AsideHeaderUserComponent>
         {localStorageToken ? (
-          <AsideHeaderUserText onClick={navigateCreate}>
-            환영합니다 {nickName}님
-          </AsideHeaderUserText>
+          <AsideHeaderUserText>환영합니다 {nickName}님</AsideHeaderUserText>
         ) : (
-          <AsideHeaderUserText>회원가입</AsideHeaderUserText>
+          <AsideHeaderUserText onClick={navigateCreate}>
+            회원가입
+          </AsideHeaderUserText>
         )}
         {localStorageToken ? (
           <AsideHeaderUserText onClick={logOut}>로그아웃</AsideHeaderUserText>
@@ -95,7 +95,7 @@ const AsideHeaderUserComponent = styled.div`
 `;
 
 const AsideHeaderUserToken = styled.div`
-  margin: 13px auto 0;
+  margin: 5px auto 0;
   ${({ theme }) => theme.flexMixIn("center", "wrap")}
   ${({ theme }) => theme.media.mobile`
   margin: 3px auto 0;

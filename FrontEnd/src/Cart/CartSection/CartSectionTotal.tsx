@@ -85,6 +85,11 @@ const CartTotalBox = styled.div`
   width: 360px;
   margin: 0 0 0 47px;
   padding: 35px 0;
+  ${({ theme }) => theme.media.desktop`
+    width: 100%;
+    margin: 30px 0 0 0;
+    padding: 0;
+  `}
 `;
 
 const CartTotalComponent = styled.div`

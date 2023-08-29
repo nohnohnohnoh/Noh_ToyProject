@@ -37,6 +37,14 @@ const WishListButtonBox = ({
   return (
     <ButtonComponent>
       <section className="section">
+        <ButtonBox>
+          <EntireButton onClick={() => entireDelete("전체삭제")}>
+            전체삭제
+          </EntireButton>
+          <SelectButton onClick={() => selectDelete("선택삭제")}>
+            선택삭제
+          </SelectButton>
+        </ButtonBox>
         <NumberBox>
           {totalPageNumber.map((pageNumber, index) => {
             if (currentPageNumber === pageNumber) {
@@ -54,14 +62,6 @@ const WishListButtonBox = ({
             }
           })}
         </NumberBox>
-        <span>
-          <EntireButton onClick={() => entireDelete("전체삭제")}>
-            전체삭제
-          </EntireButton>
-          <SelectButton onClick={() => selectDelete("선택삭제")}>
-            선택삭제
-          </SelectButton>
-        </span>
       </section>
     </ButtonComponent>
   );
@@ -80,7 +80,7 @@ const ButtonComponent = styled.div`
 
 const NumberBox = styled.div`
   ${({ theme }) => theme.flexMixIn("center", "center")};
-  margin-top: 7%;
+  margin-top: 102px;
   text-align: center;
 `;
 
@@ -100,10 +100,13 @@ const OnNumber = styled(Number)`
   border-color: #000;
 `;
 
+const ButtonBox = styled.div`
+  float: right;
+  text-align: right;
+`;
+
 const EntireButton = styled.button`
-  ${({ theme }) => theme.positionMixIn("absolute", 0)}
-  right: -1%;
-  margin: 1% 1%;
+  margin: 5px;
   padding: 17px 20px;
   border: 1px solid #d6d6d6;
   outline: none;
@@ -112,8 +115,6 @@ const EntireButton = styled.button`
   font-size: 14px;
 `;
 
-const SelectButton = styled(EntireButton)`
-  right: 9%;
-`;
+const SelectButton = styled(EntireButton)``;
 
 export default WishListButtonBox;

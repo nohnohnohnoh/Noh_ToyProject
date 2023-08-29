@@ -23,6 +23,9 @@ const WishListHeaderComponent = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 2.5% 0 0 0;
+  ${({ theme }) => theme.media.desktop`
+  display: none;
+  `}
 `;
 
 const WishListHeaderText = styled.div`

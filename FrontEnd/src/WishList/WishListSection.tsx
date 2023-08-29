@@ -76,12 +76,14 @@ const WishListSection = ({ wishListData, setWishListData }: WishListProps) => {
               </WishListContentBox>
               <WishListButtonBox>
                 <Delete onClick={() => onClickOneDelete(_id)} />
-                <CartButton onClick={() => onToggleModal(_id)}>
-                  장바구니
-                </CartButton>
-                <OrderButton onClick={() => onToggleModal(_id)}>
-                  주문하기
-                </OrderButton>
+                <ButtonBox>
+                  <CartButton onClick={() => onToggleModal(_id)}>
+                    장바구니
+                  </CartButton>
+                  <OrderButton onClick={() => onToggleModal(_id)}>
+                    주문하기
+                  </OrderButton>
+                </ButtonBox>
               </WishListButtonBox>
             </WishListBox>
           );
@@ -101,6 +103,9 @@ const WishList = styled.div`
   max-width: 1080px;
   width: 92%;
   margin: 4% auto 0;
+  ${({ theme }) => theme.media.desktop`
+    margin: 0 auto ;
+  `}
 `;
 
 const WishListHeader = styled.div`
@@ -111,6 +116,15 @@ const WishListHeader = styled.div`
     color: #1a1a1a;
     text-align: left;
   }
+  ${({ theme }) => theme.media.desktop`
+    margin: 20px 0;
+    .title {
+    font-weight: 700;
+    font-size: 18px;
+    color: #1a1a1a;
+    text-align: center;
+  }
+  `}
 `;
 
 const WishListSectionComponent = styled.section`
@@ -148,6 +162,23 @@ const WishListImgBox = styled.div`
   width: 30%;
   height: 200px;
   padding: 0 0 0 24px;
+  @media screen and (max-width: 850px) {
+    width: 35%;
+  }
+  ${({ theme }) => theme.media.tablet`
+  width: 30%;
+  height: 150px;
+  padding: 0;
+  `}
+  @media screen and (max-width: 600px) {
+    width: 40%;
+  }
+  @media screen and (max-width: 475px) {
+    height: 125px;
+  }
+  ${({ theme }) => theme.media.mobile`
+  height: 100px;
+  `}
 `;
 
 const WishListImg = styled.img`
@@ -164,6 +195,15 @@ const WishListContentBox = styled.div`
     font-weight: 600;
     margin-bottom: 4%;
   }
+  ${({ theme }) => theme.media.tablet`
+  font-size:15px;
+  `}
+  @media screen and (max-width: 475px) {
+    font-size: 13px;
+  }
+  ${({ theme }) => theme.media.mobile`
+  font-size:11px;
+  `}
 `;
 
 const Delete = styled(AiOutlineClose)`
@@ -172,21 +212,46 @@ const Delete = styled(AiOutlineClose)`
   width: 12%;
   height: 12%;
   color: #b5b5b5;
+  @media screen and (max-width: 400px) {
+    position: absolute;
+    right: -3%;
+  }
+  ${({ theme }) => theme.media.mobile`
+    position: absolute;
+    right: -2%; 
+  `}
 `;
 
 const WishListButtonBox = styled.div`
   width: 40%;
+  ${({ theme }) => theme.media.desktop`
+  width: 0%;
+  `}
+`;
+
+const ButtonBox = styled.div`
+  position: absolute;
+  bottom: 22px;
+  right: 0;
+  @media screen and (max-width: 475px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const CartButton = styled.button`
+  margin: 5px;
   padding: 10px 20px;
   border: 1px solid #d6d6d6;
   outline: none;
   background: #fff;
   color: #000;
-  position: absolute;
-  right: 9%;
-  bottom: 10%;
+  @media screen and (max-width: 475px) {
+    padding: 10px 28px;
+  }
+  ${({ theme }) => theme.media.mobile`
+    padding: 5px 21px;
+  `}
 `;
 
 const OrderButton = styled(CartButton)`

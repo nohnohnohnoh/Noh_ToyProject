@@ -90,9 +90,12 @@ const MyPageListBox = styled.div`
 `;
 
 const MyPageImgBox = styled.div`
-  width: 40%;
+  width: 30%;
   height: 200px;
   padding: 0 0 0 24px;
+  ${({ theme }) => theme.media.desktop`
+  width: 40%;
+  `}
   ${({ theme }) => theme.media.tablet`
   width: 45%;
   height: 150px;
@@ -101,6 +104,9 @@ const MyPageImgBox = styled.div`
     width: 50%;
     padding: 0;
   }
+  ${({ theme }) => theme.media.mobile`
+  height: 100px;
+  `}
 `;
 
 const MyPageImg = styled.img`
@@ -112,7 +118,6 @@ const MyPageContentBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
-  height: 100%;
   margin-left: 3%;
   .text {
     margin-bottom: 4%;

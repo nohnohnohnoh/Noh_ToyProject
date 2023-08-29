@@ -134,6 +134,12 @@ const CartSection = ({ cartData, setCartData }: CartProps) => {
           onClickOneDelete={onClickOneDelete}
           handleSingleCheck={handleSingleCheck}
         />
+        <MediaCartButtonBox>
+          <CartEntireButton onClick={handleAllCheck}>전체선택</CartEntireButton>
+          <CartSelectDeleteButton onClick={onClickSelectDelete}>
+            선택삭제
+          </CartSelectDeleteButton>
+        </MediaCartButtonBox>
         <CartTotal totalPrice={totalPrice} selectDataArr={selectDataArr} />
       </CartContainer>
       <CartButtonBox>
@@ -150,6 +156,9 @@ const CartSectionComponents = styled.div`
   max-width: 1230px;
   width: 92%;
   margin: 4% auto 0;
+  ${({ theme }) => theme.media.desktop`
+    margin: 2% auto 0 ;
+  `}
 `;
 
 const CartHeader = styled.div`
@@ -160,15 +169,36 @@ const CartHeader = styled.div`
     color: #1a1a1a;
     text-align: left;
   }
+  ${({ theme }) => theme.media.desktop`
+  margin-bottom: 10px;
+  .title {
+    font-size: 16px;
+  }
+  `}
 `;
 
 const CartContainer = styled.div`
-  display: flex;
   border-top: 2px solid #1a1a1a;
+  ${({ theme }) => theme.media.desktopHuge`
+  display: flex;
+  `}
 `;
 
 const CartButtonBox = styled.div`
   margin: 20px 0;
+  ${({ theme }) => theme.media.desktop`
+  display: none;
+  `}
+`;
+
+const MediaCartButtonBox = styled.div`
+  margin: 20px 0;
+  ${({ theme }) => theme.media.desktopHuge`
+  display: none;
+  `}
+  ${({ theme }) => theme.media.desktop`
+  display: flex;
+  `}
 `;
 
 const CartEntireButton = styled.button`
@@ -178,11 +208,12 @@ const CartEntireButton = styled.button`
   outline: none;
   background: rgb(255, 255, 255);
   margin-right: 1%;
+  ${({ theme }) => theme.media.desktop`
+      flex: 1 1 0%;
+      margin: 0 1%;
+  `}
 `;
 
 const CartSelectDeleteButton = styled(CartEntireButton)``;
 
 export default CartSection;
-function totalPriceFunction(arg0: number) {
-  throw new Error("Function not implemented.");
-}
