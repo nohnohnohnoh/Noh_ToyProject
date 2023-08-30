@@ -117,42 +117,66 @@ const ProductList = styled.div`
 
 const ProductListBox = styled.div`
   display: inline-block;
-  width: 22%;
+  width: 22.5%;
   margin: 0 10px 60px 10px;
+  @media screen and (max-width: 1100px) {
+    width: 22.5%;
+  }
   ${({ theme }) => theme.media.desktop`
-    width: 30%;
+    width: 30.5%;
     margin: 0 10px 25px 10px;
   `}
+  @media screen and (max-width: 932px) {
+    width: 30%;
+  }
   ${({ theme }) => theme.media.tablet`
-    width: 46%;
+    width: 45.5%;
   `}
+  @media screen and (max-width: 725px) {
+    width: 45%;
+  }
+  @media screen and (max-width: 620px) {
+    width: 44.5%;
+  }
   @media screen and (max-width: 589px) {
     width: 45%;
   }
-  @media screen and (max-width: 472px) {
+  @media screen and (max-width: 482px) {
+    width: 44.5%;
+  }
+  @media screen and (max-width: 435px) {
     width: 44%;
   }
-  @media screen and (max-width: 393px) {
+  @media screen and (max-width: 395px) {
+    width: 43.5%;
+  }
+  @media screen and (max-width: 362px) {
+    width: 43%;
+  }
+  @media screen and (max-width: 334px) {
     width: 42.5%;
   }
   ${({ theme }) => theme.media.mobile`
-    width: 41.5%;
+    width: 42%;
   `}
+  @media screen and (max-width: 289px) {
+    width: 40.5%;
+  }
 `;
 
 const ProductListImgBox = styled.div`
   width: 100%;
-  height: 230px;
+  height: 260px;
   margin: 0 0 10px;
   text-align: center;
   @media screen and (max-width: 1100px) {
     height: 210px;
   }
   ${({ theme }) => theme.media.desktop`
-  height: 260px;
+  height: 248px;
   `}
   @media screen and (max-width: 900px) {
-    height: 220px;
+    height: 210px;
   }
   ${({ theme }) => theme.media.tablet`
   height: 299px;

@@ -94,7 +94,7 @@ const ProductListImgBox = styled.div`
   margin: 0 0 10px;
   text-align: center;
   @media screen and (max-width: 1100px) {
-    height: 210px;
+    height: 230px;
   }
   ${({ theme }) => theme.media.desktop`
   height: 260px;

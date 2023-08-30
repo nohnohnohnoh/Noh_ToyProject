@@ -115,59 +115,90 @@ const MainNewList = styled.div`
 
 const MainNewListBox = styled.div`
   display: inline-block;
-  width: 22%;
+  width: 23%;
   margin: 0 10px 60px 10px;
+  @media screen and (max-width: 1100px) {
+    width: 22.5%;
+  }
   ${({ theme }) => theme.media.desktop`
-    width: 30%;
+    width: 31%;
+    margin: 0 10px 25px 10px;
   `}
+  @media screen and (max-width: 932px) {
+    width: 30.5%;
+  }
   ${({ theme }) => theme.media.tablet`
-    width: 46.5%;
+    width: 47%;
   `}
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 725px) {
+    width: 46.5%;
+  }
+  @media screen and (max-width: 620px) {
     width: 46%;
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 589px) {
     width: 45.5%;
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 482px) {
+    width: 45%;
+  }
+  @media screen and (max-width: 435px) {
     width: 44.5%;
   }
-  @media screen and (max-width: 400px) {
-    width: 42.5%;
+  @media screen and (max-width: 395px) {
+    width: 44%;
   }
-  @media screen and (max-width: 300px) {
-    width: 40.5%;
+  @media screen and (max-width: 362px) {
+    width: 43.5%;
+  }
+  @media screen and (max-width: 334px) {
+    width: 43%;
+  }
+  ${({ theme }) => theme.media.mobile`
+    width: 42.5%;
+  `}
+  @media screen and (max-width: 289px) {
+    width: 41.5%;
   }
 `;
 
 const MainNewImgBox = styled.div`
   width: 100%;
-  height: 280px;
+  height: 260px;
   margin: 0 0 10px;
   text-align: center;
   @media screen and (max-width: 1100px) {
-    height: 240px;
+    height: 230px;
   }
   ${({ theme }) => theme.media.desktop`
   height: 260px;
   `}
-  ${({ theme }) => theme.media.tablet`
-  height: 240px;
-  `}
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 900px) {
     height: 220px;
   }
+  ${({ theme }) => theme.media.tablet`
+  height: 299px;
+  `}
+  @media screen and (max-width: 700px) {
+    height: 270px;
+  }
+  @media screen and (max-width: 600px) {
+    height: 220px;
+  }
+  @media screen and (max-width: 540px) {
+    height: 205px;
+  }
   @media screen and (max-width: 470px) {
-    height: 200px;
+    height: 175px;
   }
   @media screen and (max-width: 400px) {
-    height: 180px;
+    height: 148px;
   }
   @media screen and (max-width: 330px) {
-    height: 160px;
+    height: 118px;
   }
   ${({ theme }) => theme.media.mobile`
-  height: 140px;
+  height: 100px;
   `}
 `;
 

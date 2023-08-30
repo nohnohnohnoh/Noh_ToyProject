@@ -100,7 +100,17 @@ const WishListModalComponent = styled.div<{ visible: boolean }>`
       right: 0;
     `}
   ${({ theme }) => theme.media.desktop`
-    width: 35%;
+    width: 80%;
+    right: -100%;
+    ${(props: { visible: any }) =>
+      props.visible &&
+      css`
+        visibility: visible;
+        right: 0;
+      `}
+  `}
+   ${({ theme }) => theme.media.tablet`
+    width: 100%;
   `}
 `;
 
@@ -121,7 +131,7 @@ const CloseIcon = styled(AiOutlineClose)`
   width: 35px;
   height: 35px;
   ${({ theme }) => theme.media.desktop`
-    width: 25px;
+  width: 25px;
   height: 25px;
   `}
 `;
@@ -134,8 +144,8 @@ const WishListContentBox = styled.div`
 `;
 
 const ImgBox = styled.div`
-  width: 76px;
-  height: 76px;
+  width: 96px;
+  height: 96px;
 `;
 
 const Img = styled.img`
@@ -145,7 +155,7 @@ const Img = styled.img`
 
 const ContentBox = styled.div`
   .text {
-    margin: 4px 0 4px 4px;
+    margin: 4px 0 4px 8px;
     font-size: 14px;
     font-weight: bold;
   }
