@@ -90,3 +90,9 @@ SECRET_KEY = JWT_SECRET_KEY
 ### FE : react-router, swiper, axios, redux-logger, redux-persis
 
 ### BE : nodemon, bcryptjs, cors, dotenv, jsonwebtoken
+
+<br/>
+
+# :exclamation: 개선사항
+
+- 다양한 디바이스에서 더다주 사이트를 이용할 수 있게끔 반응협 웹 제작.
