@@ -8,7 +8,7 @@ const { myorderRouter } = require("./src/routes/MyOrderRoute");
 const { wishListRouter } = require("./src/routes/WishListRoute");
 const { cartRouter } = require("./src/routes/CartRoute");
 const { authMiddleware } = require("./src/middleware/AuthMiddleware");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 const server = async () => {
   try {
