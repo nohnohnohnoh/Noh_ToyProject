@@ -50,7 +50,7 @@ const AsideComponent = styled.div<{ visible: boolean }>`
   overflow-x: hidden;
   width: 80%;
   background-color: #fff;
-  transition: 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   ${({ theme }) => theme.media.tablet`
     position: fixed;
     top: 0px;
