@@ -10,16 +10,25 @@ wishListRouter.post("/", async (req, res) => {
 
     const { src, name, price, _id } = req.body;
 
-    const wishList = new WishList({
-      user: {
-        _id: req.user._id,
-      },
-      product_id: _id,
-      src,
-      name,
-      price,
+    const findProductWishList = await WishList.find({
+      $and: [{ "user._id": req.user._id }, { product_id: _id }],
     });
-    await wishList.save();
+
+    if (findProductWishList.length !== 0)
+      throw new Error("이미 WishList에 등록된 상품입니다.");
+
+    if (findProductWishList.length === 0) {
+      const wishList = new WishList({
+        user: {
+          _id: req.user._id,
+        },
+        product_id: _id,
+        src,
+        name,
+        price,
+      });
+      await wishList.save();
+    }
 
     return res.json({ message: "나의 위시리스트에 등록하였습니다." });
   } catch (e) {

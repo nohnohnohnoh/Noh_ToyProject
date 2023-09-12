@@ -14,20 +14,29 @@ cartRouter.post("/", async (req, res) => {
     if (quantity === 0)
       throw new Error("1개 이상이어야 장바구니에 등록이 가능합니다.");
 
-    const cart = new Cart({
-      user: {
-        _id: req.user._id,
-      },
-      product_id: _id,
-      src,
-      name,
-      price,
-      quantity,
+    const findProductCart = await Cart.find({
+      $and: [{ "user._id": req.user._id }, { product_id: _id }],
     });
 
-    const [deleteWishList, saveWishList, wishList] = await Promise.all([
+    if (findProductCart.length !== 0)
+      throw new Error("이미 장바구니에 등록된 상품입니다.");
+
+    if (findProductCart.length === 0) {
+      const cart = new Cart({
+        user: {
+          _id: req.user._id,
+        },
+        product_id: _id,
+        src,
+        name,
+        price,
+        quantity,
+      });
+      await cart.save();
+    }
+
+    const [deleteWishList, wishList] = await Promise.all([
       await WishList.deleteOne({ product_id: _id }),
-      await cart.save(),
       await WishList.find({ "user._id": req.user._id }).sort({
         createdAt: -1,
       }),
