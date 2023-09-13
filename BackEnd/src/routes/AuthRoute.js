@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const authRouter = Router();
 
 const createToken = (userId) => {
-  const token = jwt.sign({ _id: userId.toString() }, "JWT_SECRET_KEY", {
+  const token = jwt.sign({ _id: userId.toString() }, process.env.SECRET_KEY, {
     expiresIn: "1h",
   });
   return token;
