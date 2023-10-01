@@ -16,6 +16,7 @@ productRouter.get("/main", async (req, res) => {
     ]);
 
     return res.json({
+      message: "SUCCESS",
       newProducts,
       totalPage: Math.ceil(count / 8),
     });
@@ -54,6 +55,7 @@ productRouter.get("/search", async (req, res) => {
     const totalProduct = totalProductOne + totalProductTwo;
 
     return res.json({
+      message: "SUCCESS",
       searchProduct,
       totalProduct,
     });
@@ -75,6 +77,7 @@ productRouter.get("/recommend", async (req, res) => {
         await RecommendProduct.count(),
       ]);
       return res.json({
+        message: "SUCCESS",
         recommendProducts,
         count,
       });
@@ -89,6 +92,7 @@ productRouter.get("/recommend", async (req, res) => {
         await RecommendProduct.count(),
       ]);
       return res.json({
+        message: "SUCCESS",
         recommendProducts,
         count,
       });
@@ -103,6 +107,7 @@ productRouter.get("/recommend", async (req, res) => {
         await RecommendProduct.count(),
       ]);
       return res.json({
+        message: "SUCCESS",
         recommendProducts,
         count,
       });
@@ -117,6 +122,7 @@ productRouter.get("/recommend", async (req, res) => {
         await RecommendProduct.count(),
       ]);
       return res.json({
+        message: "SUCCESS",
         recommendProducts,
         count,
       });
@@ -139,6 +145,7 @@ productRouter.get("/new", async (req, res) => {
         await NewProduct.count(),
       ]);
       return res.json({
+        message: "SUCCESS",
         newProducts,
         count,
         totalPages: Math.ceil(count / limit),
@@ -154,6 +161,7 @@ productRouter.get("/new", async (req, res) => {
         await NewProduct.count(),
       ]);
       return res.json({
+        message: "SUCCESS",
         newProducts,
         count,
         totalPages: Math.ceil(count / limit),
@@ -169,6 +177,7 @@ productRouter.get("/new", async (req, res) => {
         await NewProduct.count(),
       ]);
       return res.json({
+        message: "SUCCESS",
         newProducts,
         count,
         totalPages: Math.ceil(count / limit),
@@ -184,6 +193,7 @@ productRouter.get("/new", async (req, res) => {
         await NewProduct.count(),
       ]);
       return res.json({
+        message: "SUCCESS",
         newProducts,
         count,
         totalPages: Math.ceil(count / limit),

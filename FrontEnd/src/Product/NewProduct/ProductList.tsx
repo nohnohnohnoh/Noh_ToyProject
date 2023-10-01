@@ -1,16 +1,19 @@
+import SkeletonComponent from "../../Components/Skeleton/Skeleton";
 import { useNavigate } from "react-router-dom";
 import { ProductType } from "../../types/type";
 import styled from "styled-components";
 
 interface NewproductProps {
   newData: ProductType[];
+  loading: boolean;
 }
 
-const ProductList = ({ newData }: NewproductProps) => {
+const ProductList = ({ loading, newData }: NewproductProps) => {
   const navigate = useNavigate();
 
   return (
     <ProductListComponent>
+      {!loading && <SkeletonComponent />}
       {newData?.map(({ _id, src, name, price }: ProductType) => {
         const priceComma = price?.toLocaleString();
         return (

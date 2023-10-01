@@ -13,6 +13,7 @@ interface TitleProps {
 
 const Newproduct = ({ title }: TitleProps) => {
   const [newData, setNewData] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState(false);
   const [totalData, setTotalData] = useState();
   const [totalPage, setTotalPage] = useState();
   const [querySort, setQuerySort] = useState("");
@@ -31,6 +32,7 @@ const Newproduct = ({ title }: TitleProps) => {
 
   useEffect(() => {
     newProductAxios().then((data) => {
+      if (data.message === "SUCCESS") setLoading(true);
       setNewData(data.newProducts);
       setTotalData(data.count);
       setTotalPage(data.totalPages);
@@ -59,7 +61,7 @@ const Newproduct = ({ title }: TitleProps) => {
         querySort={querySort}
         onChangeSelect={onChangeSelect}
       />
-      <ProductList newData={newData} />
+      <ProductList loading={loading} newData={newData} />
       <ProductListNumber
         totalPageNumber={totalPageNumber}
         queryNavigate={queryNavigate}

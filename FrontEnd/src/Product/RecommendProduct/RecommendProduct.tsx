@@ -12,6 +12,7 @@ interface TitleProps {
 
 const RecommendProduct = ({ title }: TitleProps) => {
   const [recommendData, setRecommendData] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState(false);
   const [totalData, setTotalData] = useState();
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const page = useRef<number>(1);
@@ -26,6 +27,7 @@ const RecommendProduct = ({ title }: TitleProps) => {
     await recommendProduct(
       `?page=${page.current}&limit=8&sort=${currentPageString}`
     ).then((data) => {
+      if (data.message === "SUCCESS") setLoading(true);
       setRecommendData((prevData) => [...prevData, ...data.recommendProducts]);
       setTotalData(data.count);
       setHasNextPage(data.recommendProducts.length === 8);
@@ -65,6 +67,7 @@ const RecommendProduct = ({ title }: TitleProps) => {
         />
         <ProductList
           recommendData={recommendData}
+          loading={loading}
           observerTargetEl={observerTargetEl}
         />
       </ProdcutLayOut>

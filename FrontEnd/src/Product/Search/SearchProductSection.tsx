@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+import SkeletonComponent from "../../Components/Skeleton/Skeleton";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { searchProduct } from "../../api/Prodcut";
@@ -12,6 +13,7 @@ const SearchProductSection = () => {
   );
 
   const [searchProductData, setSearchProductData] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState(false);
   const [totalData, setTotalData] = useState();
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const page = useRef<number>(1);
@@ -24,6 +26,7 @@ const SearchProductSection = () => {
     await searchProduct(
       `?search=${productSearch}&page=${page.current}&limit=4` || location.search
     ).then((data) => {
+      if (data.message === "SUCCESS") setLoading(true);
       setSearchProductData((prevData: any) => [
         ...prevData,
         ...data.searchProduct,
@@ -37,16 +40,18 @@ const SearchProductSection = () => {
   }, []);
 
   useEffect(() => {
-    if (!observerTargetEl.current) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) infiniteProduct();
+    if (!observerTargetEl.current || !hasNextPage) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        infiniteProduct();
+      }
     });
     observer.observe(observerTargetEl.current);
 
     return () => {
       observer.disconnect();
     };
-  }, [infiniteProduct]);
+  }, [infiniteProduct, hasNextPage]);
 
   return (
     <SearchSection>
@@ -57,6 +62,7 @@ const SearchProductSection = () => {
         </SearchRecord>
       </SearchResult>
       <ProductList>
+        {!loading && <SkeletonComponent />}
         {searchProductData?.map(({ _id, src, name, price }: ProductType) => {
           const priceComma = price?.toLocaleString();
           return (

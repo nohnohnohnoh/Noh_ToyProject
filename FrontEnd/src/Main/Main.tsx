@@ -88,7 +88,7 @@ const Main = () => {
         <MainService
           header="찾으시는 제품이 없나요?"
           textOne="원하시는 제품의 정보, 사진을 보내주시면"
-          textTwo="최선을 다해 찾아드리겠습니다"
+          textTwo="최선을 다해 찾아드리겠습니다."
           textLink="더다주 카카오톡 문의하기"
         />
         <MainNew />

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import SkeletonComponent from "../Components/Skeleton/Skeleton";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
 import { setProductType } from "../reducers/productSlice";
@@ -9,6 +10,7 @@ import styled from "styled-components";
 
 const MainNew = () => {
   const [mainNewData, setMainNewData] = useState<Array<ProductType>>([]);
+  const [loading, setLoading] = useState(false);
   const [totalPage, setTotalPage] = useState();
 
   const dispatch: AppDispatch = useDispatch();
@@ -20,14 +22,17 @@ const MainNew = () => {
   }, []);
 
   useEffect(() => {
-    mainNewProductAxios().then(({ newProducts, totalPage }) => {
-      setMainNewData(newProducts);
-      setTotalPage(totalPage);
+    mainNewProductAxios().then((data) => {
+      if (data.message === "SUCCESS") setLoading(true);
+      setMainNewData(data.newProducts);
+      setTotalPage(data.totalPage);
     });
   }, [mainNewProductAxios]);
+  console.log(loading);
 
   const paginationOnClick = () => {
     if (mainNewData.length === 0) return;
+    setLoading(true);
     const lastImgArr: ProductType = mainNewData[mainNewData.length - 1];
     const lastImgId = lastImgArr._id;
     mainNewProduct(`?lastid=${lastImgId}`).then(({ newProducts }) => {
@@ -45,6 +50,7 @@ const MainNew = () => {
           <MainNewText>언제나 새로운 신상품</MainNewText>
         </MainNewHeaderBox>
         <MainNewList>
+          {!loading && <SkeletonComponent />}
           {mainNewData?.map(({ _id, src, name, price }: ProductType) => {
             const priceComma = price?.toLocaleString();
             return (

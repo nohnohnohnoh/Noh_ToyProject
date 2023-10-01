@@ -1,16 +1,23 @@
+import SkeletonComponent from "../../Components/Skeleton/Skeleton";
 import { useNavigate } from "react-router-dom";
 import { ProductType } from "../../types/type";
 import styled from "styled-components";
 
 interface RecommendProps {
+  loading: boolean;
   recommendData: ProductType[];
   observerTargetEl: any;
 }
 
-const ProductList = ({ recommendData, observerTargetEl }: RecommendProps) => {
+const ProductList = ({
+  recommendData,
+  loading,
+  observerTargetEl,
+}: RecommendProps) => {
   const navigate = useNavigate();
   return (
     <ProductListComponents>
+      {!loading && <SkeletonComponent />}
       {recommendData?.map(({ _id, src, name, price }: ProductType) => {
         const priceComma = price?.toLocaleString();
         return (
