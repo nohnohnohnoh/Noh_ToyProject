@@ -1,10 +1,12 @@
 import SkeletonComponent from "../../Components/Skeleton/Skeleton";
+import LoadingSkeleton from "../../Components/Skeleton/LoadingSkeleton";
 import { useNavigate } from "react-router-dom";
 import { ProductType } from "../../types/type";
 import styled from "styled-components";
 
 interface RecommendProps {
   loading: boolean;
+  loadingMore: boolean;
   recommendData: ProductType[];
   observerTargetEl: any;
 }
@@ -12,6 +14,7 @@ interface RecommendProps {
 const ProductList = ({
   recommendData,
   loading,
+  loadingMore,
   observerTargetEl,
 }: RecommendProps) => {
   const navigate = useNavigate();
@@ -37,6 +40,7 @@ const ProductList = ({
           </ProductListBox>
         );
       })}
+      {loadingMore && <LoadingSkeleton />}
       <div ref={observerTargetEl} />
     </ProductListComponents>
   );

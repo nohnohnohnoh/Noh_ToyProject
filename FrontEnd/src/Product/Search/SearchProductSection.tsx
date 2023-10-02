@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import SkeletonComponent from "../../Components/Skeleton/Skeleton";
+import LoadingSkeleton from "../../Components/Skeleton/LoadingSkeleton";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { searchProduct } from "../../api/Prodcut";
@@ -14,6 +15,7 @@ const SearchProductSection = () => {
 
   const [searchProductData, setSearchProductData] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [totalData, setTotalData] = useState();
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const page = useRef<number>(1);
@@ -26,7 +28,10 @@ const SearchProductSection = () => {
     await searchProduct(
       `?search=${productSearch}&page=${page.current}&limit=4` || location.search
     ).then((data) => {
-      if (data.message === "SUCCESS") setLoading(true);
+      if (data.message === "SUCCESS") {
+        setLoading(true);
+        setLoadingMore(false);
+      }
       setSearchProductData((prevData: any) => [
         ...prevData,
         ...data.searchProduct,
@@ -43,6 +48,7 @@ const SearchProductSection = () => {
     if (!observerTargetEl.current || !hasNextPage) return;
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
+        setLoadingMore(true);
         infiniteProduct();
       }
     });
@@ -82,6 +88,7 @@ const SearchProductSection = () => {
             </ProductListBox>
           );
         })}
+        {loadingMore && <LoadingSkeleton />}
         <div ref={observerTargetEl} />
       </ProductList>
     </SearchSection>
