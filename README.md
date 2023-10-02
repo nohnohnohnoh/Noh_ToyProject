@@ -97,4 +97,4 @@ SECRET_KEY = JWT_SECRET_KEY
 
 - 다양한 디바이스에서 더다주 사이트를 이용할 수 있게끔 반응협 웹 제작, S3에 관리한 이미지 cloudfront 적용.
 - Cart, WishList 상품등록 과정 중에 유저를 생각하지 않은 중복 상품 등록을 유저별로 중복 상품이 등록되지 않도록 개선.
-- Data 로딩 관련 부분에 Skeleton ui 추가.
+- Data 로딩 관련 부분에 Skeleton ui 추가, infinite scroll Data 로딩 관련 부분에서 Circle Loading Skeleton ui 추가.
